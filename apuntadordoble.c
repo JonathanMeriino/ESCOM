@@ -1,3 +1,4 @@
+//Ejemplo de apuntador doble
 #include <stdio.h>
 #include <stdlib.h>
 
