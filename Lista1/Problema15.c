@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 void arbolBinario(int nivel,int nodo,int limite);
-void arbolBaseB(int nivel,int nodo, int limite, inte base );
+void arbolBaseB(int nivel,int nodo, int limite, int base );
 
 void main(){
     int N=0, n=0,lim =4,base=3;
@@ -15,7 +15,7 @@ void arbolBinario(int nivel,int nodo,int limite){
       return;
 
     for(k=0;k<nivel;k++)
-        printf(""\t");
+        printf("\t");
     printf("nivel=%d,nodo=%d\n",nivel,nodo );
 
     arbolBinario(nivel+1,2+nodo+0,limite);
