@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int  main(int argc, char const *argv[]) {
   char *arr=NULL;
@@ -27,7 +28,7 @@ int  main(int argc, char const *argv[]) {
   printf("%s\n",cadena);
 
   for(q=0;q<N;q++)
-      arr[q] = arr[q+1]:
+      arr[q] = arr[q+1];
   printf("%s\n",arr);
 
   return 0;
