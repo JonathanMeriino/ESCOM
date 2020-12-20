@@ -1,66 +1,85 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
-	int*u= NULL, *v= NULL, *w= NULL, *x= NULL, *y= NULL, *z= NULL;
-	int a=2, b=3, c=5, d=7, e=11, f=13;
+	int*u= NULL, *v= NULL, *w= NULL, *x= NULL, *y= NULL, *z= NULL; //Se define un puntero a Nulo
+	int a=2, b=3, c=5, d=7, e=11, f=13;  //Se definen las variable de tipo entero
 
-	u= &a;
-	*u= 90;
-	printf("Valor:%d\n", a);
+	u= &a;     //Se asigna la direccion de "a" a u
+	*u= 90;     //Se asigna un valor a la direccion de memoria
+	printf("Valor de a:%d\n", a);  //Imprime el valor de a
 
-  v= &e;
-	e++;
-	printf("Valor: %d\n", e);
+  v= &e; //Se asigna la direccion de e a v
+	e++; //Incrementa su valor en 1
+	printf("Valor de e: %d\n", e); //Se imprime el valor de e
 
-  x= v;
-	*u=(*u)-1;
-	printf("Valor: %d\n", a);
+  x= v; //Se asigna a x el valor de v
+  printf("Valor de x: %d\n",*x ); //Accedemos al contenido de la direccion de memoria
 
-  *x= (*u) + 23;
-	printf("Valor: %d\n", e);
+  *u=(*u)-1;  //Se le asigna un valor a la direccion de memoria y se resta 1
+	printf("Valor de a: %d\n", a); //Imprime el contenido de a
 
-  y= &c;
-	w= &b;
-	d*= e;
-	printf("Valor: %d\n", d);
+  *x= (*u) + 23; //Se le asigna valor a la direccion de memoria
+	printf("Valor de *x: %d\n", *x); //Imprime el contenido de la direccion de memoria
 
-  f--;
-	printf("Valor: %d\n", f);
+  y= &c; //Se asigna la direccion de c a y
+  printf("La direccion de memoria de c:%p \n",&c ); //Imprime la direccion de memoria c
+  printf("Valor de y:%p\n", y); //Imprime la direccion de memoria de y
+  w= &b;
+  printf("La direccion de memoria de n es: %p \n",&b ); //Imprime la direccion de memoria de b
+  printf("Valor de w:%p\n",w ); //Imprime la direccion de memoria de w
 
-  z= &d;
+  d*= e; //Producto
+	printf("Valor de d: %d\n", d); //Se imprime el resultado de f
+
+  f--; //Se le resta 1 al valor de f
+	printf("Valor de f: %d\n", f); //Imprime el valor de f
+
+  z= &d; //Se le asigna la direccion de d a z
 	(*z)+= 0;
-  printf("Valor: %d\n", d);
+  printf("Valor de z: %d\n", *z);
 
   u= v;
-	(*z)*= 6;
-  printf("Valor: %d\n", d);
+  printf("Valor de u: %d\n",*u); //Accedemos al contenido de direccion de memoria
+
+  (*z)*= 6;
+  printf("Valor de z: %d\n", *z);
 
 	z = u;
-	*w= a+b+c+d+e+f;
-  printf("Valor: %d\n", b);
+  printf("Valor de z: %d\n",*z );
+
+  *w= a+b+c+d+e+f;
+  printf("Valor de w: %d\n", *w);
 
 	*w-= 2019;
-  printf("Valor%d\n", b);
+  printf("Valor de w: %d\n", *w);
 
-	c++;
-  printf("Valor: %d\n", c);
+	c++; //Se le suma 1 al valor de c
+  printf("Valor: %d\n", c); //Se imprime el valor de c
 
-	e--;
-  printf("Valor: %d\n", e);
+	e--; //Se le resta 1 al valor de e
+  printf("Valor: %d\n", e); //Se imprime el valor de e
 
 	u= &a;
+  printf("La direccion de memoria de a:%p \n",&a ); //Imprime la direccion de memoria c
+  printf("Valor de u:%p\n", u); //Imprime valor de u
 	v= &b;
+  printf("La direccion de memoria de b:%p \n",&b ); //Imprime la direccion de memoria b
+  printf("Valor de v:%p\n", v); //Imprime valor de v
 	w= &c;
-	*x= d + (*u);
-  printf("Valor: %d\n", e);
+  printf("La direccion de memoria de c:%p \n",&c ); //Imprime la direccion de memoria c
+  printf("Valor de w:%p\n", w); //Imprime valor de w
 
-  *y= e + (*v);
-  printf("Valor: %d\n", c);
+  *x= d + (*u);
+  printf("Valor de x: %d\n", *x);
+
+  *y= e+(*v);
+  printf("Valor de y: %d\n", *y);
 
   *z= f + (*w);
-  printf("Valor: %d\n", e);
+  printf("Valor de z: %d\n", *z);
 
 	return 0;
 }
