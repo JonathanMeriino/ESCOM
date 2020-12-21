@@ -1,3 +1,5 @@
+/*Determine la salida de la siguiente funcion, indicando para cada variable
+si el paso de parametros es por valor o por referencia*/
 #include <stdio.h>
 #include <stdlib.h>
 

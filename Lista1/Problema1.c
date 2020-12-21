@@ -1,3 +1,5 @@
+/*Describa que operacion se esta realizando en cada linea de codigo
+¿Cual es la salida que se despliega en la consola*/
 #include <stdio.h>
 #include <stdlib.h>
 

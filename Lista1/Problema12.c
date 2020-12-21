@@ -1,3 +1,4 @@
+//¿Cual es la salida de este codigo?
 #include<stdio.h>
 #include<stdlib.h>
 

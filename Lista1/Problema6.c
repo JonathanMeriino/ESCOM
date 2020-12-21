@@ -1,3 +1,5 @@
+/*Indique el estado de las cadenas antes y despues de invocar la funcion.
+Codifique y/o complete las funciones que sean necesarias*/ 
 #include <stdio.h>
 #include<stdlib.h>
 void main()

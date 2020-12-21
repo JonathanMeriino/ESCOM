@@ -1,3 +1,5 @@
+/*Estudie el siguiente programa recursivo que resuelve el problema de las Torres
+de Hanoi. Pruebe el programa con N=3,4,5,6,7,8 y 9 discos */
 #include<stdio.h>
 #include<stdlib.h>
 
