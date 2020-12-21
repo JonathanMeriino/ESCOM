@@ -1,3 +1,6 @@
+/*Calcule la complejidad computacional de cada uno de los ciclos que forman parte
+del siguiente codigo. ¿Cual es el valor de la variable x que se despliega en consola
+entre iteraciones*/
 #include<stdio.h>
 #include<stdlib.h>
 int main(int argc, char *argv[])

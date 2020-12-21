@@ -1,3 +1,5 @@
+/*Analice cuidadosamente el siguiente algoritmo. ¿Que valor va adquiriendo la variable
+contador al irse invocando las funciones recursivas arbolBinario() y arbolBaseB() */
 #include <stdio.h>
 #include <stdlib.h>
 void arbolBinario(int nivel, int nodo, int limite, int *cont);

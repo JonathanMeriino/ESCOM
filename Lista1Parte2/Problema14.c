@@ -1,3 +1,6 @@
+/*Considere el siguiente porograma recursivo. Considere, por el momento, que la
+impresion en consola le toma un tiempo constante. Dibuje el arbol de invocaciones
+recursivas y con base a ello, determine su complejidad computacional*/
 #include <stdio.h>
 #include <stdlib.h>
 void arbolDoble(int N, int nivel);

@@ -1,3 +1,5 @@
+/*Despues de ejecutar cada sentencia, determine los valores que adquieren las
+variables, los apuntadores sencillos y los apuntadores dobles*/
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char *argv[])
