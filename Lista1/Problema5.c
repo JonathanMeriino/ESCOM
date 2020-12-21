@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void ordenarArreglo(int *arreglo,int N)
 {
 int i,j,tam,aux;
@@ -11,7 +10,7 @@ int i,j,tam,aux;
         aux=N[i];
         N[i]=N[j];
         N[j]=aux;
-   printf("Los datos ordendsos son: \n" );
+   printf("Los datos ordenados son: \n" );
    for(i=0;i<tam; i++)
       printf("%d\n",N[i] );
 }
@@ -21,7 +20,7 @@ void desordenarArreglo(int *arreglo,int N)
 }
 int main(int argc, char const *argv[])
 {
-  int *arreglo, N;
+  int *arreglo, N[0];
   int tam,i;
 
   printf("Numeros a ingresar: \n");
@@ -31,7 +30,6 @@ int main(int argc, char const *argv[])
    printf("Ingresa el dato %d\n",i+1 );
    scanf("%d\n",&N [i]);
 
-  leerArreglo(arreglo,N);
   ordenarArreglo(arreglo,N);
   desordenarArreglo(arreglo,N);
 
