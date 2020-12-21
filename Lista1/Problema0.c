@@ -1,3 +1,4 @@
+//Indique paso a paso que valores tienen las variables a,b,c,d,e y f y los apuntadores u,v,w,x,y,z.
 #include <stdio.h>
 #include <stdlib.h>
 
