@@ -3,7 +3,7 @@
 
 #define XSIZE 8
 #define YSIZE 8
-int board[YSIZE][XSIZE] = { {0} };
+int tablero[YSIZE][XSIZE] = { {0} };
 
 int moves[8][2] = {
   { -2,  1 }, { -1,  2 }, {  1,  2 }, {  2,  1 },
@@ -30,7 +30,7 @@ void print_board ()
   for (y = 0; y < YSIZE; y++)
     {
       for (x = 0; x < XSIZE; x++)
-	printf ("% 6d ", board[y][x]);
+	printf ("% 6d ", tablero[y][x]);
       printf ("\n");
     }
 }
@@ -40,7 +40,7 @@ int valid (int x, int y)
   return
     x >= 0 && x < XSIZE &&
     y >= 0 && y < YSIZE &&
-    board[y][x] == 0;
+    tablero[y][x] == 0;
 }
 
 int compar (const void *a, const void *b)
@@ -50,7 +50,7 @@ int compar (const void *a, const void *b)
 
 int solve_board (int x, int y, int n)
 {
-  board[y][x] = n;
+  tablero[y][x] = n;
   if (n == XSIZE * YSIZE)
     return 1;
 
@@ -69,13 +69,13 @@ int solve_board (int x, int y, int n)
     }
 
   /* Sort and try each one. */
-  qsort (&valids[0][0], 8, 3 * sizeof (int), &compar);
+ // qsort (&valids[0][0], 8, 3 * sizeof (int), &compar);
   for (i = 0; i < 8; i++)
     if (valid (valids[i][1], valids[i][2]) &&
 	solve_board (valids[i][1], valids[i][2], n + 1))
       return 1;
 
   /* Dead end: back off. */
-  board[y][x] = 0;
+  tablero[y][x] = 0;
   return 0;
 }
