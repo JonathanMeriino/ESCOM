@@ -21,7 +21,7 @@ int ******crearHipercubo(int A, int B, int C, int D, int E, int F){
 	int ******hipercubo= NULL; 
 	int i=0, j=0, k=0, l=0, m=0, n=0; 
 	
-	hipercubo=(int ******) malloc(A*sizeof(int *****)); //Hipercubo 
+	hipercubo=(int ******) malloc(A*sizeof(int *****));
 	
 	for (i=0; i<A; i++)
 	{
