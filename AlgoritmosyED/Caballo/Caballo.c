@@ -5,26 +5,26 @@
 #define YSIZE 8
 int tablero[YSIZE][XSIZE] = { {0} };
 
-int moves[8][2] = {
+int desplazamiento[8][2] = {
   { -2,  1 }, { -1,  2 }, {  1,  2 }, {  2,  1 },
   {  2, -1 }, {  1, -2 }, { -1, -2 }, { -2, -1 }
 };
 
-void print_board ();
-int valid (int x, int y);
-int solve_board (int x, int y, int n);
+void imprimir_tablero ();
+int validar (int x, int y);
+int sol_tablero (int x, int y, int n);
 int compar (const void *a, const void *b);
 
 int main ()
 {
-  if (solve_board (0, 0, 1))
-    print_board ();
+  if (sol_tablero (0, 0, 1))
+    imprimir_tablero ();
   else
-    printf ("No solution.\n");
+    printf ("No hay solucion.\n");
   return 0;
 }
 
-void print_board ()
+void imprimir_tablero ()
 {
   int x, y;
   for (y = 0; y < YSIZE; y++)
@@ -35,7 +35,7 @@ void print_board ()
     }
 }
 
-int valid (int x, int y)
+int validar (int x, int y)
 {
   return
     x >= 0 && x < XSIZE &&
@@ -48,31 +48,31 @@ int compar (const void *a, const void *b)
   return ((int *) a)[0] - ((int *) b)[0];
 }
 
-int solve_board (int x, int y, int n)
+int sol_tablero (int x, int y, int n)
 {
   tablero[y][x] = n;
   if (n == XSIZE * YSIZE)
     return 1;
 
   /* Gather valid moves and count their "loneliness". */
-  int i, j, valids[8][3];
+  int i, j, validos[8][3];
   for (i = 0; i < 8; i++)
     {
-      valids[i][0] = 0;
-      valids[i][1] = x + moves[i][0];
-      valids[i][2] = y + moves[i][1];
-      if (valid (valids[i][1], valids[i][2]))
+      validos[i][0] = 0;
+      validos[i][1] = x + desplazamiento[i][0];
+      validos[i][2] = y + desplazamiento[i][1];
+      if (validar (validos[i][1], validos[i][2]))
 	for (j = 0; j < 8; j++)
-	  if (valid (valids[i][1] + moves[j][0],
-		     valids[i][2] + moves[j][1]))
-	    valids[i][0]++;
+	  if (validar (validos[i][1] + desplazamiento[j][0],
+		     validos[i][2] + desplazamiento[j][1]))
+	    validos[i][0]++;
     }
 
   /* Sort and try each one. */
- // qsort (&valids[0][0], 8, 3 * sizeof (int), &compar);
+ qsort (&validos[0][0], 8, 3 * sizeof (int), &compar);
   for (i = 0; i < 8; i++)
-    if (valid (valids[i][1], valids[i][2]) &&
-	solve_board (valids[i][1], valids[i][2], n + 1))
+    if (validar (validos[i][1], validos[i][2]) &&
+	sol_tablero (validos[i][1], validos[i][2], n + 1))
       return 1;
 
   /* Dead end: back off. */
