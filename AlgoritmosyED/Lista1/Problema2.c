@@ -28,7 +28,7 @@ void main() {
   b=realizarAcrobacias(a,&alpha,c,&omega,&delta);
   printf("a=%d,b=%d,c=%d\n",a,b,c);
   printf("alpha=%d\n",alpha);
-  printf("beta=%d\n",omega );
+  printf("omega=%d\n",omega );
   printf("delta =%d\n",delta );
 
 }

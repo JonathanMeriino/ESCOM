@@ -7,7 +7,7 @@ void moverDisco(char dest,char aux,char fte,int N,int *cont);
 
 int main(){
   char fuente = 'A', auxiliar='B', destino='C';
-  int N=3,contador =0;
+  int N=5,contador =0;
 
   moverDisco(destino,auxiliar,fuente,N,&contador);
   return 0;
