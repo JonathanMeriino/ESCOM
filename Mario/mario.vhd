@@ -8,7 +8,7 @@ entity mario_en is
 			enable: in bit;   -- enable
 			mario_adv:inout bit;	--avanzar
 			posicion:inout bit_vector(0 to 7); -- muestra la salida
-			botonSaltar:inout bit
+			sal_boton:inout bit
 			);
 
 end mario_en;
@@ -23,8 +23,8 @@ signal vec_tort:  bit_vector(0 to 7 ):="00000001"; -- vector tortuga
 signal en_tort  : bit:='0';
 signal fn_tort  : bit:= '1';
 --variables a ccambiar tAMBIEN CAMBIA EL NOMBRE DEL BOTON DE SALTO 
-signal mariosalta: bit_vector(0 to 7 );
-signal btnsal: bit:='0';
+signal mariojump: bit_vector(0 to 7 );
+signal knoptsal: bit:='0';
 
 
 
@@ -67,40 +67,40 @@ signal btnsal: bit:='0';
 
 
 
-		if (botonSaltar='1'and mario_adv='0') then
+		if (knoptsal='1'and mario_adv='0') then
 		btnsal<='1';
-		marioSalta <= vec_mario;
+		mariojump <= vec_mario;
 		vec_mario<= "00000000";
-	elsif (botonSaltar='1'and mario_adv='1') then
-		btnsal<='1';
-		marioSalta (0) <= (sen and en_mario) or (fn_mario and vec_mario(1));
+	elsif (knoptsal='1'and mario_adv='1') then
+		knoptsal<='1';
+		mariojump (0) <= (sen and en_mario) or (fn_mario and vec_mario(1));
 
 			for i in 1 to 6 loop
 
-		marioSalta(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
+		mariojump(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
 
 			end loop;
-		marioSalta (7) <= (vec_mario(6) and en_mario) or (fn_mario and sen);
+		mariojump (7) <= (vec_mario(6) and en_mario) or (fn_mario and sen);
 		vec_mario <= "00000000";
 
 		end if ;
-		if (btnsal = '1'and mario_adv='0') then
+		if (knoptsal = '1'and mario_adv='0') then
 		vec_mario<= marioSalta;
-		marioSalta <= "00000000";
-		btnsal <= '0';
-		botonSaltar <= '0';
-		elsif(btnsal = '1' and mario_adv='1')then
-			vec_mario(0) <= (sen and en_mario) or (fn_mario and marioSalta(1));
+		mariojump <= "00000000";
+		knoptsal <= '0';
+		sal_boton <= '0';
+		elsif(knoptsal = '1' and mario_adv='1')then
+			vec_mario(0) <= (sen and en_mario) or (fn_mario and mariojump(1));
 
 				for i in 1 to 6 loop
 
-			vec_mario(i) <= (marioSalta(i-1) and en_mario) or (fn_mario and marioSalta(i+1));
+			vec_mario(i) <= (mariojump(i-1) and en_mario) or (fn_mario and mariojump(i+1));
 
 				end loop;
-						vec_mario(7) <= (marioSalta(6) and en_mario) or (fn_mario and sen);
-		marioSalta <= "00000000";
-		btnsal <= '0';
-		botonSaltar <= '0';
+						vec_mario(7) <= (mariojump(6) and en_mario) or (fn_mario and sen);
+		mariojump <= "00000000";
+		knoptsal <= '0';
+		sal_boton <= '0';
 
 		end if;
 
