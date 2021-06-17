@@ -22,7 +22,7 @@ signal en_mario : bit:='1';   -- mueve el circuito, meten datos de manera seriad
 signal fn_mario : bit:='0';
 
 signal vec_tort:  bit_vector(0 to 7 ):="00000001"; -- vector tortuga
-signal en_tort  : bit:='0';
+signal en_tort  : bit:='0'; 
 signal fn_tort  : bit:= '1';
 
 signal mariojump: bit_vector(0 to 7 );
@@ -113,7 +113,7 @@ signal knoptsal: bit:='0';
 						vec_mario(7) <= (mariojump(6) and en_mario) or (fn_mario and sen);
 		-- termina el proceso de mover y guardar				
 		mariojump <= "00000000"; -- manda el mario a cero para que no existan dos
-		knoptsal <= '0'; -- manda la bandera a cero para que no existan dos marios
+		knoptsal <= '0'; -- manda la bandera a cero 
 		sal_boton <= '0'; -- manda el boton de saltar a cero
 
 		end if;
