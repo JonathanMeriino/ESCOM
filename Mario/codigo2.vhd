@@ -20,10 +20,8 @@ architecture mario_arq of  mario_en is
 signal en_mario : bit:='1';   -- mueve el circuito, meten datos de manera seriada, recorrer datos
 signal fn_mario : bit:='0';
 
-
---variables a ccambiar tAMBIEN CAMBIA EL NOMBRE DEL BOTON DE SALTO 
 signal mariojump: bit_vector(0 to 7 );
-signal knoptsal: bit:='0';
+signal knoptsal: bit:='0'; -- detecta que esta en el aire
 
 
 
@@ -56,54 +54,57 @@ signal knoptsal: bit:='0';
 		end if;
 
 
-
+		-- salto vertical
 		if (Sal_boton='1'and mario_adv='0') then
-		knoptsal<='1';
-		mariojump <= vec_mario;
-		vec_mario<= "00000000";
-	elsif (Sal_boton='1'and mario_adv='1') then
-		knoptsal<='1';
-		mariojump (0) <= (sen and en_mario) or (fn_mario and vec_mario(1));
+			knoptsal<='1';
+			mariojump <= vec_mario;
+			vec_mario<= "00000000";
+		-- salto diagonal	
+		elsif (Sal_boton='1'and mario_adv='1') then
+			knoptsal<='1';
+			mariojump (0) <= (sen and en_mario) or (fn_mario and vec_mario(1));
 
-			for i in 1 to 6 loop
+		for i in 1 to 6 loop
 
-		mariojump(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
+			mariojump(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
 
-			end loop;
+		end loop;
 		mariojump (7) <= (vec_mario(6) and en_mario) or (fn_mario and sen);
 		vec_mario <= "00000000";
 
 		end if ;
+		-- baja de forma vertical
 		if (knoptsal = '1'and mario_adv='0') then
-		vec_mario<= mariojump;
-		mariojump <= "00000000";
-		knoptsal <= '0';
-		sal_boton <= '0';
+			vec_mario<= mariojump;
+			mariojump <= "00000000";
+			knoptsal <= '0';
+			sal_boton <= '0';
+		-- baja en diagonal
 		elsif(knoptsal = '1' and mario_adv='1')then
 			vec_mario(0) <= (sen and en_mario) or (fn_mario and mariojump(1));
 
 				for i in 1 to 6 loop
 
-			vec_mario(i) <= (mariojump(i-1) and en_mario) or (fn_mario and mariojump(i+1));
+					vec_mario(i) <= (mariojump(i-1) and en_mario) or (fn_mario and mariojump(i+1));
 
 				end loop;
-						vec_mario(7) <= (mariojump(6) and en_mario) or (fn_mario and sen);
-		mariojump <= "00000000";
-		knoptsal <= '0';
-		sal_boton <= '0';
+				vec_mario(7) <= (mariojump(6) and en_mario) or (fn_mario and sen);
+				mariojump <= "00000000";
+				knoptsal <= '0';
+				sal_boton <= '0';
 
 		end if;
 
 						for i in 0 to 6 loop
+							-- cuando cumple la funcion caninoca mario muere
 								if ((Vec_mario(i) and not  suelo(i))='1') then
+									-- reinicia sin mario
 									Vec_mario <="00000000";
 									mariojump<="00000000";
 									
 									suelo<="11011011";
 								end if ;
 						end loop;
-
-
 
 
 	    	end if;
