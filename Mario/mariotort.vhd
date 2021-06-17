@@ -1,4 +1,4 @@
--- 
+-- Este codigo crea un mario con una tortuga
 library ieee;
 use ieee.std_logic_1164.all;
 
