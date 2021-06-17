@@ -1,4 +1,4 @@
--- codigo 1
+-- 
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -24,7 +24,7 @@ signal fn_mario : bit:='0';
 signal vec_tort:  bit_vector(0 to 7 ):="00000001"; -- vector tortuga
 signal en_tort  : bit:='0';
 signal fn_tort  : bit:= '1';
---variables a ccambiar tAMBIEN CAMBIA EL NOMBRE DEL BOTON DE SALTO
+
 signal mariojump: bit_vector(0 to 7 );
 signal knoptsal: bit:='0';
 
@@ -34,7 +34,7 @@ signal knoptsal: bit:='0';
 
 	process(enable,vec_tort, clk,sen,en_mario,fn_mario,vec_mario) -- reset señal sensitiva
 		begin
-		if rising_edge(clk) then
+		if rising_edge(clk) then    -- retrasa el evento
 				if(enable='1') then
 						vec_mario <= "00000000";
 						vec_tort <= "00000000";
@@ -70,31 +70,40 @@ signal knoptsal: bit:='0';
 		end if;
 
 
-
+       -- primer salto vertical 
 		if (Sal_boton='1'and mario_adv='0') then
-		knoptsal<='1';
-		mariojump <= vec_mario;
-		vec_mario<= "00000000";
-	elsif (Sal_boton='1'and mario_adv='1') then
-		knoptsal<='1';
-		mariojump (0) <= (sen and en_mario) or (fn_mario and vec_mario(1));
+			knoptsal<='1';  -- bandera para que baje automaticamente
+			mariojump <= vec_mario;  -- guarda dato del mario
+			vec_mario<= "00000000"; -- vector mario manda a 0
+		-- salto diagonal
+		elsif (Sal_boton='1'and mario_adv='1') then
+			knoptsal<='1'; -- bandera toma el valor de 1
+			
+			-- Se mueve una posicion y se guarda en mariojumo
+			mariojump (0) <= (sen and en_mario) or (fn_mario and vec_mario(1)); 
 
 			for i in 1 to 6 loop
 
-		mariojump(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
+				mariojump(i) <= (vec_mario(i-1) and en_mario) or (fn_mario and vec_mario(i+1));
 
 			end loop;
 		mariojump (7) <= (vec_mario(6) and en_mario) or (fn_mario and sen);
-		vec_mario <= "00000000";
+			-- termina el proceso
+
+		vec_mario <= "00000000"; -- mandamos a ceros para no tener dos marios
 
 		end if ;
+
+		-- baja salto vertical
 		if (knoptsal = '1'and mario_adv='0') then
-		vec_mario<= mariojump;
-		mariojump <= "00000000";
-		knoptsal <= '0';
-		sal_boton <= '0';
+			vec_mario <= mariojump; -- baja en la misma posicion
+			mariojump <= "00000000"; -- manda a 0s para que no existan dos marios
+			knoptsal <= '0'; -- mando la bandera a cero
+			sal_boton <= '0'; -- manda el boton saltar a cero retrasandolo 1 proceso clk
+		
+		-- baja mi salto diagonal
 		elsif(knoptsal = '1' and mario_adv='1')then
-			vec_mario(0) <= (sen and en_mario) or (fn_mario and mariojump(1));
+			vec_mario(0) <= (sen and en_mario) or (fn_mario and mariojump(1)); -- mueve una posicion y la guarda
 
 				for i in 1 to 6 loop
 
@@ -102,43 +111,46 @@ signal knoptsal: bit:='0';
 
 				end loop;
 						vec_mario(7) <= (mariojump(6) and en_mario) or (fn_mario and sen);
-		mariojump <= "00000000";
-		knoptsal <= '0';
-		sal_boton <= '0';
+		-- termina el proceso de mover y guardar				
+		mariojump <= "00000000"; -- manda el mario a cero para que no existan dos
+		knoptsal <= '0'; -- manda la bandera a cero para que no existan dos marios
+		sal_boton <= '0'; -- manda el boton de saltar a cero
 
 		end if;
 
 
 
 
-
+		-- la muerte de mario
 		for i in 0 to 6 loop
-
+			-- condicion para saber si estan en la misma posicion
 			if ((((vec_mario(i) and vec_tort(i+1) )or (vec_mario(i) and vec_tort(i))) = '1')and Sal_boton ='0') then
-					-- reinicia el valor
+					-- vuelve a posciones iniciales
 					vec_tort <="00000001";
 		    		vec_mario<= "10000000";
 			end if ;
 	   	end loop;
-
-
+		-- fin del proceso
+					-- muerte de la tortuga
 						if  Sal_boton='1' then
 									if mario_adv ='1'then
+										-- muerte de la tortuga en diagonal
 										for i in 0 to 6 loop
 											if ((mariojump(i) and vec_tort(i+1))='1') then
 												vec_tort <="00000000";
 											end if;
 										end loop;
 									else
+										-- muerte con salto vertical
 										for i in 0 to 6 loop
 											if ((mariojump(i) and vec_tort(i))='1') then
-												vec_tort <="00000000";
+												vec_tort <="00000000"; -- manda la tortuga a ceros
 											end if;
 										end loop;
 									end if;
 
 								end if ;
-	    	end if;
+	    				end if;
 	    	posicion <= (vec_mario or vec_tort); -- vector que suma
 
 	end process;
