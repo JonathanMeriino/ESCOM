@@ -201,7 +201,7 @@ public class Vista extends JFrame implements ActionListener
                             JOptionPane.showMessageDialog(this, "Registro actualizado: " + tNickname.getText(), "Aviso!",JOptionPane.INFORMATION_MESSAGE);
                         else
                             JOptionPane.showMessageDialog(this, "Acción no realizada!!","Aviso!",JOptionPane.ERROR_MESSAGE);
-        			}
+        		}
 				else
 				JOptionPane.showMessageDialog(this, "No existe la persona", "Aviso!",
 							                          JOptionPane.ERROR_MESSAGE);
@@ -209,7 +209,7 @@ public class Vista extends JFrame implements ActionListener
 			}
 		}
 
-                if(fuenteDelEvento == alta)
+        if(fuenteDelEvento == alta)
 		{
 			// Hacer algo
 			if(tNickname.getText().length() == 0)
