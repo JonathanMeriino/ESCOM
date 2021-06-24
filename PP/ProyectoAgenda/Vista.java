@@ -14,20 +14,20 @@ public class Vista extends JFrame implements ActionListener
 	private JMenuBar barraMenus = new JMenuBar();
 	private JMenu archivo 	  = new JMenu("Archivo");
 	private JMenuItem salir   = new JMenuItem("Salir");
-
+	//Textos para colocar en el frame
 	private JLabel et1        = new JLabel("Nickname:");
 	private JLabel et2        = new JLabel("Nombre:");
     private JLabel et3        = new JLabel("Email:");
     private JLabel et4       = new JLabel("Celular:");
     private JLabel et5      = new JLabel("Imagen:");
     private JLabel  imagen    = new JLabel();    
-
+	//Para ingresar la cadena de caracteres por teclado
 	private JTextField tNickname = new JTextField();
 	private JTextField tNombre= new JTextField();
     private JTextField tEmail = new JTextField();
     private JTextField tCelular = new JTextField();
     private JTextField tImagen = new JTextField();
-        
+    //Botones para cada accion 
 	private JButton    buscar  = new JButton("Buscar");
     private JButton    alta  = new JButton("Agregar");
     private JButton    borrar  = new JButton("Eliminar");
@@ -71,7 +71,7 @@ public class Vista extends JFrame implements ActionListener
         barraMenus.add(archivo);
         archivo.add(salir);
 
-		// Componentes
+		// Tamaño y posicion de nuestros componentes 
 
 	    et1.setBounds(10,30,100,30);
 	    et2.setBounds(10,70,100,30);
@@ -95,7 +95,7 @@ public class Vista extends JFrame implements ActionListener
         cambiar.setBounds(310,230,85,30);
         limpiar.setBounds(10,230,80,30);
             
-            
+        // Añadir los elementos    
 	    add(et1);
 	    add(et2);
         add(et3);
@@ -115,7 +115,7 @@ public class Vista extends JFrame implements ActionListener
         add(limpiar);
 	    add(imagen);
 
-
+		// Detectar y manejar evetos de accion
         salir.addActionListener(this);
         buscar.addActionListener(this);
         limpiar.addActionListener(this);
@@ -152,7 +152,7 @@ public class Vista extends JFrame implements ActionListener
                 
 		if(fuenteDelEvento == buscar)
 		{
-			// Hacer algo
+			// Si no se captura el nickname
 			if(tNickname.getText().length() == 0)
 			{
 				JOptionPane.showMessageDialog(this, "Captura nickname, no lo puedes dejar vacio", "Aviso!",
@@ -170,7 +170,7 @@ public class Vista extends JFrame implements ActionListener
 					String nombreArchivoImagen = newPersona.getImagen();
 					imagen.setIcon(new ImageIcon(nombreArchivoImagen));
 				}
-				else
+				else // en caso de que no exista
 				JOptionPane.showMessageDialog(this, "No existe la persona", "Aviso!",
 							                          JOptionPane.ERROR_MESSAGE);
 
@@ -179,7 +179,7 @@ public class Vista extends JFrame implements ActionListener
 
 		if(fuenteDelEvento == cambiar)
 		{
-			// Hacer algo
+			// Si no captura un nickname
 			if(tNickname.getText().length() == 0)
 			{
 				JOptionPane.showMessageDialog(this, "Captura nickname, no lo puedes dejar vacio", "Aviso!",
@@ -195,27 +195,25 @@ public class Vista extends JFrame implements ActionListener
                     newPersona.setEmail(tEmail.getText());
                     newPersona.setCelular(tCelular.getText());
                     newPersona.setImagen(tImagen.getText());
-                        // Actualiza el titulo del objeto libro
+                    // Actualiza el titulo del objeto libro
                                     
-                        if(newBook.cambiar(prop)) // Si hubo éxito
-                            JOptionPane.showMessageDialog(this, "Registro actualizado: " + tNickname.getText(), "Aviso!",JOptionPane.INFORMATION_MESSAGE);
-                        else
-                            JOptionPane.showMessageDialog(this, "Acción no realizada!!","Aviso!",JOptionPane.ERROR_MESSAGE);
+                    if(newBook.cambiar(prop)) // Si hubo éxito
+                        JOptionPane.showMessageDialog(this, "Registro actualizado: " + tNickname.getText(), "Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                    else
+                        JOptionPane.showMessageDialog(this, "Acción no realizada!!","Aviso!",JOptionPane.ERROR_MESSAGE);
         		}
-				else
-				JOptionPane.showMessageDialog(this, "No existe la persona", "Aviso!",
-							                          JOptionPane.ERROR_MESSAGE);
+				else // si no existe el nickname
+				JOptionPane.showMessageDialog(this, "No existe la persona", "Aviso!", JOptionPane.ERROR_MESSAGE);
 
 			}
 		}
 
         if(fuenteDelEvento == alta)
 		{
-			// Hacer algo
+		
 			if(tNickname.getText().length() == 0)
 			{
-				JOptionPane.showMessageDialog(this, "Captura Nickname, no lo puedes dejar vacio", "Aviso!",
-							                          JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Captura Nickname, no lo puedes dejar vacio", "Aviso!", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -260,7 +258,7 @@ public class Vista extends JFrame implements ActionListener
                                         JOptionPane.showMessageDialog(this, "Registro eliminado: " + tNickname.getText(), "Aviso!",JOptionPane.WARNING_MESSAGE);
                                         limpiarCampos();
                                     }    
-                                   else JOptionPane.showMessageDialog(this, "Acción no realizada!!","Aviso!",JOptionPane.ERROR_MESSAGE);
+                                    else JOptionPane.showMessageDialog(this, "Acción no realizada!!","Aviso!",JOptionPane.ERROR_MESSAGE);
                            
 					}
 					else

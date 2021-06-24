@@ -68,7 +68,7 @@ public class Persona
 
 	public static Persona getPersonaFromDB(String NicknameConsulta, Properties prop)
 	{
-            Persona persona = new Persona(); // Nuevo libro en blanco
+            Persona persona = new Persona(); // Nueva Persona
 
             try
 	    {
@@ -86,7 +86,7 @@ public class Persona
 
 
                 Connection con = DriverManager.getConnection(url); // Crea una conexion a la BD
-
+                //Consulta para llamar a un registro ingresado
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM agenda WHERE Nickname = ?");
                 ps.setString(1,NicknameConsulta);
                 boolean ok = ps.execute();
@@ -138,7 +138,7 @@ public class Persona
 
 
                 Connection con = DriverManager.getConnection(url); // Crea una conexion a la BD
-
+                //Actualiza los datos
                 PreparedStatement ps = con.prepareStatement("UPDATE agenda SET Nombre = ?,Email = ?,Celular = ? ,imagen = ? WHERE Nickname = ?");
                 
                 ps.setString(1, this.Nombre); // El titulo que llega de la Vista
@@ -177,7 +177,7 @@ public class Persona
 
 
                 Connection con = DriverManager.getConnection(url); // Crea una conexion a la BD
-
+                //Borra el registro
                 PreparedStatement ps = con.prepareStatement("DELETE FROM agenda WHERE Nickname = ?");
                 ps.setString(1, this.Nickname);
                 exito = ps.executeUpdate() > 0;
@@ -211,7 +211,7 @@ public class Persona
 
 
                 Connection con = DriverManager.getConnection(url); // Crea una conexion a la BD
-
+                //Inserta el nuevo registro
                 PreparedStatement ps = con.prepareStatement("INSERT INTO agenda (Nickname, Nombre,Email,Celular,imagen) VALUES (?,?,?,?,?)");
                 ps.setString(1, this.Nickname); 
                 ps.setString(2, this.Nombre); 
