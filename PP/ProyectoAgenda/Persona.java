@@ -1,6 +1,4 @@
-/
-package proyectolibreria;
-
+package proyectoagenda;
 
 import java.sql.*;
 import java.util.*;
@@ -25,75 +23,38 @@ public class Persona
 		this.Nombre= nombre;
 		this.imagen = imagen;
                 this.Email = Email;
-                 this.Celular = Celular;
-
+                this.Celular = Celular;
 	}
 
 	// Metodos get
 
 	
-public String getNickname()
-	{
-		return Nickname;
-	}
-public String getnombre()
-	{
-		return Nombre;
-	}
+        public String getNickname(){ return Nickname;}
 
+        public String getnombre(){ return Nombre; }
 
+        public String getEmail(){ return Email;	}
         
-        public String getEmail()
-	{
-		return Email;
-	}
-        public String getCelular()
-	{
-		return Celular;
-	}
-
+        public String getCelular(){ return Celular; }
 
 	public String getImagen()
 	{
 		return "imagenes/" + imagen +".jpg";
 	}
         
-        public String getImagen1()
-	{
-		return imagen;
-	}
-
-
+        public String getImagen1(){ return imagen; }
 
 	// Métodos set
 
-	public void setNombre(String nombre)
-	{
-		this.Nombre = nombre;
-	}
+	public void setNombre(String nombre){ this.Nombre = nombre; }
 
-	public void setNickname(String nickname)
-	{
-		this.Nickname = nickname;
-	}
+	public void setNickname(String nickname){ this.Nickname = nickname; }
 
-	
-        public void setEmail(String Email)
-	{
-		this.Email = Email;
-	}
-         public void setCelular(String Celular)
-	{
-		this.Celular = Celular;
-	}
+	public void setEmail(String Email){ this.Email = Email;	}
 
-	public void setImagen(String imagen)
-	{
-		this.imagen = imagen;
-	}
+        public void setCelular(String Celular){ this.Celular = Celular; }
 
-
-
+	public void setImagen(String imagen){ this.imagen = imagen; }
 
 	public void muestraDatos()
 	{
