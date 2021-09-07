@@ -1,11 +1,20 @@
-
-const products = [
-    {producto: 'Arroz' ,mercado: 'Walmart', precio: 15},
-    {producto: 'Arroz' ,mercado: 'Superama', precio: 25},
-    {producto: 'Arroz' ,mercado: 'Bodega aurrera', precio: 20},
-    {producto: 'Arroz' ,mercado: 'Tienda Don Pancho', precio: 13},
-    {producto: 'Arroz' ,mercado: 'Waldos', precio: 30},
+const productsArroz = [
+    {producto: 'Arroz' ,place: 'CDMX', precio: 14},
+    {producto: 'Arroz' ,place: 'SanLuis', precio: 18},
+    {producto: 'Arroz' ,place: 'Campeche', precio: 21},
+    {producto: 'Arroz' ,place: 'Yucatan', precio: 33},
+    {producto: 'Arroz' ,place: 'edoMex', precio: 3},
 ];
+
+
+const productsMantequilla = [
+    {producto: 'Mantequilla' ,lugar: 'Walmart', precio: 15},
+    {producto: 'Mantequilla' ,lugar: 'Superama', precio: 25},
+    {producto: 'Mantequilla' ,lugar: 'Bodega aurrera', precio: 20},
+    {producto: 'Mantequilla' ,lugar: 'Tienda Don Pancho', precio: 13},
+    {producto: 'Mantequilla' ,lugar: 'Waldos', precio: 30},
+];
+
 
 function getBotResponse(input) {
     //rock paper scissors
@@ -34,14 +43,3 @@ function getBotResponse(input) {
     }
 }
 
-function recomendacion(input){
-
-    if(input == "recomendacion de hoy"){
-        return getBestProduct();
-        
-    }
-
-}
-function getBestProduct(){
-        resultado = 2 + 5;
-}
