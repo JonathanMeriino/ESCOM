@@ -5,10 +5,10 @@ import respuestas as R
 print("Bot inicializado")
 
 def start_command(update,context):
-    update.message.reply_text('Type something random to get started')
+    update.message.reply_text('Listo para iniciar la conversacion')
 
 def help_command(update,context):
-    update.message.reply_text('If you need help ')
+    update.message.reply_text('Intenta algo ')
 
 
 def handle_message(update,context):
@@ -19,7 +19,7 @@ def handle_message(update,context):
     update.message.reply_text(response)
     update.message.reply_text(respuestas)
 
-    
+
 def error(update,context):
     print(f"Update {update } caused error{context.error}")
 
