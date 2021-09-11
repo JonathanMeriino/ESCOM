@@ -20,7 +20,7 @@ function getBotResponse(input) {
         return "Adios, gracias por visitarnos";
 
     } else {
-        return "Try asking something else!";
+        return "Trata preguntando otra cosa!";
     }
 }
 

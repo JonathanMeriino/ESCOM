@@ -91,7 +91,6 @@ function buttonSendText(sampleText) {
 
 function sendButton() {
     getResponse();
-    recomendacion();
 }
 
 function heartButton() {
