@@ -2,7 +2,7 @@ import constants as keys
 from telegram.ext import *
 import respuestas as R
 
-print("Bot Started")
+print("Bot inicializado")
 
 def start_command(update,context):
     update.message.reply_text('Type something random to get started')
@@ -14,9 +14,12 @@ def help_command(update,context):
 def handle_message(update,context):
     text = str(update.message.text).lower()
     response = R.sample_responses(text)
+    respuestas = R.evaluacion(text)
 
     update.message.reply_text(response)
+    update.message.reply_text(respuestas)
 
+    
 def error(update,context):
     print(f"Update {update } caused error{context.error}")
 
