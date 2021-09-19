@@ -8,7 +8,7 @@
 
 #define Nodo struct nodo
 #define Arista struct arista
-#define Lista struct pila
+#define Lista struct lista
 
 
 Nodo{
@@ -26,13 +26,13 @@ Arista{
 };
 
 Lista{
-	Nodo* dato;
-	Lista*siguiente;
+	Nodo *dato;
+	Lista *siguiente;
 };
 
-Nodo*inicio=NULL;
-Lista*ini=NULL;//Apunta al inicio de la lista
-Lista*final=NULL; //Apunta al final de la lista
+Nodo *inicio=NULL;
+Lista *ini=NULL;//Apunta al inicio de la lista
+Lista *final=NULL; //Apunta al final de la lista
 
 void insertarNodo();
 void agregarArista(Nodo*aux,Nodo*aux2,Arista*nuevo);
@@ -49,7 +49,7 @@ void presentacion();
 
 
 int main(){   
-    int opcion,N,i, a;
+    int opcion,N, a;
     
     setlocale(LC_ALL, "");
     presentacion();
@@ -57,11 +57,10 @@ int main(){
     printf("\nIngrese número de vertices: \n");
     scanf("%i",&N);
     
-    for(i=0;i<N;i++){
+    for(int i=0;i<N;i++){
     	insertarNodo();
 	}
-	
-	system("cls");
+	system("cls"); ///limpia la pantalla
     do{
     	printf("-----------\n");
         printf(" 1. Insertar vértice                 \n");
@@ -77,11 +76,11 @@ int main(){
                     insertarNodo();
                     break;
             case 2:
-			printf("Inserta el número de aristas a insertar \n") ;
-			scanf("%d", &a);
-			for(i= 0; i<a; i++){
-				insertarArista();
-			}
+				printf("Inserta el número de aristas a insertar \n") ;
+				scanf("%d", &a);
+				for(int i= 0; i<a; i++){
+					insertarArista();
+				}
 				
                     break;
             case 3: visualizarGrafo();
@@ -92,15 +91,15 @@ int main(){
             default: printf("Opción no válida, por favor verifique.\n");
                      break;
         }
-        system("pause");
+        system("pause"); //pausa al programa
         system("cls");
     }while(opcion!=5);
     return 1;
 }
-
+//funcion para insertar los vertices
 void insertarNodo(){
-    Nodo* aux;
-	Nodo* nuevo=(Nodo*)malloc(sizeof(Nodo));
+    Nodo *aux;
+	Nodo *nuevo=(Nodo*)malloc(sizeof(Nodo)); //memoria dinamica
 	fflush(stdin);
 	printf("Ingrese vertice: \n");
 	scanf("%c",&nuevo->dato);
@@ -108,7 +107,7 @@ void insertarNodo(){
     nuevo->adyacencia=NULL;
     nuevo->visitado=nuevo->terminado=0;
     //nuevo->monto=-1;
-    nuevo->anterior=0;
+    //nuevo->anterior=0;
     if(inicio==NULL){
         inicio=nuevo;
     }else{
@@ -122,28 +121,27 @@ void insertarNodo(){
  }
  
 void insertarArista(){   
-    char ini, fin;
-    Arista* nuevo=(Arista*)malloc(sizeof(Arista));
+    char ini, fin; // vertices a unir
+    Arista *nuevo=(Arista*)malloc(sizeof(Arista)); //memoria dinamica
     nuevo->siguiente=NULL;
-    Nodo* aux;
-	Nodo* aux2;
+    Nodo *aux,*aux2;
+	//verificamos que el nodo este vacio
     if(inicio==NULL){
          printf("Error: El grafo está vacio\n");
          return;
     }
-    fflush(stdin);
+    fflush(stdin); //limpieza del buffer de entrada
     printf("Ingresar Nodo Inicial y Final:");
     scanf("%c %c",&ini,&fin);
     aux=inicio;
     aux2=inicio;
     while(aux2!=NULL){
-        if(aux2->dato==fin){
+        if(aux2->dato==fin)
             break;
-        }
         aux2=aux2->siguiente;
     }
     if(aux2==NULL){
-    	printf("Error:nodo no encontrado\n");
+    	printf("Error:vertice no encontrado\n");
     	return;
 	}
     while(aux!=NULL){
@@ -156,9 +154,10 @@ void insertarArista(){
     if(aux==NULL)
     	printf("Error:vértice no encontrado\n");
 }
-
-void agregarArista(Nodo* aux,Nodo* aux2,Arista* nuevo){
-    Arista* a;
+//funcion para agregar arista
+void agregarArista(Nodo *aux,Nodo *aux2,Arista *nuevo){
+    Arista *a;
+	//verificar el primer nodo
     if(aux->adyacencia==NULL){   
 	    aux->adyacencia=nuevo;
         nuevo->vrt=aux2;
@@ -191,47 +190,49 @@ void visualizarGrafo(){
 }
 
 void recorridos(){
-	char vertice;
+	char vertice; //indica el primer valor
 	Nodo*aux=inicio,*aux2=inicio;
-  if(inicio!=NULL){
-  	 fflush(stdin);
-  	 printf("Escoge el nodo de inicio del recorrido:");
-     scanf("%c",&vertice);	
-     while(aux!=NULL){
-  	    if(aux->dato==vertice)
-  		break;
-	    aux=aux->siguiente;
-     }
-     if(aux==NULL){
-     	printf("Error: nodo no encontrado\n");
-	 }else{
-		printf("Recorrido en anchura: ");
-		aux->visitado=1;
-		insertarCola(aux);
-		recorridoAnchura();
-		reiniciar();
-		printf("\nRecorrido en profundidad: ");
-		recorridoProfundidad(aux);
-		while(aux2!=NULL){
-			if(aux2->terminado==0)
-			recorridoProfundidad(aux2);
-			aux2=aux2->siguiente;
+	if(inicio!=NULL){
+		fflush(stdin);
+		printf("Escoge el nodo de inicio del recorrido:");
+		scanf("%c",&vertice);	
+		while(aux!=NULL){
+			if(aux->dato==vertice)
+			break;
+			aux=aux->siguiente;
 		}
-		while(ini!=NULL)
-			printf("%c ",desencolar()->dato);
-		reiniciar();
-		printf("\n");
-	 }
-   }
-}
+		if(aux==NULL){
+			printf("Error: nodo no encontrado\n");
+		}else{
+			printf("Recorrido en anchura: ");
+			aux->visitado=1;
+			insertarCola(aux);
+			recorridoAnchura();
+			reiniciar();
+			printf("\nRecorrido en profundidad: ");
+			recorridoProfundidad(aux);
+			while(aux2!=NULL){
+				if(aux2->terminado==0)
+					recorridoProfundidad(aux2);
+				aux2=aux2->siguiente;
+			}
+			while(ini!=NULL)
+				printf("%c ",desencolar()->dato);
+			reiniciar();
+			printf("\n");
+		}
+	}
+	}
 
 void recorridoAnchura(){
 	Nodo*aux=desencolar();
+	
 	if(aux==NULL)
-	return;
+		return;
 	printf("%c ",aux->dato);
+	
 	if(aux->adyacencia!=NULL){
-		Arista*a=aux->adyacencia;
+		Arista *a=aux->adyacencia;
 		while(a!=NULL){
 			if(a->vrt->visitado==0){
 			    insertarCola(a->vrt);
@@ -240,12 +241,12 @@ void recorridoAnchura(){
 			a=a->siguiente;
 		}
 	}
-	recorridoAnchura();
+	recorridoAnchura(); // funcion para recursividad
 	
 }
 
-void recorridoProfundidad(Nodo* aux){
-	Arista*a;
+void recorridoProfundidad(Nodo *aux){
+	Arista *a;
 	aux->visitado=1;
     if(aux->adyacencia!=NULL){
         a=aux->adyacencia;
@@ -260,21 +261,21 @@ void recorridoProfundidad(Nodo* aux){
     insertarPila(aux);
 }
 
-void insertarPila(Nodo* aux){
+void insertarPila(Nodo *aux){
 	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
 	nuevo->dato=aux;
 	nuevo->siguiente=NULL;
 	if(ini==NULL){
 		ini=nuevo;
-		final=nuevo;
+		final=NULL;
 	}else{
 	   nuevo->siguiente=ini;
 	   ini=nuevo;    	
 	}
 }
 
-void insertarCola(Nodo*aux){
-	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
+void insertarCola(Nodo *aux){
+	Lista *nuevo=(Lista*)malloc(sizeof(Lista));
 	nuevo->dato=aux;
 	nuevo->siguiente=NULL;
 	if(ini==NULL){
@@ -287,7 +288,7 @@ void insertarCola(Nodo*aux){
 }
 
 Nodo*desencolar(){
-	Lista*aux;
+	Lista *aux;
 	if(ini==NULL){
 		return NULL;
 	}else{
@@ -295,7 +296,7 @@ Nodo*desencolar(){
 		ini=ini->siguiente;
 		aux->siguiente=NULL;
 		if(ini==NULL)
-		final=NULL;
+			final=NULL;
 	}
 	Nodo*resultado=aux->dato;
 	free(aux);
@@ -304,7 +305,7 @@ Nodo*desencolar(){
 
 void reiniciar(){
 	if(inicio!=NULL){
-		Nodo*aux=inicio;
+		Nodo *aux=inicio;
 		while(aux!=NULL){
 			aux->visitado=aux->terminado=0;
 		    aux=aux->siguiente;
