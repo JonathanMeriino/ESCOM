@@ -23,7 +23,6 @@ Nodo{
 Arista{
 	Nodo *vrt; 
 	Arista *siguiente;
-	int peso;
 };
 
 Lista{
