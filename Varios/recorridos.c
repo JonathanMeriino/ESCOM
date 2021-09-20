@@ -47,56 +47,7 @@ void reiniciar();
 void presentacion();
 
 
-int main(){   
-    int opcion,N, a;
-    
-    setlocale(LC_ALL, "");
-    presentacion();
-    
-    printf("\nIngrese número de vertices: ");
-    scanf("%i",&N);
-    
-    for(int i=0;i<N;i++){
-    	insertarNodo();
-	}
-	system("cls"); ///limpia la pantalla
-    do{
-    	printf("-----------\n");
-        printf(" 1. Insertar vértice                 \n");
-        printf(" 2. Insertar arista                  \n");
-        printf(" 3. Mostrar listas                   \n");
-        printf(" 4. Recorrer grafo                   \n");
-        printf(" 5. Salir                            \n");
-        printf("------------\n");
-        printf("Escoge una opción:");
-        scanf("%i",&opcion);
-        switch(opcion){
-            case 1:
-                    insertarNodo();
-                    break;
-            case 2:
-					printf("Inserta el número de aristas a insertar \n") ;
-					scanf("%d", &a);
-					for(int i= 0; i<a; i++){
-						insertarArista();
-					}
-					break;
-            case 3: 
-					visualizarGrafo();
-                    break;
-            case 4: recorridos();
-                    break;
-          	case 5: 
-			  		printf("Hasta luego...\n"); 
-					break;
-            default: printf("Opción no válida, por favor verifique.\n");
-                     break;
-        }
-        system("pause"); //pausa al programa
-        system("cls");
-    }while(opcion!=5);
-    return 1;
-}
+
 //funcion para insertar los vertices
 void insertarNodo(){
     Nodo *aux;
@@ -325,13 +276,65 @@ void reiniciar(){
 		}
 	}
 }
-
 void presentacion(){
-	
 	printf("****************************************\n");
 	printf("*****Insituto Politécnico Nacional******\n");
 	printf("***** Escuela Superior de Cómputo*******\n");
 	printf("Fundamentos de Inteligencia Artificial***\n");
 	printf("Algoritmos búsqueda en anchura y profundidad\n");
 	printf("**************************************\n");
+}
+
+void menu(){
+	
+	int opcion,N, a;
+    
+    setlocale(LC_ALL, "");
+    presentacion();
+    
+    printf("\nIngrese número de vertices: ");
+    scanf("%i",&N);
+    
+    for(int i=0;i<N;i++){
+    	insertarNodo();
+	}
+	system("cls"); ///limpia la pantalla
+    do{
+    	printf("-----------\n");
+        printf(" 1. Insertar vértice                 \n");
+        printf(" 2. Insertar arista                  \n");
+        printf(" 3. Mostrar listas                   \n");
+        printf(" 4. Recorrer grafo                   \n");
+        printf(" 5. Salir                            \n");
+        printf("------------\n");
+        printf("Escoge una opción:");
+        scanf("%i",&opcion);
+        switch(opcion){
+            case 1:
+                    insertarNodo();
+                    break;
+            case 2:
+					printf("Inserta el número de aristas a insertar \n") ;
+					scanf("%d", &a);
+					for(int i= 0; i<a; i++){
+						insertarArista();
+					}
+					break;
+            case 3: 
+					visualizarGrafo();
+                    break;
+            case 4: recorridos();
+                    break;
+          	case 5: 
+			  		printf("Hasta luego...\n"); 
+					break;
+            default: printf("Opción no válida, por favor verifique.\n");
+                     break;
+        }
+        system("pause"); //pausa al programa
+    }while(opcion!=5);
+}
+int main(){   
+    presentacion();
+	menu();
 }
