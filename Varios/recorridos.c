@@ -47,8 +47,7 @@ void insertarCola(Nodo *aux);
 Nodo *desencolar();
 void reiniciar();
 void presentacion();
-
-
+void menu();
 
 //funcion para insertar los vertices
 void insertarNodo(){
@@ -62,7 +61,6 @@ void insertarNodo(){
 	nuevo->siguiente=NULL;
     nuevo->adyacencia=NULL;
     nuevo->visitado=nuevo->terminado=0;
-    nuevo->monto=-1;
     nuevo->anterior=0;
     
 	if(inicio==NULL){
@@ -90,8 +88,6 @@ void insertarArista(){
     
 	printf("Ingresar Nodo Inicial y Final:");
     scanf("%c %c",&ini,&fin);
-	printf("Ingresar el peso de la arista: ");
-	scanf("%i ",&nuevo->peso);
 
     aux=inicio;
     aux2=inicio;
@@ -208,11 +204,10 @@ void recorridoAnchura(){
 	recorridoAnchura(); // funcion para recursividad
 	
 }
-
 void recorridoProfundidad(Nodo *aux){
 	Arista *a;
 	aux->visitado=1;
-    
+    insertarCola(aux);
 	if(aux->adyacencia!=NULL){
         a=aux->adyacencia;
         while(a!=NULL){ 
@@ -223,9 +218,7 @@ void recorridoProfundidad(Nodo *aux){
         }
     }
     aux->terminado=1;
-    insertarPila(aux);
 }
-
 void insertarPila(Nodo *aux){
 	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
 	nuevo->dato=aux;
@@ -292,15 +285,9 @@ void menu(){
 	int opcion,N, a;
     
     setlocale(LC_ALL, "");
+    system("cls"); ///limpia la pantalla
     
-    printf("\nIngrese número de vertices: ");
-    scanf("%i",&N);
-    
-    for(int i=0;i<N;i++){
-    	insertarNodo();
-	}
-	system("cls"); ///limpia la pantalla
-    do{
+	do{
     	printf("-----------\n");
         printf(" 1. Insertar vértice                 \n");
         printf(" 2. Insertar arista                  \n");
@@ -312,7 +299,12 @@ void menu(){
         scanf("%i",&opcion);
         switch(opcion){
             case 1:
-                    insertarNodo();
+                    printf("\nIngrese número de vertices: ");
+    				scanf("%i",&N);
+    
+    				for(int i=0;i<N;i++){
+    					insertarNodo();
+					}
                     break;
             case 2:
 					printf("Inserta el número de aristas a insertar \n") ;
@@ -335,7 +327,7 @@ void menu(){
         system("pause"); //pausa al programa
     }while(opcion!=5);
 }
-int main(){   
+void main(){   
     presentacion();
 	menu();
 }
