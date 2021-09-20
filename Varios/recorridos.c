@@ -1,7 +1,7 @@
-//inicialización del grafo
-//Recorrido por Anchura
-//Recorrido por Profundidad
-
+/*
+Benitez Merino Leonardo Jonathan
+Sanchez Vata Allyson Bercellai
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -9,7 +9,6 @@
 #define Nodo struct nodo
 #define Arista struct arista
 #define Lista struct pila
-
 
 Nodo{
 	char dato; 
@@ -28,7 +27,6 @@ Lista{
 	Nodo *dato;
 	Lista *siguiente;
 };
-
 Nodo *inicio=NULL;
 Lista *ini=NULL;//Apunta al inicio de la lista
 Lista *final=NULL; //Apunta al final de la lista
@@ -44,7 +42,7 @@ void insertarPila(Nodo *aux);
 void insertarCola(Nodo *aux);
 Nodo *desencolar();
 void reiniciar();
-void presentacion();
+void menu();
 
 
 int main(){   
@@ -109,7 +107,6 @@ void insertarNodo(){
 	nuevo->siguiente=NULL;
     nuevo->adyacencia=NULL;
     nuevo->visitado=nuevo->terminado=0;
-    nuevo->monto=-1;
     nuevo->anterior=0;
     
 	if(inicio==NULL){
@@ -122,7 +119,6 @@ void insertarNodo(){
         aux->siguiente=nuevo;
       }
 }
- 
 void insertarArista(){   
     char ini, fin; // vertices a unir
     Arista *nuevo=(Arista*)malloc(sizeof(Arista)); //memoria dinamica
@@ -137,12 +133,10 @@ void insertarArista(){
     
 	printf("Ingresar Nodo Inicial y Final:");
     scanf("%c %c",&ini,&fin);
-	printf("Ingresar el peso de la arista: ");
-	scanf("%i ",&nuevo->peso);
-
-    aux=inicio;
+	aux=inicio;
     aux2=inicio;
-    while(aux2!=NULL){
+    
+	while(aux2!=NULL){
         if(aux2->dato==fin)
             break;
         aux2=aux2->siguiente;
@@ -259,7 +253,8 @@ void recorridoAnchura(){
 void recorridoProfundidad(Nodo *aux){
 	Arista *a;
 	aux->visitado=1;
-    
+	// ordena los nodos
+    insertarCola(aux);
 	if(aux->adyacencia!=NULL){
         a=aux->adyacencia;
         while(a!=NULL){ 
@@ -325,13 +320,69 @@ void reiniciar(){
 		}
 	}
 }
+<<<<<<< Updated upstream
 
 void presentacion(){
 	
 	printf("****************************************\n");
+=======
+void menu(){
+	
+	int opcion,N, a;
+    
+    setlocale(LC_ALL, "");
+    system("cls"); ///limpia la pantalla
+    
+	do{
+    	printf("-----------\n");
+        printf(" 1. Insertar vértice                 \n");
+        printf(" 2. Insertar arista                  \n");
+        printf(" 3. Mostrar listas                   \n");
+        printf(" 4. Recorrer grafo                   \n");
+        printf(" 5. Salir                            \n");
+        printf("------------\n");
+        printf("Escoge una opción:");
+        scanf("%i",&opcion);
+        switch(opcion){
+            case 1:
+                    printf("\nIngrese número de vertices: ");
+   					 scanf("%i",&N);
+    
+    				for(int i=0;i<N;i++){
+    					insertarNodo();
+					}
+                    break;
+            case 2:
+					printf("Inserta el número de aristas a insertar \n") ;
+					scanf("%d", &a);
+					for(int i= 0; i<a; i++){
+						insertarArista();
+					}
+					break;
+            case 3: 
+					visualizarGrafo();
+                    break;
+            case 4: recorridos();
+                    break;
+          	case 5: 
+			  		printf("Hasta luego...\n"); 
+					break;
+            default: printf("Opción no válida, por favor verifique.\n");
+                     break;
+        }
+        system("pause"); //pausa al programa
+    }while(opcion!=5);
+}
+void main(){   
+ 	printf("****************************************\n");
+>>>>>>> Stashed changes
 	printf("*****Insituto Politécnico Nacional******\n");
 	printf("***** Escuela Superior de Cómputo*******\n");
 	printf("Fundamentos de Inteligencia Artificial***\n");
 	printf("Algoritmos búsqueda en anchura y profundidad\n");
 	printf("**************************************\n");
+<<<<<<< Updated upstream
+=======
+	menu();
+>>>>>>> Stashed changes
 }
