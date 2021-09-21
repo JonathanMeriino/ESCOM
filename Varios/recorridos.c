@@ -207,7 +207,6 @@ void recorridoProfundidad(Nodo *aux){
 	Arista *a;
 	aux->visitado=1;
     //ordena los vertices
-	insertarCola(aux);
 	if(aux->adyacencia!=NULL){
         a=aux->adyacencia;
         while(a!=NULL){ 
@@ -218,6 +217,7 @@ void recorridoProfundidad(Nodo *aux){
         }
     }
     aux->terminado=1;
+	insertarCola(aux);
 }
 void insertarPila(Nodo *aux){
 	Lista*nuevo=(Lista*)malloc(sizeof(Lista));
