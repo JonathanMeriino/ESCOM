@@ -60,7 +60,7 @@ function firstBotMessage() {
 
 
 
-    botResponse= "Te puedo ayudar a encontrar productos en los lugares donde los venden, posibles precios y en caso de que desees preparar algún platillo te puedo sugerirlos ingredientes";
+    botResponse= "Te puedo ayudar a encontrar productos en los lugares donde los venden, posibles precios y en caso de que desees preparar algún platillo te puedo sugerir los ingredientes";
     botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
   
     $("#chatbox").append(botHtml);
@@ -83,14 +83,14 @@ function getHardResponse(userText) {
     if(userText=="Comenzar"||userText=="New"||start==1||userText=="comenzar"||userText=="sí"||userText=="Sí"){
         if (j==0){
             start=1;
-            botResponse = "Dime que producto buscas, o el lugar donde deseas buscarlo, o el platillo que quieres cocinar:";
+            botResponse = "Dime que producto buscas o el platillo que quieres cocinar:";
             botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
             $("#chatbox").append(botHtml);
             document.getElementById("chat-bar-bottom").scrollIntoView(true);
             j=j+1;
         }
-        if (userText==="Cancelar"||userText==="cancelar"){
-            botResponse = "Busqueda Cancelada";
+        if (userText==="Cancelar"||userText==="cancelar"||userText==="no"||userText==="No"){
+            botResponse = "Busqueda Cancelada, ¡Hasta luego!";
             botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
             $("#chatbox").append(botHtml);
             document.getElementById("chat-bar-bottom").scrollIntoView(true);
@@ -99,6 +99,7 @@ function getHardResponse(userText) {
             producto=0;
             i=0;
             loops=0;
+            return;
         }
         if (userText=="chiles en Nogada"||userText=="chiles nogada"){
             botResponse= "Los ingredientes que necesitas son:";
@@ -115,9 +116,14 @@ function getHardResponse(userText) {
 
                     document.getElementById("chat-bar-bottom").scrollIntoView(true);
             }
+            botResponse= "¿Deseas saber donde puedes comprar algún producto?";
+            botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
 
+            $("#chatbox").append(botHtml);
+
+            document.getElementById("chat-bar-bottom").scrollIntoView(true);
         }
-        else if (userText=="spaghetti a la boloñesa"||userText=="Espagueti a la boloñesa"|| userText=="Spaguetti a la boloñesa"||userText=="espagueti a la boloñesa"){
+        else if (userText=="spaghetti a la bolonesa"||userText=="Espagueti a la bolonesa"|| userText=="Spaguetti a la bolonesa"||userText=="espagueti a la bolonesa"){
             botResponse= "Los ingredientes que necesitas son:";
             botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
 
@@ -218,7 +224,7 @@ function getHardResponse(userText) {
                         botRespo=walmartPrecio[i]*1.1;
                         else
                         botRespo=walmartPrecio[i]*1.8;
-                        botResponse= "lo puedes encontrar en: "+ botResp+ " a un precio de: $"+botRespo
+                        botResponse= "Lo puedes encontrar en: "+ botResp+ " a un precio de: $"+botRespo
                         botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
         
                         $("#chatbox").append(botHtml);
@@ -1076,38 +1082,32 @@ function getHardResponse(userText) {
                 }
             }
         }
-        //for(i=0;i<walmartPrecio.length;i++){
-     //sorianaPrecio=walmartPrecio[i]*.99;
-     //chedrauiPrecio=walmartPrecio[i]*1.02;
-     //aurreraPrecio=walmartPrecio[i]*1.1;
-     //precioCostco=walmartPrecio[i]*1.8;
-//}
+
         else if (userText!="Comenzar"&&userText!="New"&&userText!="Sí"&&userText!="No"&&userText!="Cancelar"&&userText!="comenzar"&&userText!="cebolla"&&userText!="Cebolla"&&userText!="ajo"&&userText!="Ajo"&&userText!="aceite de oliva"
         &&userText!="Aceite de oliva"&&userText!="carne molida"&&userText!="Carne molida"&&userText!="zanahoria"&&userText!="Zanahoria"&&userText!="apio"&&userText!="Apio"&&userText!="sal"&&userText!="Sal"&&userText!="pimienta"&&userText!="Pimienta"
         &&userText!="albahaca seca"&&userText!="Albahaca seca"&&userText!="Salsa de jitomate"&&userText!="salsa de jitomate"&&userText!="pasta para lasagna"&&userText!="Pasta para lasagna"&&userText!="crema"&&userText!="Crema"&&userText!="queso manchego"&&userText!="Queso manchego"
         &&userText!="queso parmesano"&&userText!="Queso parmesano"&&userText!="spaguetti"&&userText!="Spaguetti"&&userText!="tomate"&&userText!="Tomate"&&userText!="azucar"&&userText!="Azucar"&&userText!="perejil fresco"&&userText!="Perejil fresco"
         &&userText!="levadura"&&userText!="Levadura"&&userText!="harina"&&userText!="Harina"&&userText!="chiles poblanos"&&userText!="Chiles poblanos"&&userText!="granadas rojas"&&userText!="Granadas rojas"&&userText!="acitron"&&userText!="Acitron"&&userText!="pasas"&&userText!="Pasas"
         &&userText!="almendra"&&userText!="Almendra"&&userText!="durazno"&&userText!="Durazno"&&userText!="durazno"&&userText!="pera"&&userText!="Pera"&&userText!="manzana"&&userText!="Manzana"&&userText!="canela"&&userText!="Canela"&&userText!="manteca"&&userText!="Manteca"&&userText!="nuez castilla"
-        &&userText!="Nuez castilla"&&userText!="queso crema"&&userText!="Queso crema"&&userText!="vino blanco"&&userText!="Vino blanco"&&userText!="nuez moscada"&&userText!="Nuez moscada"&&userText!="leche de vaca"&&userText!="Leche de vaca"){
-            botResponse = "No entiendo a lo que te refieres. Escribe cancelar, si deseas cancelar la busqueda.";
+        &&userText!="Nuez castilla"&&userText!="queso crema"&&userText!="Queso crema"&&userText!="vino blanco"&&userText!="Vino blanco"&&userText!="nuez moscada"&&userText!="Nuez moscada"&&userText!="leche de vaca"&&userText!="Leche de vaca"&&userText!="no"&&userText!="cancelar"){
+            botResponse = "Lo siento, no entiendo a lo que te refieres, aún me encuentro aprendiendo para poder ser mejor. Escribe cancelar, si deseas cancelar la busqueda.";
             botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
             $("#chatbox").append(botHtml);
             document.getElementById("chat-bar-bottom").scrollIntoView(true);
         }
-        //if(enfermedad==1||((userText=="Sí"||userText=="No")&&sinante==Bronquitis[0])){
-       //     diagnodticoBronquitis(userText);
-       // }
-      //  else if(enfermedad==2||((userText=="Sí"||userText=="No")&&sinante==Resfriado[0])){
-       //     diagnodticoResfriado(userText);
-       // }
-       // else if(enfermedad==3||((userText=="Sí"||userText=="No")&&sinante==infuri[0])){
-       //     diagnodticoInUri(userText);
-       // }
+
+    }
+    else if(userText==="Cancelar"||userText==="cancelar"||userText==="no"||userText==="No"){
+        botResponse = "¡Hasta luego!";
+        botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+        $("#chatbox").append(botHtml);
+        document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
     }
     else{
-        let botResponse = getBotResponse(userText);
-        let botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+        botResponse = "Lo siento, no entiendo a lo que te refieres, aún me encuentro aprendiendo para poder ser mejor. Escribe cancelar, si deseas cancelar la busqueda.";
         $("#chatbox").append(botHtml);
+        botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
         document.getElementById("chat-bar-bottom").scrollIntoView(true);
     }
 }
