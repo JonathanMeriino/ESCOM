@@ -1,5 +1,7 @@
 // Collapsible
+//retorna un objeto similar a un array que tenga todos los nombres de la clase indicados
 var coll = document.getElementsByClassName("collapsible");
+// declaracion de variables
 let start=0;
 let lasagna = ["cebolla","ajo","aceite de oliva", "carne molida", "zanahoria", "apio", "sal", "pimienta", "albahaca seca", "salsa de jitomate", "pasta para lasagna", "crema", "queso manchego", "queso parmesano"];
 let spaghetti = ["spaguetti", "aceite de oliva", "ajo", "cebolla", "zanahoria", "carne molida", "caldo de carne", "tomate", "azucar", "perejil fresco", "sal", "pimienta", "queso parmesano"];
@@ -17,12 +19,12 @@ let precioCostco;
 
 
 for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
+    coll[i].addEventListener("click", function () { //registra un evento a un objeto en especifico
+        this.classList.toggle("active");     //accede a la lista de clases de un elemento   
 
-        var content = this.nextElementSibling;
+        var content = this.nextElementSibling;  // devuelve el elemento posterior al especificado
 
-        if (content.style.maxHeight) {
+        if (content.style.maxHeight) { 
             content.style.maxHeight = null;
         } else {
             content.style.maxHeight = content.scrollHeight + "px";
@@ -30,7 +32,7 @@ for (let i = 0; i < coll.length; i++) {
 
     });
 }
-
+//funcion que optiene el tiempo
 function getTime() {
     let today = new Date();
     hours = today.getHours();
@@ -48,9 +50,10 @@ function getTime() {
     return time;
 }
 
-// Gets the first message
+// funcion para el primer mensaje del bot
 function firstBotMessage() {
     let firstMessage = "Bienvenido, mi nombre es Shopy. ¿En qué puedo ayudarte?"
+    //devuelve una referencia al elemento por su ID
     document.getElementById("botStarterMessage").innerHTML = '<p class="botText"><span>' + firstMessage + '</span></p>';
     
     let time = getTime();
@@ -77,7 +80,7 @@ function firstBotMessage() {
 
 firstBotMessage();
 
-// Retrieves the response
+//base de conocimiento
 function getHardResponse(userText) {
 
     if(userText=="Comenzar"||userText=="New"||start==1||userText=="comenzar"||userText=="sí"||userText=="Sí"){
