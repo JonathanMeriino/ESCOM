@@ -1,5 +1,8 @@
+% Practica 3 - Ecualizacion y correspondencia de una imagen
 clc;
-clear;
+clear all;
+close all;
+warning of all;
 
 original=imread('peppers.png');
 originalGrises = rgb2gray(original);
@@ -128,7 +131,7 @@ corr = table(g2)
 for j=1:m
     for k=1:n
         for T=1:Etam(1)
-            if ecualizada(j,k) == T;
+            if ecualizada(j,k) == Eg(T);
                 correspondencia(j,k) = g2(T,N);
             end
         end
