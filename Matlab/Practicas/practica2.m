@@ -56,20 +56,21 @@ opcion = 1;
 
 while opcion == 1
 % minimo y maximo añadidos por el usuario
-minimo = input('Ingrese valor minimo: ');
-maximo= input('Ingrese valor maximo: ');
+
+intervalo_min=input('Ingresa el valor del intervalo minimo: ');
+intervalo_max=input('Ingresa el valor del intervalo maximo: ');
 %formula para calcular la expancion del histogrma
 variableX= (MAX - MIN);
-variableY= (maximo - minimo);
+variableY= (intervalo_max - intervalo_min);
 variableZ= (double(variableY)/double(variableX));
 %recorrido de i filas y j columnas
 for i = 1:384
     for j = 1:512
-        expRoja(i,j) = (rojaGris(i,j)-MIN)*variableZ + minimo; % nueva imagen roja
+        expRoja(i,j) = (rojaGris(i,j)-MIN)*variableZ + intervalo_min; % nueva imagen roja
         
-        expVerde(i,j) = (verdeGris(i,j)-MIN)*variableZ + minimo; % nueva imagen verde
+        expVerde(i,j) = (verdeGris(i,j)-MIN)*variableZ + intervalo_min; % nueva imagen verde
          
-        expAzul(i,j) = (azulGris(i,j)-MIN)*variableZ + minimo; %nueva imagen azul
+        expAzul(i,j) = (azulGris(i,j)-MIN)*variableZ + intervalo_min; %nueva imagen azul
     end
 end
 
