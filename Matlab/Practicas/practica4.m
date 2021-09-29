@@ -3,14 +3,12 @@ clear all;
 close all;
 
 
-original=imread('lena.bmp');
+original=imread('Lena.bmp');
 originalGrises = original;
-%original=imread('arbol.jpg');
-%originalGrises = rgb2gray(original);
 
-[m,n]=size(originalGrises);
-tam = size(originalGrises);
-matriz_prediccion = zeros(tam);
+[m,n]=size(originalGrises); % retorna el tamaño de la imagen en m filas y n columnas
+tam = size(originalGrises); % retorna el tamaño de originalGrises y se almacena en tam
+matriz_prediccion = zeros(tam); % matriz de ceros de tamaño tam
 
 %llenado de primera columna y fila
 for i=1:m
@@ -24,7 +22,7 @@ for i=1:m
     end
 end
 
-inicial_prediccion = matriz_prediccion;
+inicial_prediccion = matriz_prediccion; % matriz de prediccion con 1 fila y 1 columna
 suma = 0;
 contador = 0;
 
@@ -61,22 +59,22 @@ end
 
 %resta de imagenes para matriz de error
 matriz_error = zeros(tam);
-
+%obtener la matriz de error
 for i=1:m
     for j=1:n
-        matriz_error(i,j) = (originalGrises(i,j) - matriz_prediccion(i,j));
+        matriz_error(i,j) = (originalGrises(i,j) - matriz_prediccion(i,j)); % Original - prediccion
     end
 end
-
+%valores minimo y maximo de la matriz error
 minimo=min(min(matriz_error));
 maximo=max(max(matriz_error));
 
 pixeles = input('Ingresa el numero de bit/pixel: ');
 
-numero_muestra = 2^(pixeles);
+numero_muestra = 2^(pixeles); 
 
-theta = (maximo-minimo)/numero_muestra;
-numeros = zeros(m,2);
+theta = (maximo-minimo)/numero_muestra; % intervalo
+numeros = zeros(m,2); % matriz de ceros con m filas y 2 columnas
 acumulado = 0;
 posicion = 0;
 
@@ -88,14 +86,14 @@ for i=1:(numero_muestra)
     posicion = posicion + 1;
 end  
 
-MEQ = zeros(tam);
+MEQ = zeros(tam); % matriz de zeros para MEQ de tamaño tam
 
 %llenar MEQ
 for i=1:m
     for j=1:n
         for k=1:numero_muestra
             if(matriz_error(i,j) <= numeros(k,1))
-                MEQ(i,j) = numeros(k,2);
+                MEQ(i,j) = numeros(k,2); 
                 break
             end
         end
@@ -125,7 +123,7 @@ for i=1:m
 end
 
 
-ImagenRecuperada = round(MEQ_inversa + matriz_prediccion);
+ImagenRecuperada = round(MEQ_inversa + matriz_prediccion); % redondea al entero mas cercano
 ImagenRecuperada = uint8(ImagenRecuperada);
 
 
