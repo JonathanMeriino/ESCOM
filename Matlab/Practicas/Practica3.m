@@ -5,106 +5,118 @@ close all;
 warning of all;
 
 original=imread('peppers.png');
-originalGrises = rgb2gray(original);
+originalGrises = rgb2gray(original); % conversion de una imagen rgb a escala de grises
 
+% retorna el valor minimo y maximo de la imagen a escala de grises
 minimo=min(min(originalGrises));
 maximo=max(max(originalGrises));
 
-[m,n]=size(originalGrises)
+[m,n]=size(originalGrises); % retorna el tamaño de la imagen en m filas y n columnas
+% intervalos minimo y maximos por entrada de usuario
 intervalo_min=input('Ingresa el valor del intervalo minimo: ');
 intervalo_max=input('Ingresa el valor del intervalo maximo: ');
-
-dato1=(intervalo_max-intervalo_min);
-dato2=(maximo-minimo);
-dato3=(double(dato1) /double(dato2));
-
+% Proceso para expansion del histograma
+variableX=(maximo-minimo);
+variableY=(intervalo_max-intervalo_min);
+variableZ=(double(variableY) /double(variableX));
+% recorrido de la imagen por m filas y n columnas
 for i=1:m
     for j=1:n
-        procesada(i,j) = dato3 * (originalGrises(i,j) - minimo) + intervalo_min;
+        procesada(i,j) = (originalGrises(i,j) - minimo)*variableZ + intervalo_min; 
         
     end
     
 end
-imshow(procesada);
+% unit8 - > matrices de enteros sin signo de 8 bits
 procesada= uint8(procesada);
 
 figure(1)
-subplot(2,1,1)
+subplot(1,2,1)
 imshow(procesada);
-title('procesada');
+title('Imagen Procesada');
+subplot(1,2,2)
+histogram(procesada);
+title('Histograma Procesada');
 
-subplot(2,1,2)
-imhist(procesada);
-title('procesada');
-%inicio de ecualizada
-nuevo_max = max(max(procesada));
-nuevo_min = min(min(procesada));
 
-[x,y]=size(procesada);
-g = unique(procesada);
-tam = size(g);
+%inicio de ecualizacion
 
+% minimos y maximos de la imagen procesada
+proc_max = max(max(procesada));
+proc_min = min(min(procesada));
+
+[x,y]=size(procesada);  % retorna el tamaño de la imagen en x filas y y columnas 
+g = unique(procesada); % devuelve los mismos datos en procesada sin repetirse y ordenados
+tam = size(g); % retorna el tamaño de g y se almacena en tam
+
+%declaracion de matrices de ceros de tamaño tam 
 cantidad_numero=zeros(tam);
 proba=zeros(tam);
 acumulada=zeros(tam);
 Eq =zeros(tam);
-%hola = tam(1);
 suma = 0;
+% Proceso que calcula la probabilidad Acumulada
 for i=1:tam(1)
     repetido = numel(find(procesada == g(i))); %cuantas veces se repire el numero de gris
     cantidad_numero(i) = repetido;
     suma = repetido + suma;
     proba(i) = (double(cantidad_numero(i))/double(x*y));
     acumulada(i) = (double(suma)/double(x*y));
-    Eq(i) = (nuevo_max - nuevo_min)*acumulada(i) + nuevo_min;
+    Eq(i) = (proc_max - proc_min)*acumulada(i) + proc_min; % ecuacion de ecualizacion
 end
-
+%tabla de imagen ya ecualizada
 tab = table(g,cantidad_numero, proba, acumulada, Eq)
 
 for j=1:x
     for k=1:y
         for T=1:i
             if procesada(j,k) == g(T);
-                ecualizada(j,k) = Eq(T);
+                ecualizada(j,k) = Eq(T); %asigna los valores a ecualizada
             end
         end
     end
 end
+% unit8 - > matrices de enteros sin signo de 8 bits
 ecualizada = uint8(ecualizada);
+
 figure(2)
-subplot(2,1,1)
+subplot(1,2,1)
 imshow(ecualizada);
-title('ecualizada');
+title('Imagen Ecualizada');
 
-subplot(2,1,2)
-imhist(ecualizada);
-title('ecualizada');
+subplot(1,2,2)
+histogram(ecualizada);
+title('Histograma Ecualizada');
 
 
-% fin de ecualizada
+% Fin proceso de ecualizacion
 
-%tabla de imagen ya ecualizada
+
+% Proceso de correspondencia
+
+% minimos y maximos de la imagen ecualizada
+
 ecua_max = max(max(ecualizada));
 ecua_min = min(min(ecualizada));
 
-[m,n]=size(ecualizada);
-Eg = unique(ecualizada);
-Etam = size(Eg);
-
+[m,n]=size(ecualizada);  % retorna el tamaño de la imagen en x filas y y columnas 
+Eg = unique(ecualizada);  % devuelve los mismos datos en ecualizada sin repetirse y ordenados
+Etam = size(Eg);   % retorna el tamaño de Eg y se almacena en Etam
+%declaracion de matrices de ceros de tamaño Etam 
 cantidad_numero_ecu=zeros(Etam);
 proba2=zeros(Etam);
 acumulada2=zeros(Etam);
 Eq =zeros(Etam);
-hola = Etam(1);
 suma2 = 0;
+%proceso que calcula la probabilidad acumulada
 for i=1:Etam(1)
-    repetido2 = numel(find(ecualizada == Eg(i))); 
+    repetido2 = numel(find(ecualizada == Eg(i))); %cuantas veces se repire el numero de gris
     cantidad_numero_ecu(i) = repetido2;
     suma2 = repetido2 + suma2;
     proba2(i) = (double(cantidad_numero_ecu(i))/double(m*n));
     acumulada2(i) = (double(suma2)/double(m*n));
 end
-
+%tabla de imagen acumulada
 tab = table(Eg,cantidad_numero_ecu, proba2, acumulada2)
 
 
@@ -125,24 +137,25 @@ for Q = 1:Etam(1)
         end
     end
 end
-
+%tabla de correspondencia
 corr = table(g2)
 
 for j=1:m
     for k=1:n
         for T=1:Etam(1)
             if ecualizada(j,k) == Eg(T);
-                correspondencia(j,k) = g2(T,N);
+                correspondencia(j,k) = g2(T,N); %asigna los valores a correspondencia
             end
         end
     end
 end
+% unit8 - > matrices de enteros sin signo de 8 bits
 correspondencia = uint8(correspondencia);
 figure(3)
-subplot(2,1,1)
+subplot(1,2,1)
 imshow(correspondencia);
-title('correspondencia');
+title('Imagen correspondencia');
 
-subplot(2,1,2)
-imhist(correspondencia);
-title('correspondencia');
+subplot(1,2,2)
+histogram(correspondencia);
+title('Histograma correspondencia');
