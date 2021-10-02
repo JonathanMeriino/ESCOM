@@ -10,35 +10,58 @@
         <h1 id="enc1" name="enc1">Formulario</h1>
         <form action="" id="formulario1">
             <h3>Nombre</h3>
-            <label>Nombre:</label>
-            <input type="text" name="nombre" placeholder="escribe tu nombre" size="40" maxlength="16" />
-            <label>Paterno:</label>
-            <input type="text" name="paterno" placeholder="escribe tu apellido paterno" size="40" maxlength="16" />
-
-            <label>Materno:</label>
-            <input type="text" name="materno" placeholder="escribe tu apellido materno" size="40" maxlength="16" />
+            
+            <br>
+            <table>
+                <tr>
+                    <td><input type="text" name="nombre" placeholder="escribe tu nombre" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="paterno" placeholder="apellido paterno" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="materno" placeholder="apellido materno" size="20" maxlength="16" /></td>
+                
+                </tr>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td> <label>Paterno</label></td>
+                    <td><label>Materno</label></td>
+        
+                </tr>
+            </table>       
+                    
             <br>
 
             <h3>Direccion</h3>
-            <label>Calle:</label>
-            <input type="text" name="calle" size="40" maxlength="16" />
-            <label>No.</label>
-            <input type="text" name="numero" size="10" maxlength="16" />
-            <label>Colonia:</label>
-            <input type="text" name="colonia" size="40" maxlength="16" />
-            <label>CP:</label>
-            <input type="text" name="cp" size="10" maxlength="16" />
 
-            <label>Ciudad</label>
-            <select name="" id="">
-                <option value="">Azcapotzalco</option>
-                <option value="">GAM</option>
-                <option value="">Iztapalapa</option>
-            </select>
+            <table>
+                <tr>
+                    <td> <input type="text" name="calle" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="numero" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="colonia" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="cp" size="20" maxlength="16" /></td>
+                    <td><select name="ciudad">
+                            <option disabled="">Selecciona una opcion</option>
+                            <option value="Azcapotzalco">Azcapotzalco</option>
+                            <option value="GAM">GAM</option>
+                            <option value="Iztapalapa">Iztapalapa</option>
+                            <option value="MiguelHidalgo">Miguel hielo</option>
+                            <option value="Cuauhtemoc">Cuauhtemoc</option>
+                        </select>
+                    </td>
 
+                </tr>
+                <tr>
+                    <td><label>Calle</label></td>
+                    <td> <label>No.</label></td>
+                    <td><label>Colonia</label></td>
+                    <td><label>CP</label></td>
+                    <td>
+                        <label>Ciudad</label>
+                    
+                    </td>
+
+                </tr>
+            </table>
             <br>
-|           <br>
-
+          
             <label>Sexo:</label>
     
             <input id="sexo" type="radio" name="sexo" value="Femenino"/> Femenino 
@@ -57,45 +80,62 @@
             <br>
             <br>
 
-            <label>Lenguajes de programación conocidos</label>
-            <br>
-            <input type="checkbox" name="c"> C <input type="checkbox" name="ruby">Ruby<br />
-            
-            <input type="checkbox" name="cpp"> C++ <input type="checkbox" name="perl">Perl<br />
-            
-            
-            <input type="checkbox" name="java"> Java <input type="checkbox" name="erre">R<br />
-    
-            <input type="checkbox" name="python"> Python <input type="checkbox" name="Otro">Otro<br />
-            
-            
+                <label>Lenguajes de programación conocidos</label>
+                <br>
+                
+            <table> 
+                <tr>
+                    <td><input type="checkbox" name="c"> C</td> <td><input type="checkbox" name="ruby">Ruby</td> 
+                     
+                </tr> 
+                <tr>
+                    <td><input type="checkbox" name="cpp"> C++</td> <td><input type="checkbox" name="perl">Perl</td> 
+                        
+                </tr>    
+                <tr>
+                  <td>
+                    <input type="checkbox" name="java"> Java <td><input type="checkbox" name="erre">R</td>
+                  </td>          
 
-            <br>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="python">Python</td><td><input type="checkbox" name="Otro">Otro</td>
+                </tr>    
+                    
+            </table>        
 
             <br>
 
             <label>Pasatiempos</label>
             <br>
-            <input type="checkbox" name="leer"> Leer<br />
-            
-            <input type="checkbox" name="tv">Ver TV<br />
-            
-            <input type="checkbox" name="navegar">Navegar en internet<br />
-    
-            <input type="checkbox" name="videojuegos">Videojuegos<br />
-            <input type="checkbox" name="cine">Ir al Cine<br />
-            <input type="checkbox" name="netflix">Ver Netflix<br />
-            <input type="checkbox" name="cosas">Otras cosas<br />
-            
-
-
+            <table>
+                <tr>
+                        <td><input type="checkbox" name="leer"> Leer</td>
+                        <td><input type="checkbox" name="videojuegos">Videojuegos</td>   
+                        
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="tv">Ver TV</td>
+                    <td><input type="checkbox" name="cine">Ir al Cine</td>
+                    <td><input type="checkbox" name="cosas">Otras cosas</td>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td><input type="checkbox" name="navegar">Navegar en internet></td>
+                    <td><input type="checkbox" name="netflix">Ver Netflix</td>
+                    
+                </tr>               
+                        
+            </table>
             <br>
 
             <label>Comentarios</label><br/>
             <textarea cols="40" role="15"></textarea>
             <br>        
-            <input type="submit">
-            <input type="reset">
+            <input type="submit" value= "Enviar">
+            <input type="reset" value= "Borrar">
         </form>
         
     </body>
