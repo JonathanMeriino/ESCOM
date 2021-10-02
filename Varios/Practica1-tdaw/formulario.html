@@ -17,51 +17,48 @@
 
             <label>Materno:</label>
             <input type="text" name="materno" placeholder="escribe tu apellido materno" size="40" maxlength="16" />
-            <br />
+            <br>
 
-<!--
-            <label>Edad:</label>
-            <input type="text" name="" value="" size="5" maxlength="2" /> 
-            <br />
-
-            <label>Password</label>
-            <input type="password" name="" value="" size="5" maxlength="5" /> 
-            <br />
-
-            <label>Oculto</label>
-            <input type="hidden" name="" value="algo que vamos al servidor" size="5" maxlength="" /> 
-            <br />
--->
             <h3>Direccion</h3>
             <label>Calle:</label>
-            <input type="text" name="calle" placeholder="calle" size="40" maxlength="16" />
+            <input type="text" name="calle" size="40" maxlength="16" />
             <label>No.</label>
-            <input type="text" name="numero" size="40" maxlength="16" />
+            <input type="text" name="numero" size="10" maxlength="16" />
             <label>Colonia:</label>
             <input type="text" name="colonia" size="40" maxlength="16" />
             <label>CP:</label>
-            <input type="text" name="cp" size="40" maxlength="16" />
+            <input type="text" name="cp" size="10" maxlength="16" />
 
-            </br>
+            <label>Ciudad</label>
+            <select name="" id="">
+                <option value="">Azcapotzalco</option>
+                <option value="">GAM</option>
+                <option value="">Iztapalapa</option>
+            </select>
 
+            <br>
+|           <br>
 
             <label>Sexo:</label>
-            <label>Femenino</label>
-            <input id="sexo" type="radio" name="sexo" value="Femenino" checked /> 
-            <label>Masculino</label>
-            <input id="sexo" type="radio" name="sexo" value="Masculino" /> 
-            <br />
+    
+            <input id="sexo" type="radio" name="sexo" value="Femenino"/> Femenino 
+
+            <input id="sexo" type="radio" name="sexo" value="Masculino" /> Masculino
+            
+            <input id="sexo" type="radio" name="sexo" value="Masculino" /> Otro
+
+            <br>
             <label>Fecha de nacimiento</label>
             <input type="date">
-            <br />
+            <br>
 
             <label>CURP:</label>
             <input type="text" name="curp" size="40" maxlength="16" />
-            <br />
-            <br />
+            <br>
+            <br>
 
             <label>Lenguajes de programación conocidos</label>
-            <br />
+            <br>
             <input type="checkbox" name="c"> C <input type="checkbox" name="ruby">Ruby<br />
             
             <input type="checkbox" name="cpp"> C++ <input type="checkbox" name="perl">Perl<br />
@@ -73,12 +70,12 @@
             
             
 
-            <br />
+            <br>
 
-            <br />
+            <br>
 
             <label>Pasatiempos</label>
-            <br />
+            <br>
             <input type="checkbox" name="leer"> Leer<br />
             
             <input type="checkbox" name="tv">Ver TV<br />
@@ -92,11 +89,11 @@
             
 
 
-            <br />
+            <br>
 
             <label>Comentarios</label><br/>
             <textarea cols="40" role="15"></textarea>
-            <br/>        
+            <br>        
             <input type="submit">
             <input type="reset">
         </form>
