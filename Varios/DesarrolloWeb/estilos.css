@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: auto;
+}
+body {
+    background: pink;
+    color: white;
+    background-color: black;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif;
+}
+a{
+    color: pink;
+    text-decoration: none;
+
+}
+ul{
+    list-style: none;
+
+}
+ol {
+  color: purple;
+  font-family: 'Courier New', Courier, monospace;
+}
+strong {
+    color: purple;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+hr{
+    margin: 10px 0;
+}
+footer {
+    
+    min-height: 130px;
+    background: white;
+    margin: 0 auto;
+    border-radius: 0 0 20px 20px;
+    color:blue;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+    font-size:18px;
+}
+.parrafo{
+    color: yellow;
+    font-style: italic;
+}
+.titulos{
+    color: orangered;
+    font-style: oblique;
+}
