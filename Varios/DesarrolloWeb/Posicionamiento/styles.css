@@ -64,11 +64,13 @@
       background: #2e2e2e;
       width: 100%;
       height: auto;
+      margin-top: 400px;
   }
   #pie-footer{
       background: #000;
       width: 100%;
       height: 40px;
+      
   }
   .titulo-footer{
       color: #fff;
@@ -132,12 +134,16 @@
     height: 300px;
 
 }
-.barra-derecha{
-  position: relative;
-  left: 900px;
-  
+#contenido{
+  float: left;
+  width: 700px;
+  height: 300px;
+  background:blue;
+  margin-top: 10px;
+  margin-right: 10px;
 }
-.cuerpo{
-  position: relative;
+#barra-derecha{
+  float: right;
+  
   
 }
