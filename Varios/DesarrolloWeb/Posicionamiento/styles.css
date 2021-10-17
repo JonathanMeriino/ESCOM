@@ -7,7 +7,9 @@
   }
   
   header {
-    background: #03A9F4;
+    background:url(arbol.jpg);
+    background-size: cover;
+    background-position: center;
     width: 100%;
     clear: both;
     content:'';
@@ -19,13 +21,14 @@
     margin: 0 auto;
   }
   
-  img {
-    width: 120px;
+  .menu img {
+    width: 150px;
     height: 50px;
     float: left;
     padding: 8px;
   
   }
+  
   
   nav {
     float: right;
@@ -60,14 +63,68 @@
     width: 100%;
   }
 
+  #fondo-encabezado{
+    background: rgb(180, 175, 175);
+    width: 100%;
+    height: 300px;
+   
+  
+  }
+  .img-encabezado img {
+    margin-left: 200px;
+   float: left;
+   width: 400px; 
+   height: 250px;
+   margin-top: 25px
+   
+
+  }
+  .texto-enc{
+    float: left;
+    margin-top: 55px;
+  }
+  .texto-enc h3 {
+    color: red;
+  }
+
+  .boton-informacion{
+    color: white;
+    font-size: 17px;
+    background-color: red;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    position: relative;
+  }
+
+  .subtitulos {
+    font-family: Courier;
+  }
+  .subtitulos p {
+    position: relative;
+  }
+  .text-blue {
+    color: rgb(74, 74, 241);
+  }
+  .subtitulo1 img {
+    float: left;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+  }
+
+ 
+
   #footer{
-      background: #2e2e2e;
-      width: 100%;
-      height: auto;
-      margin-top: 400px;
+    background:url(paisa.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: auto;
+    margin-top: 850px;
   }
   #pie-footer{
-      background: #000;
+      background: #2e2e2e;
       width: 100%;
       height: 40px;
       
@@ -84,6 +141,8 @@
     font-size: 20px;
     margin-top: 35px;
     font-weight: 800;
+   
+    
 }
 .titulo-contacto{
     color: #fff;
@@ -109,42 +168,57 @@
     top: 12px;
     font-weight: 800;
 }
-#fondo-footer{
-    background: #2e2e2e;
-    width: 100%;
-    height: 50px;
-}
 
-.caja{
-  position: relative;
-  top: ;
-  bottom:;
-  right:;
-  left: 200px;
-}
-.texto1{
-  position: relative;
-  left: 600px;
+
+.suscribirse{
+    font-size: 17px;
+    background-color: black;
+    width: 150px;
+    height: 30px;
+    
+    margin-left: 200px;
 
 }
 
-#fondo-encabezado{
-  background: gray;
-    width: 100%;
-    height: 300px;
+#footer p{
+  color: white;
+  text-align: center
+    }
 
-}
+
+
 #contenido{
   float: left;
+  margin-left: 100px;
   width: 700px;
   height: 300px;
-  background:blue;
+  
   margin-top: 10px;
   margin-right: 10px;
 }
 #barra-derecha{
   float: right;
-  margin-right: 120px;
+  margin-right: 200px;
+  width: 300px;
+  height: 700px
   
+  
+}
+.footer-container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+div .parte1{
+  float: right;
+}
+
+#socials {
+  align: center;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
   
 }
