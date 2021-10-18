@@ -8,7 +8,7 @@ def start_command(update,context):
     update.message.reply_text('Listo para iniciar la conversacion')
 
 def help_command(update,context):
-    update.message.reply_text('Intenta algo ')
+    update.message.reply_text('Intenta decir "Hola" \n Vamos, no seas timido ')
 
 
 def handle_message(update,context):
@@ -21,7 +21,7 @@ def handle_message(update,context):
 
 
 def error(update,context):
-    print(f"Update {update } caused error{context.error}")
+    print(f"Actualizacion {update } error causado{context.error}")
 
 def main():
     updater = Updater(keys.API_KEY, use_context=True )
