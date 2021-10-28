@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="app.js"></script>
+        <title>Formulario</title>
+    </head>
+    <body>
+        <h1 id="enc1" name="enc1">Formulario</h1>
+        <form action="" id="formulario1">
+            <h3>Nombre</h3>
+            
+            <br>
+            <table>
+                <tr>
+                    <td><input type="text" name="nombre" id ="nombre" placeholder="escribe tu nombre" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="paterno" id = "paterno" placeholder="apellido paterno" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="materno" id = "materno" placeholder="apellido materno" size="20" maxlength="16" /></td>
+                
+                </tr>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td> <label>Paterno</label></td>
+                    <td><label>Materno</label></td>
+        
+                </tr>
+            </table>       
+                    
+            <br>
+
+            <h3>Direccion</h3>
+
+            <table>
+                <tr>
+                    <td> <input type="text" name="calle" id="calle" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="numero" id ="numero" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="colonia" id = "colonia" size="20" maxlength="16" /></td>
+                    <td><input type="text" name="cp" id = "cp"size="20" maxlength="16" /></td>
+                    <td><select name="ciudad" id = "ciudad">
+                            <option disabled="">Selecciona una opcion</option>
+                            <option value="Azcapotzalco">Azcapotzalco</option>
+                            <option value="GAM">GAM</option>
+                            <option value="Iztapalapa">Iztapalapa</option>
+                            <option value="MiguelHidalgo">Miguel hielo</option>
+                            <option value="Cuauhtemoc">Cuauhtemoc</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><label>Calle</label></td>
+                    <td> <label>No.</label></td>
+                    <td><label>Colonia</label></td>
+                    <td><label>CP</label></td>
+                    <td>
+                        <label>Ciudad</label>
+                    
+                    </td>
+
+                </tr>
+            </table>
+            <br>
+          
+            <label id ="sexos">Sexo:</label>
+    
+            <input id="sexo" type="radio" name="sexo" value="Femenino"/> Femenino 
+
+            <input id="sexo" type="radio" name="sexo" value="Masculino" /> Masculino
+            
+            <input id="sexo" type="radio" name="sexo" value="Masculino" /> Otro
+
+            <br>
+            <label>Fecha de nacimiento</label>
+            <input type="date" id= "nacimiento">
+            <br>
+
+            <label>CURP:</label>
+            <input type="text" name="curp" id="curp" size="40" maxlength="16" />
+            <br>
+            <br>
+
+                <label>Lenguajes de programación conocidos</label>
+                <br>
+                
+            <table> 
+                <tr>
+                    <td><input type="checkbox" name="c" id="programacion"> C</td> <td><input type="checkbox" name="ruby" id="programacion">Ruby</td> 
+                     
+                </tr> 
+                <tr>
+                    <td><input type="checkbox" name="cpp" id="programacion"> C++</td> <td><input type="checkbox" name="perl" id="programacion">Perl</td> 
+                        
+                </tr>    
+                <tr>
+                  <td>
+                    <input type="checkbox" name="java id="programacion"> Java <td><input type="checkbox" name="erre" id="programacion">R</td>
+                  </td>          
+
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="python" id="programacion">Python</td><td><input type="checkbox" name="Otro" id="programacion">Otro</td>
+                </tr>    
+                    
+            </table>        
+
+            <br>
+
+            <label>Pasatiempos</label>
+            <br>
+            <table>
+                <tr>
+                        <td><input type="checkbox" name="leer"> Leer</td>
+                        <td><input type="checkbox" name="videojuegos">Videojuegos</td>   
+                        
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="tv">Ver TV</td>
+                    <td><input type="checkbox" name="cine">Ir al Cine</td>
+                    <td><input type="checkbox" name="cosas">Otras cosas</td>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td><input type="checkbox" name="navegar">Navegar en internet></td>
+                    <td><input type="checkbox" name="netflix">Ver Netflix</td>
+                    
+                </tr>               
+                        
+            </table>
+            <br>
+
+            <label id = "comentarios">Comentarios</label><br/>
+            <textarea cols="40" role="15"></textarea>
+            <br>        
+            <button type="button" onclick= "getData()">Enviar</button>
+            <input type="reset" value= "Borrar">
+        </form>
+        
+    </body>
+</html>
