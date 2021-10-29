@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1 id="enc1" name="enc1">Formulario</h1>
-        <form action="" id="formulario1">
+        <form name = "myForm">
             <h3>Nombre</h3>
             
             <br>
@@ -63,7 +63,7 @@
             </table>
             <br>
           
-            <label id ="sexos">Sexo:</label>
+            <label>Sexo:</label>
     
             <input id="sexo" type="radio" name="sexo" value="Femenino"/> Femenino 
 
@@ -86,21 +86,21 @@
                 
             <table> 
                 <tr>
-                    <td><input type="checkbox" name="c" id="programacion"> C</td> <td><input type="checkbox" name="ruby" id="programacion">Ruby</td> 
+                    <td><input type="checkbox" name="programacion[]" id="c" class= "valores"> C</td> <td><input type="checkbox" name="programacion[]" id="ruby" class= "valores">Ruby</td> 
                      
                 </tr> 
                 <tr>
-                    <td><input type="checkbox" name="cpp" id="programacion"> C++</td> <td><input type="checkbox" name="perl" id="programacion">Perl</td> 
+                    <td><input type="checkbox" name="programacion[]" id="cplus" class= "valores"> C++</td> <td><input type="checkbox" name="programacion[]" id="perl" class= "valores">Perl</td> 
                         
                 </tr>    
                 <tr>
                   <td>
-                    <input type="checkbox" name="java id="programacion"> Java <td><input type="checkbox" name="erre" id="programacion">R</td>
+                    <input type="checkbox" name="programacion[]" id="java" class= "valores"> Java <td><input type="checkbox" name="programacion[]" id="erre" class= "valores">R</td>
                   </td>          
 
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="python" id="programacion">Python</td><td><input type="checkbox" name="Otro" id="programacion">Otro</td>
+                    <td><input type="checkbox" name="programacion[]" id="python" class= "valores">Python</td><td><input type="checkbox" name="programacion[]" id="otro">Otro</td>
                 </tr>    
                     
             </table>        
@@ -111,21 +111,21 @@
             <br>
             <table>
                 <tr>
-                        <td><input type="checkbox" name="leer"> Leer</td>
-                        <td><input type="checkbox" name="videojuegos">Videojuegos</td>   
+                        <td><input type="checkbox" name="hobbies[]"> Leer</td>
+                        <td><input type="checkbox" name="hobbies[]">Videojuegos</td>   
                         
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="tv">Ver TV</td>
-                    <td><input type="checkbox" name="cine">Ir al Cine</td>
-                    <td><input type="checkbox" name="cosas">Otras cosas</td>
+                    <td><input type="checkbox" name="hobbies[]">Ver TV</td>
+                    <td><input type="checkbox" name="hobbies[]">Ir al Cine</td>
+                    <td><input type="checkbox" name="hobbies[]">Otras cosas</td>
                     
                     
                 </tr>
                 
                 <tr>
-                    <td><input type="checkbox" name="navegar">Navegar en internet></td>
-                    <td><input type="checkbox" name="netflix">Ver Netflix</td>
+                    <td><input type="checkbox" name="hobbies[]">Navegar en internet></td>
+                    <td><input type="checkbox" name="hobbies[]">Ver Netflix</td>
                     
                 </tr>               
                         
@@ -135,7 +135,7 @@
             <label id = "comentarios">Comentarios</label><br/>
             <textarea cols="40" role="15"></textarea>
             <br>        
-            <button type="button" onclick= "getData()">Enviar</button>
+            <button type="button" id = "boton" onclick= "getData()">Enviar</button>
             <input type="reset" value= "Borrar">
         </form>
         
