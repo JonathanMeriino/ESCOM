@@ -1,73 +1,71 @@
-<!DOCTYPE html><html><head><title>Listas</title>
-    <script lenguage="JavaScript">
-        var tabla,fila,celda,texto;
-        
-        function AgregarFinal(){
+<!Doctype html>
+<html>
+    <head>
+        <title>LISTAS</title>
+        <script languaje="javascript">
+            var tabla;
             
-            var valor=prompt("Insertar el valor del elemento");
-            
-            tabla=document.getElementById("tabla1");
-            fila=document.createElement("tr");
-            tabla.appendChild(fila);
-            
-            for(i=0;i<5;i++){
-                celda=document.createElement("td");
-                celda.setAttribute("class","color");
-                celda.className="color";
-                texto=document.createTextNode(valor);
-                celda.appendChild(texto);
-                fila.appendChild(celda);
+            function agregar(pos) {
+                if (!tabla)
+                    tabla = document.querySelector('table');
+
+                let texto = prompt('inserta el valor del elemento');
+                let fila = tabla.insertRow(pos);
+                
+                for(i=0; i<5; i++) {
+                    let celda = fila.insertCell(-1);
+                    celda.classList.add('color');
+                    celda.innerText = texto;
+                }
             }
-        }
-        function EliminarFinal (){
-            if(tabla.hasChildNodes())
-            tabla.removeChild(tabla.lastChind);  
-        }
+            
+            function obtener() {
+				if (!tabla)
+                    tabla = document.querySelector('table');
 
-        function agregarInicio(){
-            var valor=prompt("Insertar el valor del elemento");
-            
-            tabla=document.getElementById("tabla1");
-            fila=document.createElement("tr");
-            tabla.appendChild(fila);
-            
+                let pos = prompt("Ingresa la posicion de la fila");
+				
+				if (tabla.rows.length<=pos) {
+					alert("Posición invalida")
+					return false;
+				}
 
-            
-            for(i=0;i<5;i++){
-                celda=document.createElement("td");
-                celda.setAttribute("class","color");
-                celda.className="color";
-                texto=document.createTextNode(valor);
-                celda.insertBefore(texto);
-                fila.insertBefore(celda);
+                let valor = tabla.rows[pos].cells[0].innerText
+                alert(valor)
             }
+  
+            function eliminar(pos) { 
+				if (!tabla)
+                    tabla = document.querySelector('table');
 
-        }
+				if (tabla.rows.length<=pos) {
+					alert("Posición invalida")
+					return false;
+				}
 
-        function obtenerValor(){
+                tabla.deleteRow(pos
+                    ? pos
+                    : prompt("Ingresa posicion de la fila a eliminar") 
+                ) 
+            }
+            
+            function borrar() {
+				if (!tabla)
+                    tabla = document.querySelector('table');
 
-        }
-
-        function borrarLista(){
-
-        }
-        function eliminarCelda(){
-
-        }
-    </script>
-</head>
-<body>
-    <table align="center" width="450" border="2">
-        <tbody id="tabla1">
-        </tbody>
-    </table> <br/><br/>
-    <input type="button" value="Agergar al final" onclick="AgregarFinal()"/><br/>
-    <input type="button" value="Agregar al inicio" onclick="agregarInicio()"/><br/>
-    <input type="button" value="Obtener valor" onclick="obtenerValor()"/><br/>
-    <input type="button" value="Borrar lista" onclick="borrarLista()" /><br/>
-    <input type="button" value="Eliminar al Final" onclick="EliminarFinal()"/><br/>
-    <input type="button" value="Eliminar celda" onclick="eliminarCelda()" /><br/>
-
-
-</body>
+                for(i=tabla.rows.length; i>0; i--)
+                    tabla.deleteRow(i-1)
+            }
+        </script>
+    </head>
+    <body>
+        <table align="center" width='458' border='2'></table> 
+        <br/><br/>
+            <input type="button" value="Agregar al final" onClick="agregar(-1)"/><br/>
+            <input type="button" value="Agregar al inicio" onClick="agregar(0)"/><br/>
+            <input type="button" value="Obtener valor" onClick="obtener()"/><br/>
+            <input type="button" value="Eliminar al final" onClick="eliminar(-1)"/><br/>
+            <input type="button" value="Eliminar con posicion" onClick="eliminar()"/><br/>
+            <input type="button" value="Borrar lista" onClick="borrar()"/><br/>
+        </body>
 </html>
