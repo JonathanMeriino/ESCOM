@@ -1,0 +1,39 @@
+
+body{
+    background-color: black;
+}
+
+#gradientes {
+    height: 600px;
+    width: 1000px;
+    margin: auto;
+    border: 1px solid red;
+}
+h1{
+    color: black;
+    text-align: center;
+    
+}
+div .lineal{
+    height: 300px;
+    width: 300px;
+    border: 1px solid white;
+    float: left;
+    margin-left: 100px ;
+    margin-top: 100px;
+    background: -webkit-linear-gradient(top left,
+     red 20%, orange 20%,orange 40%, yellow 40%, yellow 60%,Green 60%,Green 80%,blue 80%);
+
+}
+
+div .radial{
+    height: 300px;
+    width: 300px;
+    border: 1px solid white;
+    float: right;
+    margin-right: 100px;
+    margin-top: 100px;
+    background: -webkit-radial-gradient(top,
+     red 20%, orange 20%,orange 40%, yellow 40%, yellow 60%,Green 60%,Green 80%,blue 80%);
+
+}
