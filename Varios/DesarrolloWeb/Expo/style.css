@@ -21,9 +21,10 @@ div .lineal{
     float: left;
     margin-left: 100px ;
     margin-top: 100px;
-    background: -webkit-linear-gradient(top left,
+   /* background: -webkit-linear-gradient(top left,
      red 20%, orange 20%,orange 40%, yellow 40%, yellow 60%,Green 60%,Green 80%,blue 80%);
-
+*/
+    background: -webkit-linear-gradient(45deg,#66f 10%,#f80 30%,#ffc 60%)
 }
 
 div .radial{
