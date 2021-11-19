@@ -1,0 +1,182 @@
+.elementoVerde{
+  width: 100px;
+  height: 100px;
+  background: rgb(197,232,162);
+  background: linear-gradient(0deg, rgba(197,232,162,1) 0%, rgba(48,255,0,1) 100%, rgba(4,154,145,1) 100%);
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoVerde:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoNaranja{
+  width: 100px;
+  height: 100px;
+  background: rgb(232,200,162);
+  background: linear-gradient(0deg, rgba(232,200,162,1) 0%, rgba(255,98,0,1) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoNaranja:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoAmarillo{
+  width: 100px;
+  height: 100px;
+  background: rgb(232,231,162);
+  background: linear-gradient(0deg, rgba(232,231,162,1) 0%, rgba(236,255,0,1) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoAmarillo:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoAzul{
+  width: 100px;
+  height: 100px;
+  background: rgb(162,231,232);
+  background: linear-gradient(0deg, rgba(162,231,232,1) 0%, rgba(0,255,244,1) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoAzul:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoMorado{
+  width: 100px;
+  height: 100px;
+  background: rgb(203,155,250);
+  background: linear-gradient(0deg, rgba(203,155,250,1) 0%, rgba(114,0,195,0.9864320728291317) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoMorado:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoRosa{
+  width: 100px;
+  height: 100px;
+  background: rgb(225,162,232);
+  background: linear-gradient(0deg, rgba(225,162,232,1) 0%, rgba(231,0,255,1) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoRosa:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.elementoBeige{
+  width: 100px;
+  height: 100px;
+  background: rgb(232,205,162);
+  background: linear-gradient(0deg, rgba(232,205,162,1) 0%, rgba(189,91,0,1) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.elementoBeige:hover{
+  transform: rotate(45deg) scale(2);
+
+}
+.seccionA{
+  width: 100px;
+  height: 100px;
+  background: rgb(250,198,155);
+  background: linear-gradient(0deg, rgba(250,198,155,1) 0%, rgba(223,168,0,0.908000700280112) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.seccionA:hover{
+  transform: rotate(45deg) scale(2);
+}
+.seccionB{
+  width: 100px;
+  height: 100px;
+  background: rgb(191,169,245);
+  background: linear-gradient(0deg, rgba(191,169,245,1) 0%, rgba(145,48,255,0.9864320728291317) 100%, rgba(4,154,145,1) 100%);
+  line-height: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  box-shadow: 5px -5px rgb(0, 4, 4);
+  transition: all .3s ease-in-out;
+}
+.seccionB:hover{
+  transform: rotate(45deg) scale(2);
+}
+.elementoinvisible{ 
+  width: 100px;
+  height: 100px;
+  visibility: hidden; 
+}
