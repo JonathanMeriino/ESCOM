@@ -36,14 +36,40 @@ def add_contact():
         return redirect(url_for('Index'))
 
 
-@app.route('/edit')
-def edit_contact():
-    return 'edit_password'
+@app.route('/edit/<id>')
+def get_contact(id):
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM contraseñas WHERE id = %s',(id))
+    data =cur.fetchall()
+    return render_template('edit-password.html',usuario=data[0])
 
-@app.route('/delete')
-def delete_contact():
-    return 'delete_password'
 
+@app.route('/update/<id>',methods = ['POST'])
+
+def update_contact(id):
+    if request.method == 'POST':
+        nombreSocial = request.form['social']
+        nombreUser = request.form['usuario']
+        nombrePass = request.form['contraseña']
+        cur = mysql.connection.cursor()
+        cur.execute(""" 
+        UPDATE contraseñas
+        SET redes_sociales = %s, 
+            usuario = %s,
+            contraseñas = %s
+        WHERE id = %s    
+        """,(nombreSocial,nombreUser,nombrePass,id))
+        mysql.connection.commit()
+        flash('Contraseña actualizada correctamente')    
+        return redirect(url_for('Index'))
+
+@app.route('/delete/<string:id>')
+def delete_contact(id):
+    cur = mysql.connection.cursor()
+    cur.execute('DELETE FROM contraseñas WHERE id ={0}'.format(id))
+    mysql.connection.commit()
+    flash('Contraseña Borrada exitosamente')
+    return redirect(url_for('Index'))
 
 if __name__ == '__main__':
     app.run(port = 3000, debug = True)

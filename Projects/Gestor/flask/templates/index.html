@@ -28,9 +28,18 @@
         </tr>
     </thead>
     <tbody>
-        {% for in contraseña in contraseñas %}
+        {% for datos in contraseñas %}
         <tr>
-            <td>{{contraseña.1}}</td>
+            <td>{{datos.1}}</td>
+            <td>{{datos.2}}</td>
+            <td>{{datos.3}}</td>
+            <td>
+                
+                <!-- <a href="/ver/{{datos.0}}">Ver</a> -->
+                <a href="/edit/{{datos.0}}">Edit</a>
+                <a href="/delete/{{datos.0}}">Delete</a>
+            </td>
+            
         </tr>
         {% endfor %}
     </tbody>
