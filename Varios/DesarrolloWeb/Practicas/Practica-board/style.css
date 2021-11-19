@@ -1,3 +1,7 @@
+body{
+  background: rgb(56, 65, 65);
+}
+
 .elementoVerde{
   width: 100px;
   height: 100px;
@@ -12,6 +16,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoVerde:hover{
   transform: rotate(45deg) scale(2);
@@ -32,6 +37,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoNaranja:hover{
   transform: rotate(45deg) scale(2);
@@ -52,6 +58,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoAmarillo:hover{
   transform: rotate(45deg) scale(2);
@@ -72,6 +79,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoAzul:hover{
   transform: rotate(45deg) scale(2);
@@ -92,6 +100,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoMorado:hover{
   transform: rotate(45deg) scale(2);
@@ -112,6 +121,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoRosa:hover{
   transform: rotate(45deg) scale(2);
@@ -132,6 +142,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .elementoBeige:hover{
   transform: rotate(45deg) scale(2);
@@ -152,6 +163,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .seccionA:hover{
   transform: rotate(45deg) scale(2);
@@ -171,6 +183,7 @@
   border-bottom-left-radius: 40px;
   box-shadow: 5px -5px rgb(0, 4, 4);
   transition: all .3s ease-in-out;
+  text-align: center;
 }
 .seccionB:hover{
   transform: rotate(45deg) scale(2);
