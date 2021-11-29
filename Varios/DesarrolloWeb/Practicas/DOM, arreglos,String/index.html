@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="script.js"></script>
+	<title>Practica Dom, Arreglos y String</title>
+	<style>
+		input[type="text"] {
+			text-transform: uppercase;
+		}
+	</style>
+</head>
+<body>
+	<form onsubmit="calcCURP(this); return false">
+		<fieldset>
+			<legend>CURP </legend>
+			<table>
+				<tr>
+					<td>
+						<label for="name">Nombres</label> <br>
+						<input type="text" name="name" required="true">
+					</td>
+					<td>
+						<label for="psurname">Apellido Paterno</label> <br>
+						<input type="text" name="psurname" required="true">
+					</td>
+					<td>
+						<label for="msurname">Apellido Materno</label> <br>
+						<input type="text" name="msurname" required="true">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="birth">Fecha De Nacimiento</label> <br>
+						<input type="date" name="birth" required="true">
+					</td>
+					<td>
+						<label for="place">Lugar De Nacimiento</label> <br>
+						<select id="place" name="place" required="true">
+							<option value="" disabled selected>Selecciona el estado</option>
+							<option value="AS">Aguascalientes</option>
+							<option value="BC">Baja California</option>
+							<option value="BS">Baja California Sur</option>
+							<option value="CC">Campeche</option>
+							<option value="CL">Coahuila</option>
+							<option value="CM">Colima</option>
+							<option value="CS">Chiapas</option>
+							<option value="CH">Chihuahua</option>
+							<option value="DF">Distrito Federal</option>
+							<option value="DG">Durango</option>
+							<option value="GT">Guanajuato</option>
+							<option value="GR">Guerrero</option>
+							<option value="HG">Hidalgo</option>
+							<option value="JC">Jalisco</option>
+							<option value="MC">Estado de México</option>
+							<option value="MN">Michoacán</option>
+							<option value="MS">Morelos</option>
+							<option value="NT">Nayarit</option>
+							<option value="NL">Nuevo León</option>
+							<option value="OC">Oaxaca</option>
+							<option value="PL">Puebla</option>
+							<option value="QT">Querétaro</option>
+							<option value="QR">Quintana Roo</option>
+							<option value="SP">San Luis Potosí</option>
+							<option value="SL">Sinaloa</option>
+							<option value="SR">Sonora</option>
+							<option value="TC">Tabasco</option>
+							<option value="TS">Tamaulipas</option>
+							<option value="TL">Tlaxcala</option>
+							<option value="VZ">Veracruz</option>
+							<option value="YN">Yucatán</option>
+							<option value="ZS">Zacatecas</option>
+							<option value="NE">Nacido en el extranjero</option>
+						</select>
+					</td>
+					<td>
+						<label for="gender">Sexo</label> <br>
+						<select name="gender" required="true">
+							<option value="" disabled selected>Selecciona el sexo</option>
+							<option value="H">Masculino</option>
+							<option value="M">Femenino</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="Obtener CURP">
+					</td>
+					<td colspan="2">
+						<label for="curp">CURP: </label>
+						<input type="text" name="curp" readonly>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+	
+	
+</body>
+</html>
