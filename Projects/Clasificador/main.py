@@ -1,4 +1,5 @@
 import pandas as pd
+import sklearn
 
 """
 INput (x) -> comentarios(review)
