@@ -10,7 +10,7 @@
     $query = "INSERT INTO usuarios(nombre_completo, correo, usuario,masterpass) 
                 VALUES('$nombre_completo','$correo','$usuario','$contrasena')";
     
-    $ejecutar = mysqli_query($conexion,$query);
+    $ejecutar = mysqli_query($conexion_be,$query);
 
     if($ejecutar){
         echo '
@@ -26,5 +26,5 @@
         </script>';
     }
 
-    mysqli_close($conexion);
+    mysqli_close($conexion_be);
 ?>
