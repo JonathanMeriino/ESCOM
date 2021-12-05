@@ -5,14 +5,23 @@ from sklearn.preprocessing import OneHotEncoder
 
 datos= pd.read_csv('grimms.csv', low_memory=False)    # lectura de archivo csv
 #print(datos)
+print(datos.dtypes)  # tipos de datos
 
-print(datos)
+print(datos.describe())
+print(datos.info)
+#print(datos)
 
-datos_pre = datos.drop(['Title'], axis=1)
+#Preprocesamiento
+#visualizar dataframes
+#print(datos.head(1))
+#print(datos.tail(1))
+
+datos_pre = datos.drop(['Title','Count'], axis=1)
 #print(datos_pre)
+print(datos_pre.dtypes)
 
-datosPreOne = OneHotEncoder(datos_pre = [0])
-x = datosPreOne.fit_transform(datosPreOne).toArray()
+#datosPreOne = OneHotEncoder(datos_pre = [0])
+#x = datosPreOne.fit_transform(datosPreOne).toArray()
 #cuentos = datos['Text']
 #print(cuentos)
 
@@ -29,4 +38,4 @@ x = datosPreOne.fit_transform(datosPreOne).toArray()
 
 
 # finalizacion
-#data.tocsv("datos_limpios.csv", index =False)
+#datos_pre.to_csv("datos_clasificados.csv", index =False)
