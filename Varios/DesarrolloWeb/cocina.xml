@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE recetario [
+<!ELEMENT recetario (recetas_pollo,recetas_salchichas)>
+<!ELEMENT recetas_pollo (receta)>
+<!ELEMENT recetas_salchichas (receta)>
+<!ELEMENT receta (platillo,ingrediente,proceso)>
+<!ELEMENT platillo (#PCDATA)>
+<!ELEMENT ingrediente (#PCDATA)>
+<!ATTLIST ingrediente cantidad CDATA #IMPLIED>
+<!ATTLIST ingrediente unidad CDATA #IMPLIED>
+<!ATTLIST ingrediente nombre CDATA #IMPLIED>
+<!ELEMENT procedimiento (paso)>
+<!ELEMENT pasos (#PCDATA)>
+]>
+
+<recetario>
+    <recetas_pollo>
+        <receta>
+            <platillo>Pollo al horno con patatas</platillo>
+
+            <ingrediente cantidad="1" unidad="Kg" nombre="Pollo entero"/>
+            <ingrediente cantidad="4" unidad=" " nombre="Patatas"/>
+            <ingrediente cantidad="4" unidad="" nombre="cebollas medianas"/>
+            <ingrediente cantidad="1" unidad="tazas" nombre="aceite de oliva"/>
+            <ingrediente cantidad="1" unidad="cucharada" nombre="Cebolla picada"/>
+            <ingrediente cantidad="cantidad necesaria" unidad=" " nombre="Sal y pimienta"/>
+
+            <procedimiento>
+                <pasos>1. Comenzamos pelando las patatas. Una vez peladas, las cortamos en rodajas finas, de no más de 1 centímetro de grosor. Después, las ponemos como base en una bandeja para horno. Pelamos también las cebollas y las cortamos en tiras finas. La ponemos sobre la patata y salpimentamos todo.</pasos>
+                <pasos>2. A continuación ponemos los muslos encima de las patatas y la cebolla. Le añadimos a todo un vaso de agua y un chorrete de aceite de oliva. Así quedará mas jugoso mientras se hornea. Nos aseguramos que en el fondo de la fuente, haya siempre humedad. Así la guarnición no se va a quemar. Salpimentamos y añadimos un buen pellizco de tomillo seco a cada muslo</pasos>
+            </procedimiento>
+        </receta>
+        <receta>
+            <platillo>Pollo al horno con verduras</platillo>
+
+            <ingrediente cantidad="4" unidad="" nombre="muslos de pollo completos"/>
+            <ingrediente cantidad="2" unidad=" " nombre="patatas medianas"/>
+            <ingrediente cantidad="3" unidad="" nombre="zanahorias"/>
+            <ingrediente cantidad="1/2" unidad="" nombre="pimiento rojo"/>
+            <ingrediente cantidad="1" unidad="" nombre="cebolla"/>
+            <ingrediente cantidad="cantidad necesaria" unidad=" " nombre="Sal y pimienta"/>
+
+            <procedimiento>
+                <pasos>1.Ponemos en la base de una fuente para horno, las patatas cortadas en láminas de 1cm de grosor, la zanahoria en trozos de un par de cm, la cebolla en tiras, los dientes de ajo picados y el pimiento verde y el rojo cortado también en tiras. Aunque puedes añadir la verdura toca picada, si lo prefieres.</pasos>
+                <pasos>2. Encima, colocamos los muslos de pollo. Los bañamos con un vaso de agua y salpimentamos.. Después le añadimos un pequeño chorrito de aceite a cada muslo y espolvoreamos con tomillo seco.</pasos>
+            </proceso>
+        </receta>
+        <receta>
+            <platillo>Pollo a la cerveza asado al horno</platillo>
+
+            <ingrediente cantidad="4" unidad="" nombre="muslos de pollo completos"/>
+            <ingrediente cantidad="2" unidad=" " nombre="patatas medianas"/>
+            <ingrediente cantidad="3" unidad="" nombre="zanahorias"/>
+            <ingrediente cantidad="1/2" unidad="" nombre="pimiento rojo"/>
+            <ingrediente cantidad="2" unidad="" nombre="cebolla"/>
+            <ingrediente cantidad="cantidad necesaria" unidad=" " nombre="Sal y pimienta"/>
+            
+
+            <proceso>
+                <paso>1.Pelamos y cortamos las patatas en rodajas no muy finas. De en torno a 1/2 dedo de groso. Pelamos también la cebolla y la cortamos en juliana es decir, en tiras finas</paso>
+                <paso>2. En una bandeja de horno ponemos como base la patata para nuestro pollo a la cerveza al horno. Que cubra el fondo por completo. Encima colocamos la cebolla de tal manera que también quede bien distribuida por toda la patata. Salpimentamos ambos ingredientes</paso>
+            </proceso>
+        </receta>
+    </recetas_pollo>
+    <recetas_salchichas>
+        <receta>
+            <platillo>Hot Dogs con cebolla frita</platillo>
+
+            <ingrediente cantidad="4" unidad="piezas" nombre="pan para hot dog"/>
+            <ingrediente cantidad="4" unidad="piezas" nombre="salchichas grandes"/>
+            <ingrediente cantidad="3" unidad="" nombre="cebollas cambray"/>
+            <ingrediente cantidad="1/2" unidad="tazas" nombre="mayonesa"/>
+            <ingrediente cantidad="1/3" unidad="tazas" nombre="Salsa BBQ"/>
+
+            <proceso>
+                <paso>1.Barniza las salchichas con la salsa BBQ y asa en una parrilla caliente junto con los panes. Enharina las cebollas cambray y fríe en aceite hasta que estén crujientes..</paso>
+                <paso>2. Prepara los hot dogs, agrega mayonesa y termina con la cebolla frita.</paso>
+            </proceso>
+        </receta>
+        <receta>
+            <platillo>Tortilla de arroz</platillo>
+
+            <ingrediente cantidad="8" unidad="piezas" nombre="salchicas argentinas"/>
+            <ingrediente cantidad="2" unidad="tazas" nombre="col fileteada"/>
+            <ingrediente cantidad="1" unidad="pieza" nombre="naranja"/>
+            <ingrediente cantidad="1" unidad=" " nombre="chile"/>
+            
+
+            <proceso>
+                <paso>1.Asa las salchichas en una parrilla a fuego alto, a un costado asa la naranja en dos mitades. Exprime el jugo y mezcla con la col, chile serrano, vinagre y orégano. Rectifica la sazón de la ensalada y sirve con las salchichas.</paso>
+            </proceso>
+        </receta>
+    </recetas_salchichas>
+</recetario>
