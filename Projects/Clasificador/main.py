@@ -39,3 +39,18 @@ print(datos_pre.dtypes)
 
 # finalizacion
 #datos_pre.to_csv("datos_clasificados.csv", index =False)
+
+"""
+Comandos para instalar librerias:
+    pip install pandas
+    pip install scikit-learn
+    pip install imblearn
+
+Crear entorno virtual en conda:
+    1. conda create --name machlearn python=3.9
+    2. conda activate machlearn
+    3. conda install pandas
+        conda install scikit-learn
+        conda install imblearn
+
+"""
