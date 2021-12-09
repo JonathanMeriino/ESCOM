@@ -1,12 +1,13 @@
 import pandas as pd
 from imblearn.under_sampling import RandomUnderSampler
-from sklearn.feature_extraction.text import TfidfVectorizer
-#from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction.text import TfidfVectorizer  # term frequency-inverse document frequency
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.svm import SVC
 
 datos= pd.read_csv('grimms.csv', low_memory=False)    # lectura de archivo csv
 #print(datos)
 print(datos.dtypes)  # tipos de datos
-print(datos)
+#print(datos)
 
 #Preprocesamiento
 
@@ -15,13 +16,31 @@ print(datos)
 #print(datos.tail(1))
 #print(datos.describe())
 #print(datos.info)
-datos_pre = datos.drop(['Title','Count'], axis=1)
-print(datos_pre)
+dfDatos_pre=datos.drop(['Title','Count'], axis=1)
+
+print(dfDatos_pre)
+print(type(dfDatos_pre))
+
+#Representacion de texto (bag of words)
+#Tfidf
+# CONVERSION DE TEXTO A DATA NUMERICA
+
+
+tfidf = TfidfVectorizer(stop_words='english')   # quitar palabras irrelevantes
+
+dfDatos_vector =tfidf.fit_transform(dfDatos_pre) #encontrar los parametros ideales para la informacion y aplicarlos
+
+print(dfDatos_vector)
+print(type(dfDatos_vector))   # matriz dispersa
+
+svc = SVC()
+svc.fit(dfDatos_vector,[''])
+
 #print(datos_pre.dtypes)
 
 #beta=pd.get_dummies(datos,columns = ['Title']) -> cambiar de variables categoricas a numericas
 
-# 
+ 
 
 #datosPreOne = OneHotEncoder(datos_pre = [0])
 #x = datosPreOne.fit_transform(datosPreOne).toArray()
@@ -36,7 +55,6 @@ print(datos_pre)
 
 #tfidf = TfidfVectorizer(stop_words='english')
 
-#cuentosVector =tfidf.fit_transform(datos_pre) #encontrar los parametros ideales para la informacion y aplicarlos
 
 #print(cuentosVector.dtypes)
 
