@@ -25,7 +25,7 @@ vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
 print(caracteristicas)
-k = 2
+k=10
 modelo = KMeans(n_clusters=k,init='k-means++',max_iter=100,n_init=1)   # Aplicacion del algoritmo kmenas
 #KMeans(No. Clusters, selecciona los centros de clusteres iniciales, maximo de iteraciones del algoritmo, No. de ejecuciones )
 modelo.fit(caracteristicas)  #entrenamiento del modelo con los datos

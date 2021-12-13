@@ -1,15 +1,21 @@
-import pandas as pd
 import numpy as np
-import scipy.cluster.hierarchy as shc
-import matplotlib.pyplot as plt
-# librerias para pre-procesamiento
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import AgglomerativeClustering
-from sklearn import preprocessing
+import pandas as pd
+import nltk
+import re
+import os as os
+import codecs
+from sklearn import feature_extraction
+import mpld3
+from nltk.stem.snowball import SnowballStemmer
 
+#nltk.download('stopwords')
 
-datos= pd.read_csv('HollywoodscuemarvelStories.csv') # lectura del dataframe
+datos= pd.read_csv('grimms.csv') # lectura del dataframe
 
-print(datos)
+#print(datos)
 
+stopwords = nltk.corpus.stopwords.words('english')
 
+#print(stopwords)
+
+stemmer = SnowballStemmer('english')  # descomponer una palabra en su raiz

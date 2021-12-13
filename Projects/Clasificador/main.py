@@ -1,91 +1,59 @@
+import numpy as np
 import pandas as pd
-from imblearn.under_sampling import RandomUnderSampler
+import nltk
+import re
+import os as os
+import codecs
+import mpld3
+import matplotlib.pyplot as plt
+from sklearn import feature_extraction
+from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer  # term frequency-inverse document frequency
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.svm import SVC
+from sklearn.metrics.pairwise import cosine_similarity
+from scipy.cluster.hierarchy import ward, dendrogram
 
-datos= pd.read_csv('grimms.csv', low_memory=False)    # lectura de archivo csv
+
+
+datos= pd.read_csv('grimms.csv') # lectura del dataframe
+
 #print(datos)
-print(datos.dtypes)  # tipos de datos
-#print(datos)
 
-#Preprocesamiento
+# explorando la informacion
 
-#visualizar dataframes
-#print(datos.head(1))
-#print(datos.tail(1))
-#print(datos.describe())
-#print(datos.info)
-dfDatos_pre=datos.drop(['Title','Count'], axis=1)
+#print(datos.info())
 
-print(dfDatos_pre)
-print(type(dfDatos_pre))
+# pre-procesamiento de datos
 
-#Representacion de texto (bag of words)
-#Tfidf
-# CONVERSION DE TEXTO A DATA NUMERICA
+archivos = datos['Text'].values.astype("U")
 
+#print(archivos)
+vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
 
-tfidf = TfidfVectorizer(stop_words='english')   # quitar palabras irrelevantes
+caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
-dfDatos_vector =tfidf.fit_transform(dfDatos_pre) #encontrar los parametros ideales para la informacion y aplicarlos
+print(caracteristicas)
 
-print(dfDatos_vector)
-print(type(dfDatos_vector))   # matriz dispersa
-
-svc = SVC()
-svc.fit(dfDatos_vector,[''])
-
-#print(datos_pre.dtypes)
-
-#beta=pd.get_dummies(datos,columns = ['Title']) -> cambiar de variables categoricas a numericas
-
- 
-
-#datosPreOne = OneHotEncoder(datos_pre = [0])
-#x = datosPreOne.fit_transform(datosPreOne).toArray()
-#cuentos = datos['Text']
-#print(cuentos)
-
-#print(cuentos)
-
-#de texto a datos numericos
-
-#Tfidf (Term frecuency-inverse document frequency)
-
-#tfidf = TfidfVectorizer(stop_words='english')
+terms = vectorizacion.get_feature_names_out()
 
 
-#print(cuentosVector.dtypes)
+dist = 1 - cosine_similarity(caracteristicas)
 
-# finalizacion
-#datos_pre.to_csv("datos_clasificados.csv", index =False)
+print(dist)
 
-"""
-Comandos para instalar librerias:
-    pip install pandas
-    pip install scikit-learn
-    pip install imblearn
 
-Crear entorno virtual en conda:
-    1. conda create --name machlearn python=3.9
-    2. conda activate machlearn
-    3. conda install pandas
-        conda install scikit-learn
-        conda install imblearn
+linkage_matrix = ward(dist) #definimos la matriz de enlace utilizando la distancia precalculadas de agrupacion de clusteres
 
-"""
+fig, ax = plt.subplots(figsize=(15, 20)) # set size
+ax = dendrogram(linkage_matrix, orientation="right");
 
-"""
--Eliminar datos faltantes
+plt.tick_params(\
+    axis= 'x',          # aplicamos los cambios al eje x
+    which='both',      
+    bottom='off',      
+    top='off',         
+    labelbottom='off')
 
-axis= 0 - para elimiar filas 
-axis = 1 - para elimiar columnas
+plt.tight_layout() #mostrar plot con un diseño ajustado
 
-df.dropna()
-
-- Remplazar datos faltantes
-
-raplece (data a reemplazar, nuevo dato)
-
-"""
+#uncomment below to save figure
+plt.savefig('ward_clusters.png', dpi=200) #guardado de figura
