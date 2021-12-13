@@ -20,7 +20,7 @@ datos= pd.read_csv('grimms.csv') # lectura del dataframe
 
 # explorando la informacion
 
-#print(datos.info())
+print(datos.info())
 
 # pre-procesamiento de datos
 
@@ -31,19 +31,19 @@ vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
 
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
-#print(caracteristicas)
 
-terms = vectorizacion.get_feature_names_out()
-
-
-dist = 1 - cosine_similarity(caracteristicas)
+terms = vectorizacion.get_feature_names_out() #obtencion de la salida de los nombres por caracteristicas para la transformacion
 
 
-matriz_enlace = ward(dist) #definimos la matriz de enlace utilizando la distancia precalculadas de agrupacion de clusteres
+dist = 1-cosine_similarity(caracteristicas)
 
-fig, ax = plt.subplots(figsize=(15, 20)) # set size
-ax = dendrogram(matriz_enlace, orientation="right");
 
+matriz_enlace = ward(dist) #definimos la matriz de enlace utilizando la distancia euclidiana como metrica
+
+#visualizacion del dendograma
+fig, ax = plt.subplots(figsize=(15, 20)) # tamaño del set
+ax = dendrogram(matriz_enlace, orientation="top");
+#Definimos las propiedades
 plt.tick_params(
     axis= 'x',          # aplicamos los cambios al eje x
     which='both',      

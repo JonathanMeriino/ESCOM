@@ -20,10 +20,11 @@ datos= pd.read_csv('grimms.csv') # lectura del dataframe
 archivos = datos['Text'].values.astype("U")
 
 #print(archivos)
-vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
+vectorizacion = TfidfVectorizer(max_df=0.8,stop_words='english')  #Frecuencia de palabras
 
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
-
+some= caracteristicas.toarray()
+print(some)
 #print(caracteristicas)
 k=20
 modelo = KMeans(n_clusters=k,init='k-means++',max_iter=100,n_init=1)   # Aplicacion del algoritmo kmenas
@@ -32,7 +33,7 @@ modelo.fit(caracteristicas)  #entrenamiento del modelo con los datos
 
 datos['cluster'] = modelo.labels_ #asignacion de las etiquetas
 
-print(datos.tail())
+#print(datos.tail())
 
 # resultado al archivo de texto
 
