@@ -14,8 +14,8 @@ datos= pd.read_csv('grimms.csv') # lectura del dataframe
 
 #print(datos)
 
-stopwords = nltk.corpus.stopwords.words('english')
+stopwords = nltk.corpus.stopwords.words('spanish')
 
-#print(stopwords)
+print(stopwords)
 
 stemmer = SnowballStemmer('english')  # descomponer una palabra en su raiz

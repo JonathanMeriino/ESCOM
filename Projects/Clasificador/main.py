@@ -53,5 +53,5 @@ plt.tick_params(
 
 plt.tight_layout() #mostrar plot con un diseño ajustado
 
-#uncomment below to save figure
+#guardar figura
 plt.savefig('ward_clusters.png', dpi=200) #guardado de figura
