@@ -31,22 +31,20 @@ vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
 
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
-print(caracteristicas)
+#print(caracteristicas)
 
 terms = vectorizacion.get_feature_names_out()
 
 
 dist = 1 - cosine_similarity(caracteristicas)
 
-print(dist)
 
-
-linkage_matrix = ward(dist) #definimos la matriz de enlace utilizando la distancia precalculadas de agrupacion de clusteres
+matriz_enlace = ward(dist) #definimos la matriz de enlace utilizando la distancia precalculadas de agrupacion de clusteres
 
 fig, ax = plt.subplots(figsize=(15, 20)) # set size
-ax = dendrogram(linkage_matrix, orientation="right");
+ax = dendrogram(matriz_enlace, orientation="right");
 
-plt.tick_params(\
+plt.tick_params(
     axis= 'x',          # aplicamos los cambios al eje x
     which='both',      
     bottom='off',      
