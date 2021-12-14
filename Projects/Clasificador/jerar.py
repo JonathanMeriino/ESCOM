@@ -12,8 +12,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer  # term frequency-in
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.cluster.hierarchy import ward, dendrogram
 
-
-
 datos= pd.read_csv('grimms.csv') # lectura del dataframe
 
 #print(datos)
@@ -35,11 +33,12 @@ caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas la
 terms = vectorizacion.get_feature_names_out() #obtencion de la salida de los nombres por caracteristicas para la transformacion
 
 
-dist = 1-cosine_similarity(caracteristicas)
+dist = cosine_similarity(caracteristicas)
 
-
+print(dist)
+#print(cosine_similarity(caracteristicas[0:62],caracteristicas))
 matriz_enlace = ward(dist) #definimos la matriz de enlace utilizando la distancia euclidiana como metrica
-
+print(matriz_enlace)
 #visualizacion del dendograma
 fig, ax = plt.subplots(figsize=(15, 20)) # tamaño del set
 ax = dendrogram(matriz_enlace, orientation="top");
