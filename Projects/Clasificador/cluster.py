@@ -71,11 +71,5 @@ for i in range (k):
         
     print('-----------')
 
-def bench_k_means(estimator, name, data):
-    
-
-
-bench_k_means()
-
 
 
