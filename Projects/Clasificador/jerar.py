@@ -25,7 +25,7 @@ print(datos.info())
 archivos = datos['Text'].values.astype("U")
 
 #print(archivos)
-vectorizacion = TfidfVectorizer(stop_words='english')  #Frecuencia de palabras
+vectorizacion = TfidfVectorizer(max_df=0.8,stop_words='english')  #Frecuencia de palabras
 
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
@@ -33,7 +33,7 @@ caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas la
 terms = vectorizacion.get_feature_names_out() #obtencion de la salida de los nombres por caracteristicas para la transformacion
 
 
-dist = cosine_similarity(caracteristicas)
+dist = cosine_similarity(caracteristicas[0:62],caracteristicas)
 
 print(dist)
 #print(cosine_similarity(caracteristicas[0:62],caracteristicas))
@@ -54,3 +54,4 @@ plt.tight_layout() #mostrar plot con un diseño ajustado
 
 #guardar figura
 plt.savefig('ward_clusters.png', dpi=200) #guardado de figura
+

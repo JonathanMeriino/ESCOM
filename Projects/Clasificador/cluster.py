@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn import  metrics
 #librerias para graficar datos
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,13 +26,13 @@ caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas la
 
 print(caracteristicas)
 
-print(cosine_similarity(caracteristicas[0:62],caracteristicas))
+#print(cosine_similarity(caracteristicas[0:62],caracteristicas))
 
 some= caracteristicas.toarray()
 
 
 
-k=1
+k=5
 modelo = KMeans(n_clusters=k,init='k-means++',max_iter=100,n_init=1)   # Aplicacion del algoritmo kmenas
 #KMeans(No. Clusters, selecciona los centros de clusteres iniciales, maximo de iteraciones del algoritmo, No. de ejecuciones )
 modelo.fit(caracteristicas)  #entrenamiento del modelo con los datos
@@ -44,7 +45,6 @@ datos['cluster'] = modelo.labels_ #asignacion de las etiquetas
 # resultado al archivo de texto
 
 clusters = datos.groupby('cluster')
-
 
 #creacion de archivos csv
 for cluster in clusters.groups:
@@ -66,13 +66,16 @@ terms = vectorizacion.get_feature_names_out()  #obtencion de la salida de los no
 for i in range (k):
     print("Cluster %d: " %i)
     for j in orden_centroides[i,:10]:
-        
+         
         print('%s' %terms[j])
         
     print('-----------')
 
+def bench_k_means(estimator, name, data):
+    
 
 
+bench_k_means()
 
 
 
