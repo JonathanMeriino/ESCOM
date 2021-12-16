@@ -80,5 +80,5 @@ ct = pd.crosstab(datos['Title'],datos['cluster'])
 
 print(ct)
 
-print(modelo.inertia_)
-print(davies_bouldin_score(some,modelo.labels_))
+print("Calidad agrupacion: ", modelo.inertia_)
+print("Indice Davies Bouldin: ",davies_bouldin_score(some,modelo.labels_))
