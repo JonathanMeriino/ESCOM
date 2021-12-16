@@ -11,7 +11,8 @@ from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer  # term frequency-inverse document frequency
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.cluster.hierarchy import ward, dendrogram
-
+from sklearn import  metrics
+from sklearn.cluster import AgglomerativeClustering
 datos= pd.read_csv('grimms.csv') # lectura del dataframe
 
 #print(datos)
@@ -29,16 +30,16 @@ vectorizacion = TfidfVectorizer(max_df=0.8,stop_words='english')  #Frecuencia de
 
 caracteristicas = vectorizacion.fit_transform(archivos)  #transformando todas las caracteristicas usando la media y la varianza
 
-
+some= caracteristicas.toarray()
 terms = vectorizacion.get_feature_names_out() #obtencion de la salida de los nombres por caracteristicas para la transformacion
 
 
 dist = cosine_similarity(caracteristicas[0:62],caracteristicas)
 
-print(dist)
+print("Distancia Coseno: ", dist, sep='\n')
 #print(cosine_similarity(caracteristicas[0:62],caracteristicas))
 matriz_enlace = ward(dist) #definimos la matriz de enlace utilizando la distancia euclidiana como metrica
-print(matriz_enlace)
+print("Mattriz de enlace: ", matriz_enlace, sep='\n')
 #visualizacion del dendograma
 fig, ax = plt.subplots(figsize=(15, 20)) # tamaño del set
 ax = dendrogram(matriz_enlace, orientation="top");
@@ -54,4 +55,8 @@ plt.tight_layout() #mostrar plot con un diseño ajustado
 
 #guardar figura
 plt.savefig('ward_clusters.png', dpi=200) #guardado de figura
+
+
+modelo=AgglomerativeClustering(n_clusters=2,affinity='euclidean', memory=None, connectivity=None, compute_full_tree='auto', linkage='ward', distance_threshold=None, compute_distances=False)
+modelo.fit(some.distance_threshold)
 
