@@ -43,18 +43,18 @@
 }
 .panelEdicion{
     width: 98%;
-    height: 68%;
+    height: 500px;
     margin: 1%;
     background-color: #F7F9F9;
     border-radius: 5px;
     padding: 5px;
-
+    transition: 1s;
 
 
 }
 .panelCodigo{
     width: 98%;
-    height: 28%;
+    height: auto;
     margin: 1%;
     background-color: #F7F9F9;
     border-radius: 5px;
@@ -63,6 +63,27 @@
 
 
 
+}
+.flecha{
+    fill:black;
+    stroke-width:2;
+}
+.figura{
+    fill:white; 
+    stroke: black; 
+    stroke-width:2;
+}
+.figuraIF{
+    fill:white; 
+    stroke: black; 
+    stroke-width:2;
+}
+.contornoIF{
+    fill: black;
+    stroke-width: 1;
+}
+.textos{
+    font: 15px sans-serif;
 }
 .simbolos{
     width: 100%;
@@ -91,9 +112,21 @@
 img{
     transition: 1s;
 }
+.ic2{
+    width: 22px;
+    height: 22px;
+}
 
 
-img:hover{
+.ic:hover{
     width: 50px ;
     height: 50px;
+}
+.ic2:hover{
+    width: 25px ;
+    height: 25px;
+}
+.esp{
+    width: 10px;
+    height: auto;
 }
