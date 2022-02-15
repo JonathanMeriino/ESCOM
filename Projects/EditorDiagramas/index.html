@@ -17,7 +17,7 @@
 </head>
 <body style="height: 100%; margin: 0px;">
     <div class="general">
-        <div class="panelI">
+        <div id="pan" class="panelI">
             <div class="superior z-depth-2">
                  <h6 style="text-align: center;">Simbolos</h6>
                 <hr>
@@ -65,7 +65,7 @@
                     </div>
                     </abbr>
                     <abbr title="Final de diagrama">
-                    <div id="idEnd" onclick="end()" class="icono z-depth-1">
+                    <div id="idEnd" onclick="endSimbol()" class="icono z-depth-1">
                         <img class="ic" src="assets/end.png" alt="">
                         
                     </div>
@@ -84,12 +84,7 @@
                     
                 </div>
               </abbr>
-              <abbr title="Cargar Diagrama">
-                <div id="idUpload" onclick="upload()" class="icono z-depth-1">
-                    <img class="ic" src="assets/upload.png" alt="">
-                    
-                </div>
-              </abbr>
+              
               <abbr title="Cambiar el color de relleno">
                 <div id="idChangeColor" onclick="changeColor()" class="icono z-depth-1">
                     <img class="ic" src="assets/changeColor.png" alt="">
@@ -109,28 +104,39 @@
                 </div>
               </abbr>
               <abbr title="Eliminar diagrama">
-                <div id="idEliminar" onclick="eliminar()" class="icono z-depth-1">
+                <div id="idEliminar" onclick="eliminarTodo()" class="icono z-depth-1">
                     <img class="ic" src="assets/eliminar.png" alt="">
                     
                 </div>
               </abbr>
-                    
-        </div>
-            </div>
-
-        </div>
-        <div class="panelD">
-            <input type="text" style="height: 14px;" placeholder="Titulo del diagrama">
-
-            <div id="panelEdicion" class="panelEdicion z-depth-2">
+             
                 
-            </div>
-            <div class="panelCodigo z-depth-2">
-                <blockquote><h6>Codigo del diagrama en lenguaje C</h6></blockquote>
-                <hr>
-            </div>
         </div>
+            </div>
        
+        </div>
+        <div id="pade" class="panelD">
+            <input id="diagramaName" type="text" style="height: 14px;" placeholder="Titulo del diagrama">
+
+            <div id="panelEdicion" class="panelEdicion z-depth-2" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)">
+                <img onclick="agrandarXPanel()" style="position: absolute; top: 12%; left: 12.5%;" class="ic2" src="assets/mas.png" alt="">
+                <img onclick="encogerXPanel()" style="position: absolute; top: 16%; left: 12.5%;" class="ic2" src="assets/menos.png" alt="">
+                <img onclick="agrandarYPanel()" style="position: absolute; top: 10%; left: 15%;" class="ic2" src="assets/mas.png" alt="">
+                <img onclick="encogerYPanel()" style="position: absolute; top: 10%; left: 17%;" class="ic2" src="assets/menos.png" alt="">
+                <img id="papelera" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return eliminar(event)" style="position: sticky; top: 80%; left: 13%;" class="ic" src="assets/papelera.png" alt="">
+
+            </div>
+            <p>Seleccione el Archivo con el diagrama que desea subir</p>
+            <input type="file" id="file" onchange="leerArchivo(event)"/>
+            <p>Selector de color</p>
+            <input type="color" name="" id="colores">  
+            
+        </div>
+        <div class="panelCodigo z-depth-2">
+            <blockquote><h6>Codigo del diagrama en lenguaje C</h6></blockquote>
+            <hr>
+            <div id="codigo"></div>
+        </div>
     </div>
     
 </body>
