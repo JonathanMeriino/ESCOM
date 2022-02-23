@@ -19,6 +19,19 @@ resultado2 = patron.split("Cadena1,Cadena2,Cadena3,Cadena4,Cadena5")
 print(resultado2)
 
 #ejemplo
-patron = re.compile("\d+\.?\d+")
-resultado = patron.findall("Esta es una cadena con los numeros 14, 15.5 y 0.25")
+patron = re.compile("\d+\:?\d+")
+resultado = patron.findall("Esta es una cadena con los numeros 14, 15:5 y 0.25")
 print(resultado)
+
+patron = re.compile("\s@\w+")
+resultado = patron.findall("Esta es una cadena con los numeros 14, 15:5 y 0.25, leo@leo @H0ra25")
+print(resultado)
+
+patron = re.compile("\d+/\d+/\d+ " and "\d+/\w+/\d+")
+resultado = patron.findall("Esta es una cadena con los numeros 14, 15:5 y 0.25, leo@leo @H0ra25    04/1/2015  04/enero/2025 7 de enero")
+print(resultado)
+
+patron = re.compile(":D?")
+resultado = patron.findall("Esta es una cadena con los numeros 14, 15:5 y 0.25, leo@leo @H0ra25  :D  04/1/2015  04/enero/2025 7 de enero")
+print(resultado)
+
