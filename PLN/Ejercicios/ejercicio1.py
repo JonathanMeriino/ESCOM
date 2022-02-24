@@ -1,28 +1,23 @@
 import spacy
-
-nlp = spacy.load('es_core_news_sm')
-
-# ~ archivoEntrada = open('archivoEntrada.txt','r')
-
-# ~ for line in archivoEntrada:
-	# ~ print(line,end='')
-
-# ~ archivoEntrada.close()
-
+import re
 
 with open ('archivoEntrada.txt') as archivoEntrada:
 	dataset = archivoEntrada.read()
 	
-# ~ print(dataset)
+nlp = spacy.load('es_core_news_sm')
+
+#print(dataset)
 
 doc = nlp(dataset)
 
-normalizar = " "
+normalizar = ""
 
 for token in doc:
 	print(token.text,token.pos_,token.dep_,token.lemma_)
 	normalizar = normalizar + token.lemma_+ " "
-	
+
+normalizar = re.sub("\n\s", " ", normalizar)
+
 print(normalizar)
 
 archivoSalida = open('archivoSalida.txt','w')
