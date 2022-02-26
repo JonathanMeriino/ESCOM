@@ -54,11 +54,13 @@ def difference(lenguage1, lenguage2, index1, index2, dif):
 def potencia(): 
     return 0
 
-def concatenacion():
+def concat():
     return 0
 
-def cerrKleene():
-    return 0
+def cerrKleene(lenguage):
+    
+    
+    return lenguage   
 
 def cerrPos():
     return 0
@@ -72,11 +74,13 @@ intersec=[]
 uni=[]
 diferencia1=[]
 diferencia2=[]
+kleene1=[]
+kleene2=[]
 
 len1=int(input("Cuantas cadenas tiene el primer lenguaje: "))
 introduceLenguages(lenguage1,len1,0)
 
-len2=int(input("Cuantas cadenas tiene el primer lenguaje: "))
+len2=int(input("Cuantas cadenas tiene el segundo lenguaje: "))
 introduceLenguages(lenguage2,len2,0)
 
 reverseLenguage(lenguage1,inverso1,0)
@@ -88,6 +92,10 @@ union(lenguage1, lenguage2, 0,0, uni)
 
 difference(lenguage1, lenguage2, 0, 0, diferencia1)
 difference(lenguage2, lenguage1, 0, 0, diferencia2)
+
+cerrKleene(lenguage1)
+cerrKleene(lenguage2)
+
 
 print("el primer lenguaje es:")
 print(lenguage1)
@@ -108,7 +116,7 @@ print(diferencia2)
 
 
 print("Cerradura de Kleene: ")
-
+print(cerrKleene)
 print("Cerradura Positiva: ")
 
 print("Concatenacion: ")
