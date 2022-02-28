@@ -54,8 +54,22 @@ def difference(lenguage1, lenguage2, index1, index2, dif):
 def potencia(): 
     return 0
 
-def concat():
-    return 0
+def concatenar(lenguage1,lenguage2,index1, index2,concat):
+    if lenguage1[index1]!=lenguage2[index2]: #si lenguaje1(i1) es diferente a lenguaje2[i2]
+        if lenguage1[index1] not in concat:
+            concat.append(lenguage1[index1]+lenguage2[index2])
+        if lenguage2[index2] in concat:
+            concat.append(lenguage2[index2]+lenguage2[index2])
+    
+    if lenguage1[index1]==lenguage2[index2]: #si lenguaje1(i1) es igual a lenguaje2[i2]
+        if lenguage1[index1] not in concat:
+            concat.append(lenguage1[index1]+lenguage2[index2])
+    
+
+    if index1<len(lenguage1)-1:             #si (i1) es menor a longitud de lenguaje1-1
+        concatenar(lenguage1, lenguage2, index1+1, index2, concat)
+    if index2<len(lenguage2)-1:             #si (i2) es menor a longitud de lenguaje2-12
+        concatenar(lenguage1, lenguage2, index1, index2+1, concat)
 
 def cerrKleene(lenguage):
     
@@ -66,14 +80,12 @@ def cerrPos():
     return 0
 
 
-lenguage1=[]
-lenguage2=[]
-inverso1=[]
-inverso2=[]
+lenguage1 , lenguage2=[]
+inverso1, inverso2=[]
 intersec=[]
 uni=[]
-diferencia1=[]
-diferencia2=[]
+concat = []
+diferencia1,diferencia2=[]
 kleene1=[]
 kleene2=[]
 
@@ -96,27 +108,32 @@ difference(lenguage2, lenguage1, 0, 0, diferencia2)
 cerrKleene(lenguage1)
 cerrKleene(lenguage2)
 
+concatenar(lenguage1, lenguage2, 0,0,concat)
 
-print("el primer lenguaje es:")
-print(lenguage1)
-print("el segundo lenguaje es:")
-print(lenguage2)
-print("El inverso del primer lenguaje es:")
-print(inverso1)
-print("El inverso del segundo lenguaje es:")
-print(inverso2)
-print("La interseccion de los lenguajes es:")
-print(intersec)
-print("La union de los lenguages es")
-print(uni)
-print("La diferencia tipo A-B es:")
-print(diferencia1)
-print("La diferencia tipo B-A es:")
-print(diferencia2)
+print("el primer lenguaje es:", lenguage1, sep='\n')
+
+print("el segundo lenguaje es:", lenguage2, sep='\n')
+
+print("El inverso del primer lenguaje es:",inverso1, sep='\n')
+
+print("El inverso del segundo lenguaje es:",inverso2,sep='\n')
+
+print("La interseccion de los lenguajes es:", intersec, sep='\n')
+
+print("La union de los lenguages es", uni, sep='\n')
+
+print("La diferencia tipo A-B es:", diferencia1, sep='\n')
+
+print("La diferencia tipo B-A es:", diferencia2, sep='\n')
+
+print("La concatenacion es:", concat , sep='\n')
+
+print("Cerradura de Kleene del primer lenguaje es: ")
+
+print("Cerradura de Kleene del segundo lenguaje es: ")
 
 
-print("Cerradura de Kleene: ")
-print(cerrKleene)
+
 print("Cerradura Positiva: ")
 
 print("Concatenacion: ")
