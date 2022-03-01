@@ -1,6 +1,4 @@
 #ingreso de las cadenas
-import re
-
 
 def introduceLenguages(lenguage,len,index):
     if len==0:
@@ -74,22 +72,18 @@ def potencia():
     
     
 
-def concatenar(lenguage1,lenguage2,index1, index2,concat):
-    if lenguage1[index1]!=lenguage2[index2]: #si lenguaje1(i1) es diferente a lenguaje2[i2]
-        if lenguage1[index1] not in concat:
-            concat.append(lenguage1[index1]+lenguage2[index2])
-        if lenguage2[index2] in concat:
-            concat.append(lenguage2[index2]+lenguage2[index2])
-    
-    if lenguage1[index1]==lenguage2[index2]: #si lenguaje1(i1) es igual a lenguaje2[i2]
-        if lenguage1[index1] not in concat:
-            concat.append(lenguage1[index1]+lenguage2[index2])
-    
+def concatenar(lenguage1,lenguage2,longitud):
+    nuevo=[]    #cadena auxiliar que almacena todos los valores nuevos
+    for i in lenguage2: # para i en lenguage2
+        cadena=str(lenguage1[0])+i  #cadena almacena lenguaje1 en almacenamiento i
+        nuevo.append(cadena)    #se agrega la cadena a auxiliar nuevo
+    if longitud>1:              # si longitud es mayor a 1 
+        longitud=longitud-1     #lomgitud se redue en una unidad
+        lenguage1.remove(lenguage1[0])  #lenguage1 se remueve  la posicion 0
+        aux=lenguage1               #aux toma valor de lenguage1
+        nuevo=nuevo+concatenar(aux,lenguage2,longitud)      #se hace recursividad
+    return nuevo
 
-    if index1<len(lenguage1)-1:             #si (i1) es menor a longitud de lenguaje1-1
-        concatenar(lenguage1, lenguage2, index1+1, index2, concat)
-    if index2<len(lenguage2)-1:             #si (i2) es menor a longitud de lenguaje2-12
-        concatenar(lenguage1, lenguage2, index1, index2+1, concat)
 
 def cerrKleene():
     
@@ -113,6 +107,7 @@ def cerrKleene():
     
 def cerrPos():
     
+    n=10
     cadena = input("Ingrese cadena: ")
     pos=[]
 
@@ -157,7 +152,6 @@ difference(lenguage2, lenguage1, 0, 0, diferencia2)
 #cerrKleene(lenguage1,kleene1)
 #cerrKleene(lenguage2,kleene2)
 
-concatenar(lenguage1, lenguage2, 0,0,concat)
 
 print("el primer lenguaje es:", lenguage1, sep='\n')
 
@@ -178,9 +172,9 @@ print("La diferencia tipo B-A es:", diferencia2, sep='\n')
 #len1=int(input("Ingresa el valor de la potencia"))
 #print("Potencia de lenguaje: ", potencia , sep='\n')
 
-concat = list(dict.fromkeys(concat))
-
-print("La concatenacion es:", concat , sep='\n')
+longitud=len(lenguage1)
+nuevo=concatenar(lenguage1,lenguage2,longitud)
+print("la concatenacion es: ", nuevo)
 
 #print("Cerradura de Kleene del primer lenguaje es: ",cerrKleene, sep='\n')
 

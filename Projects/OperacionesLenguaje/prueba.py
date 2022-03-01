@@ -11,11 +11,6 @@ def introduceLenguages(lenguage,len,index):
 #  x* = {E, x,xx, xxx,...}  0 - inf
 def cerrKleene(lenguaje1):
 
-    for     
-
-
-
-        
     return 0
 
 
@@ -36,3 +31,20 @@ introduceLenguages(lenguage1,len1,0)
 
 len2=int(input("Cuantas cadenas tiene el segundo lenguaje: "))
 introduceLenguages(lenguage2,len2,0)
+
+
+cadena1 =  "x"
+
+print(cadena1*2)
+
+n= 10
+milista=[]
+for line in range(1,n):
+  
+    algo=cadena1*line
+    milista.append(algo)
+        
+    
+    
+
+print(milista)
