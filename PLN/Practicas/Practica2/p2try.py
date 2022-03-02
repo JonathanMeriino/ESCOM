@@ -18,12 +18,12 @@ nlp.max_length = 1600000
 #doc=nlp.make_doc(dataset)
 dataset = re.split("\&{8}", dataset)
 
-normalizar = ""
+normalizar = " "
 nuevoStr =[]
 #for token in range (0,doc,3):
 #    print(token.text, token.pos_, token.dep_)
  #   normalizar = normalizar + token.lemma_+ " "
-
+palabra=""
 for i in range(2,len(dataset),3):
     doc = nlp(dataset[i])
     for token in doc:
@@ -33,6 +33,10 @@ for i in range(2,len(dataset),3):
         #token.lemma_
         token.text, token.pos_, token.dep_, token.lemma_
         normalizar = normalizar + token.lemma_+ " "
+        #datasetFinal = [palabra for palabra in token if not palabra in STOP_WORDS ]
+        #if not palabra in STOP_WORDS:
+         #   datasetFinal = palabra
+        #print(datasetFinal)     
     #print(normalizar)
     corpusLema = open('corpusLema.txt','w')
     corpusLema.write(normalizar)
@@ -43,7 +47,8 @@ for i in range(2,len(dataset),3):
 with open ('corpusLema.txt') as corpusLema:
 	datasetLema = corpusLema.read()
 print(len(datasetLema))
-
+list(datasetLema)
+print(type(datasetLema))
 
 STOP_WORDS.add('a')  # añadir stopword
 print(STOP_WORDS)
@@ -51,8 +56,7 @@ print(len(STOP_WORDS))
 
 print("a" in STOP_WORDS)
 
-for line in datasetLema:
-    if line.is_stop== True:
-        corpusFinal = open('corpusFinal.txt','w')
-        corpusFinal.write(line)
-        
+
+#print(datasetFinal)
+list(STOP_WORDS)
+print(type(STOP_WORDS))        

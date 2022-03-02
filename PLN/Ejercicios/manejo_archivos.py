@@ -19,10 +19,7 @@ doc = nlp(dataset)
 
 normalizado = ""
 for token in doc:
-    token.text
-    token.pos_ 
-    token.dep_
-    token.lemma_
+    print(token.text, token.pos_, token.dep_, token.lemma_)
     normalizado = normalizado + token.lemma_ + " "
     
 print (normalizado)
