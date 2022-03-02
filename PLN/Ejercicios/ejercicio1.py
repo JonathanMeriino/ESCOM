@@ -10,6 +10,7 @@ nlp = spacy.load('es_core_news_sm')
 
 doc = nlp(dataset)
 
+print(doc)
 normalizar = ""
 
 for token in doc:
