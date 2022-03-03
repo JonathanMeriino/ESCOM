@@ -1,3 +1,5 @@
+
+print("Operaciones con Lenguajes", "---------------------------------", sep='\n')
 #ingreso de las cadenas
 def introduceLenguages(lenguage,len,index):
     if len==0:
@@ -89,7 +91,7 @@ def cerrKleene():
     cadena = input("Ingrese cadena: ")
     klenne=[]
 
-    for line in range(n+1):
+    for line in range(n):
         if line == 0:
             aux="E"
             klenne.append(aux)
@@ -109,7 +111,7 @@ def cerrPos():
     cadena = input("Ingrese cadena: ")
     pos=[]
 
-    for line in range(1,n+1):
+    for line in range(1,n):
         aux=cadena*line
         pos.append(aux)
     pos.append('...')
@@ -126,15 +128,15 @@ uni=[]
 concat = []
 diferencia1=[]
 diferencia2=[]
-kleene1=[]
-kleene2=[]
 
+#entrada de la cantidad de cadenas del lenguaje 
 len1=int(input("No. cadenas del primer lenguaje: "))
 introduceLenguages(lenguage1,len1,0)
 
 len2=int(input("No. cadenas del segundo lenguaje: "))
 introduceLenguages(lenguage2,len2,0)
 
+#paso de parametros de forma posicional
 reverseLenguage(lenguage1,inverso1,0)
 reverseLenguage(lenguage2,inverso2,0)
 
@@ -145,28 +147,30 @@ union(lenguage1, lenguage2, 0,0, uni)
 difference(lenguage1, lenguage2, 0, 0, diferencia1)
 difference(lenguage2, lenguage1, 0, 0, diferencia2)
 
+#Impresion de los resultados
 print("El primer lenguaje es: ", lenguage1)
 print("El segundo lenguaje es: ", lenguage2, "\n")
 
 print("Operacion Union","-----------------", sep='\n')
-print("La union de los lenguages es", uni,"\n", sep='\n')
+print("Union de los lenguages: ", uni,"\n", sep='\n')
 
 print("Operacion Interseccion","-----------------", sep='\n')
-print("La interseccion de los lenguajes es:", intersec,"\n", sep='\n')
+print("Interseccion de los lenguajes:", intersec,"\n", sep='\n')
 
 print("Operacion diferencia","-----------------", sep='\n')
-print("La diferencia tipo A-B es:", diferencia1, sep='\n')
-print("La diferencia tipo B-A es:", diferencia2,"\n", sep='\n')
+print("La diferencia A-B es:", diferencia1, sep='\n')
+print("La diferencia B-A es:", diferencia2,"\n", sep='\n')
 
 print("Operacion Inverso","-----------------", sep='\n')
-print("El inverso del primer lenguaje es:",inverso1, sep='\n')
-print("El inverso del segundo lenguaje es:",inverso2,"\n",sep='\n')
+print("Inverso del primer lenguaje:",inverso1, sep='\n')
+print("Inverso del segundo lenguaje:",inverso2,"\n",sep='\n')
 
 longitud=len(lenguage1)
 nuevo=concatenar(lenguage1,lenguage2,longitud)
 print("Operacion Concatenacion","-----------------", sep='\n')
 print("La concatenacion es: ", nuevo, "\n",sep='\n')
 
+#Llamado de funciones
 print(potencia())
 print(cerrKleene())
 print(cerrPos())
