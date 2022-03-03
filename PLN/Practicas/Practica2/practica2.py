@@ -1,3 +1,4 @@
+from asyncore import write
 import spacy
 from spacy.lang.es.stop_words import STOP_WORDS
 import re 
@@ -12,10 +13,52 @@ STOP_WORDS.add('a')  # añadir stopword
 
 print(len(dataset))
 
-dataset = re.sub("&&&&&&&&","",dataset)
-dataset = re.sub("\d{18}","",dataset)
-dataset = re.sub("\d+\,\d+\,\d+\,\d+\,\d+\,\d+","",dataset)
-doc=nlp.make_doc(dataset)
+
+# ~ dataset = re.sub(r"\&{8}[\w\s]+\&{8}","",dataset)
+# ~ dataset = re.sub(r"\&{8}[\w\d\s]+,"",dataset)
+
+dataset = re.sub(r'[.]',"" ,dataset)
+dataset = re.sub(r'\]',"" ,dataset)
+dataset = re.sub(r'\[',"" ,dataset)
+dataset = re.sub(r'[|]',"" ,dataset)
+dataset = re.sub(r'[#]',"" ,dataset)
+dataset = re.sub(r"[(]","",dataset)
+dataset = re.sub(r"-","",dataset)
+dataset = re.sub(r"‘","",dataset)
+dataset = re.sub(r"’","",dataset)
+dataset = re.sub(r"—","",dataset)
+dataset = re.sub(r"_","",dataset)
+dataset = re.sub(r"%","",dataset)
+dataset = re.sub(r"[$]","",dataset)
+dataset = re.sub(r"[¿]","",dataset)
+dataset = re.sub(r"[?]","",dataset)
+dataset = re.sub(r"¡","",dataset)
+dataset = re.sub(r"\'","",dataset)
+dataset = re.sub(r"!","",dataset)
+dataset = re.sub(r'“',"",dataset)
+dataset = re.sub(r'”',"",dataset)
+dataset = re.sub(r"[)]","",dataset)
+dataset = re.sub(r"[:]","",dataset)
+dataset = re.sub(r'["]',"",dataset)
+dataset = re.sub(r",","",dataset)
+dataset = re.sub(r";","",dataset)
+dataset = re.sub(r":","",dataset)
+dataset = re.sub(r"\d{18}","",dataset)
+dataset = re.sub(r'\w+\&{8}\d+',"" ,dataset)
+dataset = re.sub(r'\&{8}\d+',"" ,dataset)
+# ~ dataset = re.sub(r'\&\w+',"" ,dataset)
+dataset = re.sub(r'[…]',"" ,dataset)
+dataset = re.sub(r"\d+\,\d+\,\d+\,\d+\,\d+\,\d+","",dataset)
+dataset = re.sub(r"\&{8}[\w\s\d]+\&{8}","",dataset)
+dataset = re.sub(r"\&[\w\s\d]+\&{8}","",dataset)
+dataset = re.sub(r"\&{8}[\w\s\&\d]+\&{8}","",dataset)
+dataset = re.sub(r"\&{8}","",dataset)
+# ~ print(dataset)
+# ~ archivo_salida = open('corpus_salida.txt', 'w')
+# ~ archivo_salida.write(dataset)
+# ~ archivo_salida.close()
+
+doc=nlp(dataset)
 
 
 
@@ -24,23 +67,33 @@ print(len(dataset))
 normalizar=" "
 for token in doc:
 	
-# tokenizacion
-	token.text
-	token.pos_
-	token.dep_
-# lematizacion
-	token.lemma
+	token.text,token.pos_,token.dep_,token.lemma
 	normalizar = normalizar + token.lemma_+ " "
-	if not token.is_stop == True:
-		print(token)
+	
+lematizado = normalizar
+
+lematizado = re.split("\s",lematizado)
+
+filtro=[]
+for palabra in lematizado:
+    if palabra not in STOP_WORDS:
+        filtro.append(palabra)
+
+
+datasetFinal = " ".join(filtro)
+
+corpusFinal = open('corpusFinal.txt','w')
+corpusFinal.write(datasetFinal)
+
 
 # stopwords
 print(STOP_WORDS)
 print(len(STOP_WORDS))
-
 print("a" in STOP_WORDS)
 
 noStops=""
 #for token in normalizar:
-#	if token.is_stop==True:
-#		noStops = token
+#	if not token.is_stop==True:
+#		print(token)
+
+
