@@ -3,6 +3,7 @@
 	5BM1
 """
 #importacion de bibliotecas
+from pickletools import dis
 import numpy as np
 import pandas as pd
 import re
@@ -22,10 +23,10 @@ vec_binarizado = vectorizador_binario.fit_transform(dataset)
 #print("Vectores binarizados")
 #print(cosine_similarity(vec_binarizado[3],vec_binarizado).flatten)
 print('Comparacion entre noticias vector binarizado')
-for i in range(1):
-	for j in range (0,635):
-		dis_coseno=cosine_similarity(vec_binarizado[i],vec_binarizado[j]).flatten()
-		print(f'Noticia{i}-Noticia{j} = {dis_coseno}')
+#for i in range(1):
+#	for j in range (0,635):
+#		dis_coseno=cosine_similarity(vec_binarizado[i],vec_binarizado[j]).flatten()
+#		print(f'Noticia{i}-Noticia{j} = {dis_coseno}')
 
 #Proceso para vector por frecuencia
 vectorizador_frecuencia = CountVectorizer()
@@ -33,10 +34,10 @@ vec_frec = vectorizador_frecuencia.fit_transform(dataset)
 #print("Vectores por frecuencia",vec_frec, sep='\n')
 #print(cosine_similarity(vec_frec[3],vec_frec).flatten())
 print('Comparacion entre noticas vector de frecuencias')
-for i in range(1):
-	for j in range (0,635):
-		dis_coseno=cosine_similarity(vec_frec[i],vec_frec[j]).flatten()
-		print(f'Noticia{i}-Noticia{j} = {dis_coseno}')
+#for i in range(1):
+#	for j in range (0,635):
+#		dis_coseno=cosine_similarity(vec_frec[i],vec_frec[j]).flatten()
+#		print(f'Noticia{i}-Noticia{j} = {dis_coseno}')
 
 #Proceso para vector tfidf
 
@@ -45,7 +46,12 @@ vec_tfidf = vectorizador_tfidf.fit_transform(dataset)
 #print("Vectores tfidf",vec_tfidf, sep='\n')
 #print(cosine_similarity(vec_tfidf[0],vec_tfidf).flatten())
 print('Comparacion entre noticias vector tfidf')
+lista_tfidf=[]
 for i in range(1):
 	for j in range (0,635):
 		dis_coseno=cosine_similarity(vec_tfidf[i],vec_tfidf[j]).flatten()
-		print(f'Noticia{i}-Noticia{j} = {dis_coseno}')
+		
+		lista_tfidf.append(f'Noticia{i}-Noticia{j} = {dis_coseno}')
+
+
+print(type(lista_tfidf))
