@@ -37,7 +37,7 @@ model01005 = Doc2Vec(tagged_data,dm=0, vector_size=100,window=5)
 model01005.save("doc2vec.model01005") 
 ## Load saved doc2vec model
 model01005= Doc2Vec.load("doc2vec.model01005")
-print(model01005.dv.most_similar(model01005.dv[3]))
+print(model01005.dv.most_similar(model01005.dv[129]))
 
 
 
