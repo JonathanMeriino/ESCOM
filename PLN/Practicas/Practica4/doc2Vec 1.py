@@ -23,7 +23,7 @@ model.save("test_doc2vec.model")
 ## Load saved doc2vec model
 model= Doc2Vec.load("test_doc2vec.model")
 ## Print model vocabulary
-print(model.wv.key_to_index)
+#print(model.wv.key_to_index)
 
 print(model.dv.most_similar(model.dv[3]))
 
