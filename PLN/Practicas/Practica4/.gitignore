@@ -1,4 +1,7 @@
 corpusFinal.txt
 corpus_noticias.txt
+corpusToken.txt
 test_doc2vec
 doc2vec.model01005
+doc2vec.modelToken01005
+__pycache__
