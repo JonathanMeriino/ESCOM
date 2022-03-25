@@ -17,18 +17,18 @@ tagged_data = [TaggedDocument(d, [i]) for i, d in enumerate(datasetToken)]
 #model01005.save("doc2vec.modelToken01005") 
 ## Load saved doc2vec model
 model01005= Doc2Vec.load("doc2vec.modelToken01005")
-print("Modelo Dataset Tokenizado: dm[0],vector_size[100] , window[5]",model01005.dv.most_similar(model01005.dv[384]),sep='\n')
+print("Modelo Dataset Tokenizado: dm[0],vector_size[100] , window[5]",model01005.dv.most_similar(model01005.dv[104]),sep='\n')
 
 
 #Combinacion dm[0] , vector_size[100] , window[10]
 #model010010 = Doc2Vec(tagged_data,dm=0, vector_size=100,window=10)
-"""
-#Guardar modelo
-model010010.save("doc2vec.modelToken010010") 
-## Load saved doc2vec model
-model010010= Doc2Vec.load("doc2vec.modelToken010010")
 
-"""
+#Guardar modelo
+#model010010.save("doc2vec.modelToken010010") 
+## Load saved doc2vec model
+#model010010= Doc2Vec.load("doc2vec.modelToken010010")
+#print("Modelo Dataset Tokenizado: dm[0],vector_size[100] , window[10]",model010010.dv.most_similar(model010010.dv[384]),sep='\n')
+
 
 #Combinacion dm[0] , vector_size[300] , window[5]
 #model03005 = Doc2Vec(tagged_data,dm=0, vector_size=300,window=5)
@@ -105,8 +105,8 @@ Modelos para Corpus Practica 2
 #Guardar modelo
 #model01005.save("doc2vec.model01005") 
 ## Load saved doc2vec model
-model01005= Doc2Vec.load("doc2vec.model01005")
-print("Modelo Dataset dm[0],vector_size[100] , window[5]",model01005.dv.most_similar(model01005.dv[0]),sep='\n')
+#model01005= Doc2Vec.load("doc2vec.model01005")
+#print("Modelo Dataset dm[0],vector_size[100] , window[5]",model01005.dv.most_similar(model01005.dv[0]),sep='\n')
 
 
 
