@@ -10,25 +10,26 @@ from posixpath import split
 from funciones import *
 
 
+
 dataframe = pd.DataFrame()
-
-listaFenotipo=CreacionPoblacionAleaticia()
-listaGenotipo = creaciongenotipo(listaFenotipo)
-listafitness = funcionfit(listaFenotipo)
-poblacion=todo(listaFenotipo)
-probabilidad_sel = Probabilidades(listafitness)
-
-dataframe['Genotipo'] = listaGenotipo
-dataframe['Fenotipo'] = listaFenotipo
-dataframe['f(x)'] = listafitness
-dataframe ['Prob. sele'] = probabilidad_sel[0]
-dataframe['Prob. acum'] = probabilidad_sel[1]
+    
+Fenotipo=poblacionInicial()
+Genotipo = createGen(Fenotipo)
+fitness = funcionfit(Fenotipo)
+poblacion=todo(Fenotipo)
+probabilidad_sel = probabilidadSeleccion(fitness)
+probabilidad_acumulada = probabilidadAcumulada(probabilidad_sel)
+dataframe['Genotipo'] = Genotipo
+dataframe['Fenotipo'] = Fenotipo
+dataframe['f(x)'] = fitness
+dataframe ['Prob. sele'] = probabilidad_sel
+dataframe['Prob. acum'] = probabilidad_acumulada
 print(dataframe)
 
-print("Seleccion de Padres",seleciontwopadres(probabilidad_sel[1]), sep='\n')
-print(cruza(seleciontwopadres(probabilidad_sel[1])))
-print("Hijos en valor decimal: ",ToDecimal(cruza(seleciontwopadres(probabilidad_sel[1]))))
-hijos=ToDecimal(cruza(seleciontwopadres(probabilidad_sel[1])))
+print("Seleccion de Padres",seleccionPadres(probabilidad_acumulada), sep='\n')
+print(cruza(seleccionPadres(probabilidad_acumulada)))
+print("Hijos en valor decimal: ",ToDecimal(cruza(seleccionPadres(probabilidad_acumulada))))
+hijos=ToDecimal(cruza(seleccionPadres(probabilidad_acumulada)))
 print("Mutacion de los hijos",mutacion(hijos),sep='\n')
 
 for i in range(0,10):

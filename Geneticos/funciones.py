@@ -4,91 +4,95 @@ import random
 import math
 
 #funcion de  primerageneracion aleatoria
-def CreacionPoblacionAleaticia():
-    bandera=0
-    banderalistaFenotipo=0
-    while(bandera==0):
-        listaFenotipo=[]
+def poblacionInicial():
+    aux=0
+    auxFenotipo=0
+    while(aux==0):
+        Fenotipo=[]
         for i in range(0,5):
-            listaFenotipo.append(random.randint(0,15))
+            Fenotipo.append(random.randint(0,15))
 
-        for i in range(len(listaFenotipo)):
-            if(listaFenotipo.count(listaFenotipo[i])==1):
-                banderalistaFenotipo+=1
-        if (banderalistaFenotipo==5):
-            bandera=1
+        for i in range(len(Fenotipo)):
+            if(Fenotipo.count(Fenotipo[i])==1):
+                auxFenotipo+=1
+        if (auxFenotipo==5):
+            aux=1
         else:
-            banderalistaFenotipo=0
-            listaFenotipo=[]
-    return listaFenotipo
+            auxFenotipo=0
+            Fenotipo=[]
+    return Fenotipo
 
 
 #regresa genotipo (lista de bits)
-def creaciongenotipo(listaFenotipo):
-    listagenotipo=[]
-    for i in listaFenotipo:
-        temp="{:04b}".format(i)
-        listagenotipo.append(temp)
-    return listagenotipo
+def createGen(Fenotipo):
+    individuos=[]
+    Genotipo=[]
+    for i in individuos:
+        aux="{:04b}".format(i)
+        Genotipo.append(aux)
+    return Genotipo
 
-def funcionfit(listaFenotipo):
-    listafit=[]
-    for x in listaFenotipo:
-        sin = math.sin(x)
-        f_x=(x-5)/(2+sin)
-        f_x=abs(f_x)
-        listafit.append(f_x)
+def funcionfit(Fenotipo):
+    fitness=[]
+    for x in Fenotipo:
+        fx=abs((x-5)/(2+math.sin(x)))
+        fitness.append(fx)
 
-    return listafit
+    return fitness
 
-def Probabilidades(listafit):
-    total=sum(listafit)
-    listaproba=[]
-    for i in listafit:
-            listaproba.append(i/total)
+def probabilidadSeleccion(fitness):
+    prob_sel=[]
+    total=sum(fitness)
+    for i in fitness:
+            prob_sel.append(i/total)
+    
+    return prob_sel
+    
+def probabilidadAcumulada(prob_sel):
+
+    prob_acum=[]
+    for i in prob_sel:
+        aux+=i
+        prob_acum.append(aux)
+    return prob_acum
+
+def seleccionPadres(prob_acum):
     
     aux=0
-    listaprobAcum=[]
-    for i in listaproba:
-        aux+=i
-        listaprobAcum.append(aux)
-    return listaproba,listaprobAcum
-    
-
-def seleciontwopadres(listaacu):
-    
-    bandera=0
-    valoresaleatorios=[random.random(),random.random()]
-    while(bandera==0):
-        posicionespadres=[]
-        valoresaleatorios.sort()
-        for i in valoresaleatorios:
-            for j in listaacu:
-                
+    posicion=[]
+    valorAleatorio=[random.random(),random.random()]
+    while(aux==0):
+        valorAleatorio.sort()
+        for i in valorAleatorio:
+            for j in prob_acum:    
                 if (i<j):
-                    posicionespadres.append(listaacu.index(j))
+                    posicion.append(prob_acum.index(j))
                     break
-        if(posicionespadres[0]!=posicionespadres[1]):
-            bandera=1
+        if(posicion[0]!=posicion[1]):
+            aux=1
         else:
-            valoresaleatorios[1]=random.random()
+            valorAleatorio[1]=random.random()
         
-    return posicionespadres
+    return posicion
 
-def cruza(listade2padres):
-    hijos=[]
-    gen=creaciongenotipo(listade2padres)
-    y=random.randint(1,3)
-
-    cadena11=gen[0][:y]
-    cadena12=gen[0][y:]   
+def cruza(Padres):
     
-    cadena21=gen[1][:y]
-    cadena22=gen[1][y:]
-    hijos.append(cadena11+cadena22)
-    hijos.append(cadena21+cadena12)
+    
+    hijos=[]
+    puntoCruce=random.randint(1,3)
+    gen=createGen(Padres)
+
+    cad1A=gen[0][:puntoCruce]
+    cad1B=gen[0][puntoCruce:]   
+    
+    cad2A=gen[1][:puntoCruce]
+    cad2B=gen[1][puntoCruce:]
+    hijos.append(cad1A+cad2B)
+    hijos.append(cad2A+cad1B)
     
     hijos=ToDecimal(hijos)
+    
+    
     return hijos
    
 def ToDecimal(hijos):
@@ -108,74 +112,79 @@ def ToDecimal(hijos):
     return decimal
 
 def mutacion(hijos):
-    hijos=creaciongenotipo(hijos)
+    hijos=createGen(hijos)
     hijo1=hijos[0]
     hijo2=hijos[1]
     hijos.pop()
     hijos.pop()
+    
     p_m=0.1
-    for index, valor in enumerate(hijo1):
-        num=random.random()
+    for i, valor in hijo1:
+        numHijo1=random.random()
         
-        if(p_m>num):
+        if(p_m>numHijo1):
             if (valor=='0'):
-                valorNew='1'
-                hijo1 = hijo1[:index]+valorNew+hijo1[index+1:]
+                valor='1'
+                hijo1 = hijo1[:i]+valor+hijo1[i+1:]
             elif (valor=='1'):
-                valorNew1='0'
-                hijo1 = hijo1[:index]+valorNew1+hijo1[index+1:]
+                valor='0'
+                hijo1 = hijo1[:i]+valor+hijo1[i+1:]
         		
         
-    for index, valor in enumerate(hijo2):
-        num=random.random()
+    for i, valor in hijo2:
+        numHijo2=random.random()
         
-        if(p_m>num):
+        if(p_m>numHijo2):
             if(valor=='0'):
-                valorNew2='1'
-                hijo2 = hijo2[:index]+valorNew2+hijo2[index+1:]
+                valor='1'
+                hijo2 = hijo2[:i]+valor+hijo2[i+1:]
             elif (valor=='1'):
-                valorNew3='0'
-                hijo2 = hijo2[:index]+valorNew3+hijo2[index+1:]
+                valor='0'
+                hijo2 = hijo2[:i]+valor+hijo2[i+1:]
+    
     hijos.append(hijo1)
     hijos.append(hijo2)
     
     hijos=ToDecimal(hijos)
     return hijos
 
-def todo(listaFenotipo):
+def todo(Fenotipo):
 
   
-    listaGenotipo=creaciongenotipo(listaFenotipo)
-    listafit=funcionfit(listaFenotipo)
-    listaproba,listaacu=Probabilidades(listafit)
+    Genotipo=createGen(Fenotipo)
+    fitness=funcionfit(Fenotipo)
+    prob_sel,prob_acum=probabilidadSeleccion(fitness)
     
     mejores=[]
    
-     
+    
+    probadecruza=0.85
     for i in range(3):
-        bandera=0
-        while(bandera==0):
-            listade2padres=seleciontwopadres(listaacu)
-            listade2padres=[listaFenotipo[listade2padres[0]],listaFenotipo[listade2padres[1]]]
-            probadecruza=0.85
+        aux=0
+        while(aux==0):
+            Padres=seleccionPadres(prob_acum)
+            Padres=[Fenotipo[Padres[0]],Fenotipo[Padres[1]]]
             numalprobacruza=random.random()
             if (probadecruza>numalprobacruza):
-                listade2hijos=cruza(listade2padres)
+                listade2hijos=cruza(Padres)
                 listade2hijos=mutacion(listade2hijos)
-                print(listade2padres)
-                nuevalista=listade2padres+listade2hijos
+                print(Padres)
+                nuevalista=Padres+listade2hijos
                 funcionfitdenuevalista=funcionfit(nuevalista)
                 
                 for i in range(2):
-                    max_value = max(funcionfitdenuevalista)
-                    posiciondemax=(funcionfitdenuevalista.index(max_value))
-                    mejores.append(nuevalista[posiciondemax])
-                    nuevalista.pop(posiciondemax)
-                    funcionfitdenuevalista.pop(posiciondemax)
+                    valorMaximo = max(funcionfitdenuevalista)
+                    posicionMaxima=(funcionfitdenuevalista.index(valorMaximo))
+                    mejores.append(nuevalista[posicionMaxima])
+                    nuevalista.pop(posicionMaxima)
+                    funcionfitdenuevalista.pop(posicionMaxima)
                 
             
-                bandera=1
+                aux=1
             
     mejores.pop(-1)
     poblacion = mejores
     return poblacion
+
+
+    
