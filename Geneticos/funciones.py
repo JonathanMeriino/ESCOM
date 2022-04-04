@@ -1,33 +1,19 @@
-
-import pandas as pd
+import numpy as np
 import random
 import math
 
-#funcion de  primerageneracion aleatoria
-def poblacionInicial():
-    aux=0
-    auxFenotipo=0
-    while(aux==0):
-        Fenotipo=[]
-        for i in range(0,5):
-            Fenotipo.append(random.randint(0,15))
 
-        for i in range(len(Fenotipo)):
-            if(Fenotipo.count(Fenotipo[i])==1):
-                auxFenotipo+=1
-        if (auxFenotipo==5):
-            aux=1
-        else:
-            auxFenotipo=0
-            Fenotipo=[]
+def poblacionInicial():
+    
+    individuos = [np.random.randint(0,15)for i in range (5)]
+    Fenotipo  =individuos
     return Fenotipo
 
 
-#regresa genotipo (lista de bits)
+
 def createGen(Fenotipo):
-    individuos=[]
     Genotipo=[]
-    for i in individuos:
+    for i in Fenotipo:
         aux="{:04b}".format(i)
         Genotipo.append(aux)
     return Genotipo
@@ -49,7 +35,7 @@ def probabilidadSeleccion(fitness):
     return prob_sel
     
 def probabilidadAcumulada(prob_sel):
-
+    aux=0
     prob_acum=[]
     for i in prob_sel:
         aux+=i
@@ -153,8 +139,8 @@ def todo(Fenotipo):
   
     Genotipo=createGen(Fenotipo)
     fitness=funcionfit(Fenotipo)
-    prob_sel,prob_acum=probabilidadSeleccion(fitness)
-    
+    prob_sel=probabilidadSeleccion(fitness)
+    prob_acum = probabilidadAcumulada(prob_sel)
     mejores=[]
    
     

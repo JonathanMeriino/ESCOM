@@ -2,11 +2,8 @@
     Benitez Merino Leonardo Jonathan
     Practica 1 - Algoritmos bioinspirados
 """
-import numpy as np
-import random
-import math
+
 import pandas as pd
-from posixpath import split
 from funciones import *
 
 
