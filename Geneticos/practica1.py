@@ -25,8 +25,8 @@ print(dataframe)
 
 print("Seleccion de Padres",seleccionPadres(probabilidad_acumulada), sep='\n')
 print(cruza(seleccionPadres(probabilidad_acumulada)))
-print("Hijos en valor decimal: ",ToDecimal(cruza(seleccionPadres(probabilidad_acumulada))))
-hijos=ToDecimal(cruza(seleccionPadres(probabilidad_acumulada)))
+print("Hijos en valor decimal: ",cruza(seleccionPadres(probabilidad_acumulada)))
+hijos=cruza(seleccionPadres(probabilidad_acumulada))
 print("Mutacion de los hijos",mutacion(hijos),sep='\n')
 
 for i in range(0,10):

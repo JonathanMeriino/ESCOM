@@ -76,27 +76,22 @@ def cruza(Padres):
     hijos.append(cad1A+cad2B)
     hijos.append(cad2A+cad1B)
     
-    hijos=ToDecimal(hijos)
-    
+    decimal=[]
+    for i in hijos:
+        i=int(i)
+        aux=0
+        j=0
+        while( i >= 1):
+            d=i%10
+            i=int(i/10)
+            aux=aux+d*pow(2,j)
+            j=j+1
+
+        decimal.append(aux)
+    hijos=decimal
     
     return hijos
-   
-def ToDecimal(hijos):
-    decimal=[]
-    for n in hijos:
-        n=int(n)
-        aux=0
-        i=0
-        while( n >= 1):
-            d=n%10
-            n=int(n/10)
-            aux=aux+d*pow(2,i)
-            i=i+1
-
-        
-        decimal.append(aux)
-    return decimal
-
+  
 def mutacion(hijos):
     hijos=createGen(hijos)
     hijo1=hijos[0]
@@ -131,7 +126,20 @@ def mutacion(hijos):
     hijos.append(hijo1)
     hijos.append(hijo2)
     
-    hijos=ToDecimal(hijos)
+    decimal=[]
+    for i in hijos:
+        i=int(i)
+        aux=0
+        j=0
+        while( i >= 1):
+            d=i%10
+            i=int(i/10)
+            aux=aux+d*pow(2,j)
+            j=j+1
+
+        decimal.append(aux)
+    hijos=decimal
+    
     return hijos
 
 def todo(Fenotipo):
