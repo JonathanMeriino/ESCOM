@@ -5,8 +5,8 @@ import math
 
 def poblacionInicial():
     
-    individuos = [np.random.randint(0,15)for i in range (5)]
-    Fenotipo  =individuos
+    individuos = [np.random.randint(0,15) for i in range(5)]
+    Fenotipo = individuos
     return Fenotipo
 
 
@@ -100,7 +100,7 @@ def mutacion(hijos):
     hijos.pop()
     
     p_m=0.1
-    for i, valor in hijo1:
+    for i, valor in enumerate(hijo1):
         numHijo1=random.random()
         
         if(p_m>numHijo1):
@@ -112,7 +112,7 @@ def mutacion(hijos):
                 hijo1 = hijo1[:i]+valor+hijo1[i+1:]
         		
         
-    for i, valor in hijo2:
+    for i, valor in enumerate(hijo2):
         numHijo2=random.random()
         
         if(p_m>numHijo2):
@@ -142,43 +142,6 @@ def mutacion(hijos):
     
     return hijos
 
-def todo(Fenotipo):
-
-  
-    Genotipo=createGen(Fenotipo)
-    fitness=funcionfit(Fenotipo)
-    prob_sel=probabilidadSeleccion(fitness)
-    prob_acum = probabilidadAcumulada(prob_sel)
-    mejores=[]
-   
-    
-    probadecruza=0.85
-    for i in range(3):
-        aux=0
-        while(aux==0):
-            Padres=seleccionPadres(prob_acum)
-            Padres=[Fenotipo[Padres[0]],Fenotipo[Padres[1]]]
-            numalprobacruza=random.random()
-            if (probadecruza>numalprobacruza):
-                listade2hijos=cruza(Padres)
-                listade2hijos=mutacion(listade2hijos)
-                print(Padres)
-                nuevalista=Padres+listade2hijos
-                funcionfitdenuevalista=funcionfit(nuevalista)
-                
-                for i in range(2):
-                    valorMaximo = max(funcionfitdenuevalista)
-                    posicionMaxima=(funcionfitdenuevalista.index(valorMaximo))
-                    mejores.append(nuevalista[posicionMaxima])
-                    nuevalista.pop(posicionMaxima)
-                    funcionfitdenuevalista.pop(posicionMaxima)
-                
-            
-                aux=1
-            
-    mejores.pop(-1)
-    poblacion = mejores
-    return poblacion
 
 
     
