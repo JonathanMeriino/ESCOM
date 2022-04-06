@@ -13,7 +13,7 @@ dataframe = pd.DataFrame()
 Fenotipo=poblacionInicial()
 Genotipo = createGen(Fenotipo)
 fitness = funcionfit(Fenotipo)
-#poblacion=todo(Fenotipo)
+
 probabilidad_sel = probabilidadSeleccion(fitness)
 probabilidad_acumulada = probabilidadAcumulada(probabilidad_sel)
 dataframe['Genotipo'] = Genotipo
