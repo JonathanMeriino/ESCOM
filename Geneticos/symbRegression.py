@@ -39,7 +39,7 @@ est_gp = SymbolicRegressor(population_size=5000,
                            max_samples=0.9, verbose=1,
                            parsimony_coefficient=0.01, random_state=0)
 est_gp.fit(X_train, y_train)
-
+"""
 print(est_gp._program)
 
 est_tree = DecisionTreeRegressor()
@@ -72,4 +72,4 @@ for i, (y, score, title) in enumerate([(y_truth, None, "Ground Truth"),
         score = ax.text(-.7, 1, .2, "$R^2 =\/ %.6f$" % score, 'x', fontsize=14)
     plt.title(title)
 
-plt.show()
+plt.show()"""
