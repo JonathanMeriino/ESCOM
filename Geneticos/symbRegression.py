@@ -39,3 +39,37 @@ est_gp = SymbolicRegressor(population_size=5000,
                            max_samples=0.9, verbose=1,
                            parsimony_coefficient=0.01, random_state=0)
 est_gp.fit(X_train, y_train)
+
+print(est_gp._program)
+
+est_tree = DecisionTreeRegressor()
+est_tree.fit(X_train, y_train)
+est_rf = RandomForestRegressor(n_estimators=10)
+est_rf.fit(X_train, y_train)
+
+y_gp = est_gp.predict(np.c_[x0.ravel(), x1.ravel()]).reshape(x0.shape)
+score_gp = est_gp.score(X_test, y_test)
+y_tree = est_tree.predict(np.c_[x0.ravel(), x1.ravel()]).reshape(x0.shape)
+score_tree = est_tree.score(X_test, y_test)
+y_rf = est_rf.predict(np.c_[x0.ravel(), x1.ravel()]).reshape(x0.shape)
+score_rf = est_rf.score(X_test, y_test)
+
+fig = plt.figure(figsize=(12, 10))
+
+for i, (y, score, title) in enumerate([(y_truth, None, "Ground Truth"),
+                                       (y_gp, score_gp, "SymbolicRegressor"),
+                                       (y_tree, score_tree, "DecisionTreeRegressor"),
+                                       (y_rf, score_rf, "RandomForestRegressor")]):
+
+    ax = fig.add_subplot(2, 2, i+1, projection='3d')
+    ax.set_xlim(-1, 1)
+    ax.set_ylim(-1, 1)
+    ax.set_xticks(np.arange(-1, 1.01, .5))
+    ax.set_yticks(np.arange(-1, 1.01, .5))
+    surf = ax.plot_surface(x0, x1, y, rstride=1, cstride=1, color='green', alpha=0.5)
+    points = ax.scatter(X_train[:, 0], X_train[:, 1], y_train)
+    if score is not None:
+        score = ax.text(-.7, 1, .2, "$R^2 =\/ %.6f$" % score, 'x', fontsize=14)
+    plt.title(title)
+
+plt.show()
