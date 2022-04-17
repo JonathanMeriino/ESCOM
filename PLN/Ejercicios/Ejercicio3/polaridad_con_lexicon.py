@@ -8,7 +8,7 @@ import re
 def load_sel():
 	#~ global lexicon_sel
 	lexicon_sel = {}
-	input_file = open('../Lexicons/SEL_full.txt', 'r')
+	input_file = open('SEL_full.txt', 'r')
 	for line in input_file:
 		#Las líneas del lexicon tienen el siguiente formato:
 		#abundancia	0	0	50	50	0.83	Alegría
@@ -94,5 +94,5 @@ if __name__=='__main__':
 	cadenas. append(cadena1)
 	cadenas. append(cadena2)
 	
-	polaridad = getSELFeatures(cadenas, lexicon_sel)
-	print (polaridad)
+	
+	#print (polaridad)

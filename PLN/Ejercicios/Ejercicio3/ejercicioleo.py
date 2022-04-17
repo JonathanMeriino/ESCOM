@@ -1,10 +1,17 @@
 import csv
- 
-filename = r"SavedCorpus.csv"
-adatos = open(filename)
+import pandas as pd 
 
-rdatos = csv.reader(adatos)
+df = pd.read_csv("SavedCorpus.csv")
+
 #for dato in rdatos:
  #   print(dato)
-for dato in rdatos:
-    print(dato)
+ 
+
+
+#Polaridad de opinion
+
+#from polaridad_con_lexicon import *
+
+lexicon_sel = df['Polarity'].values
+cadenas = df['titleOpinion'].values
+#polaridad = getSELFeatures(cadenas, lexicon_sel)
