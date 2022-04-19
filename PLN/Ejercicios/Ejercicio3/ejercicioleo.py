@@ -10,8 +10,10 @@ df = pd.read_csv("SavedCorpus.csv")
 
 #Polaridad de opinion
 
-#from polaridad_con_lexicon import *
+from polaridad_con_lexicon import *
 
-lexicon_sel = df['Polarity'].values
+load_sel()
 cadenas = df['titleOpinion'].values
-#polaridad = getSELFeatures(cadenas, lexicon_sel)
+
+
+polaridad = getSELFeatures(cadenas,lexicon_sel)
