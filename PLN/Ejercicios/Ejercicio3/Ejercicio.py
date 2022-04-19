@@ -29,10 +29,10 @@ for i in Cosrpus_X:
 
 # ~ print(Cosrpus_X1)
 # lematizar y tokenizacion
-def lem(n):
-	cadena_lematizada = lematizar(n)
+#def lem(n):
+#	cadena_lematizada = lematizar(n)
 	# ~ #print (cadena_lematizada.lower())
-	return(cadena_lematizada)
+#	return(cadena_lematizada)
 
 	
 aux1=[i for i, v in enumerate(Corpus_polarity) if v == 3]# imprime la pocision 
