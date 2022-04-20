@@ -1,12 +1,4 @@
-
-
-
-
-
-
-
-
-
+import re
 """ inicial = input("Ingrese el simbolo inicial: ")
 elementos = input("Ingrese los elementos del alfabeto: ")
 snt = input("Ingrese los simbolos no terminales: ")
@@ -33,14 +25,17 @@ def entradas(izquierda,derecha):
 
     return izquierda, derecha
 
+
+
+def mostrar(izquierda,derecha):
+    print("Tabla de derivacion: ")
+    for i, j in zip(izquierda,derecha):
+        print(f"{i}-->{j}")
+
 izquierda=[]
 derecha=[]
 entradas(izquierda,derecha)
-print("Tabla de derivacion: ")
-for i, j in zip(izquierda,derecha):
-    print(f"{i}-->{j}")
-
-
+mostrar(izquierda,derecha)
 """
 Gramaticas regulares
 Reglas de produccion
@@ -51,6 +46,8 @@ Reglas de produccion
     cadena vacia
 
 """
+def gramRegular(izquierda,derecha):
+    x=10
 
 
 
@@ -76,3 +73,18 @@ gramatica sin restricciones
     Lado derecho -> No tienes restricciones
 
  """
+
+def sinRestricciones(izquierda,derecha):
+    patronIzq = re.compile("[a-z]*[A-Z]+[a-z]*")
+    
+    for i in izquierda:
+        
+        if patronIzq.search(i)!=None:
+            print("Cumple la derivacion")
+        else:
+            print("No cumple la derivacion")
+            print("No es de Tipo 0")
+            break
+
+sinRestricciones(izquierda,derecha)
+
