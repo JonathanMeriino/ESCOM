@@ -31,10 +31,13 @@ def mostrar(izquierda,derecha):
     print("Tabla de derivacion: ")
     for i, j in zip(izquierda,derecha):
         print(f"{i}-->{j}")
+    print("-----------------------------")
+    
 
 izquierda=[]
 derecha=[]
 entradas(izquierda,derecha)
+print("-----------------------------")
 mostrar(izquierda,derecha)
 """
 Gramaticas regulares
@@ -58,7 +61,7 @@ def gramRegular(izquierda, derecha):
     
         else:
             print("No cumple con la derivacion")
-            print("No es de tipo 2 ")
+            print("No es de tipo regular por la derecha ")
             break
     print("---------------------------------")
     patronDer=re.compile("[A-Z]?[a-z]?")
@@ -71,10 +74,11 @@ def gramRegular(izquierda, derecha):
     
         else:
             print("No cumple con la derivacion")
-            print("No es de tipo 2 ")
+            print("No es de tipo regular por la izquierda ")
             break
-    return "-----------------------------"
+    print("-----------------------------")
 
+gramRegular(izquierda,derecha)
 """
 gramatica independiente del contexto
 Reglas de produccion
