@@ -1,4 +1,4 @@
-from numpy import size
+
 import re
 
 #Funcion principal usada para identificar el tipo de gramatica
@@ -14,7 +14,7 @@ def main():
 
   #Se imprimen las reglas ingresadas
   print("Reglas de producción")
-  for i in range(size(producciones[0])):
+  for i in range(len(producciones[0])):
     print(f"{producciones[0][i]} --> {producciones[1][i]}")
 
   #Se llama a las funciones de evaluacion
@@ -30,7 +30,7 @@ def main():
         
 #Solo se necesita la parte izquierda de la regla, debe contener almenos un SNT
 def evaluarTipo0(izq):
-  for i in range(size(izq)):
+  for i in range(len(izq)):
     tipo0 = re.compile(r"[A-Z]+")
     x = tipo0.search(izq[i])
 
@@ -63,7 +63,7 @@ def comparar(anterior, posterior, der):
 #se conservan en la parte derecha,(Dichas partes pueden ser cualquier combinacion
 # de terminales o no terminales)
 def evaluarTipo1(izq, der):
-  for i in range(size(izq)):
+  for i in range(len(izq)):
     resultado = 0
     cadena = izq[i]
     tipo1 = re.compile(r"[A-Z]")
@@ -87,7 +87,7 @@ def evaluarTipo1(izq, der):
 #Debe cumplir que la izquierda solo un SNT y en la derecha cualquier secuencia de
 #terminales o no terminales
 def evaluarTipo2(izq, der):
-  for i in range(size(izq)):
+  for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"\D*")
 
@@ -105,7 +105,7 @@ def evaluarTipo2(izq, der):
 #(SNT SNT), (ST ST), (ST SNT), (ST), (SNT), (cadena vacia)
 #terminales o no terminales
 def evaluarTipo3(izq, der):
-  for i in range(size(izq)):
+  for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"([a-z][A-Z]|[a-z]*$|[A-Z]*$)")
 
