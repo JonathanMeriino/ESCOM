@@ -32,7 +32,8 @@ def protectedDiv(left, right):
     except ZeroDivisionError:
         return 1
 
-pset = gp.PrimitiveSet("MAIN", 1)
+pset = gp.PrimitiveSet("MAIN", 1)  #Conjunto primitivo 
+#Añade las primitivas
 pset.addPrimitive(operator.add, 2)
 pset.addPrimitive(operator.sub, 2)
 pset.addPrimitive(operator.mul, 2)
@@ -40,16 +41,22 @@ pset.addPrimitive(protectedDiv, 2)
 pset.addPrimitive(operator.neg, 1)
 pset.addPrimitive(math.cos, 1)
 pset.addPrimitive(math.sin, 1)
+#Añade una constante efimera al conjunto (nombre , constante efimera)
 pset.addEphemeralConstant("rand101", lambda: random.randint(-1,1))
+#Renombra los argumentos de la funcion con nuevos nombres (**kargs)
 pset.renameArguments(ARG0='x')
-
-creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+#Creacion de las clases
+creator.create("FitnessMin", base.Fitness, weights=(-1.0,))  # (Nombre de la clase, clase de la que hereda, atributos )
 creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin)
 
 toolbox = base.Toolbox()
+#(expresion de arbol para convertir en un arbol,metodo: mitad full y mitad grown,conjunto primitivo, altura min y max de los arboles producidos )
 toolbox.register("expr", gp.genHalfAndHalf, pset=pset, min_=1, max_=2)
+#(nombre, llama al contenedor de funciones con un unico iterable como unico argumento, argumentos de palabras clave)
 toolbox.register("individual", tools.initIterate, creator.Individual, toolbox.expr)
+#(nombre, regresa una instancia del contenedor lleno de datos)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
+# clase para compilar un conjunto que devuelve los resultados al evaluar el arbol
 toolbox.register("compile", gp.compile, pset=pset)
 
 def evalSymbReg(individual, points):
@@ -61,12 +68,17 @@ def evalSymbReg(individual, points):
     return math.fsum(sqerrors) / len(points),
 
 toolbox.register("evaluate", evalSymbReg, points=[x/10. for x in range(-10,10)])
+#seleccion por torneo
 toolbox.register("select", tools.selTournament, tournsize=3)
+#operacion de cruz
 toolbox.register("mate", gp.cxOnePoint)
+# Genera una expresion donde cada hoja tenga la misma profundidad entre min y max
 toolbox.register("expr_mut", gp.genFull, min_=0, max_=2)
+# aleatoriamente selecciona un punto en el arbol, reemplaza el subarbol en ese punto como raiz por la expresion generada mediante el metodo expr
 toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
+# se implementa un limite en el arbol, cuando se genera un hijo no valido(por encima del limite) se reemplaza por uno de sus padres
 
-toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
+toolbox.decorate("mate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))#(establecel un limite de tamaño, valor maximo permitido para la medicion dada)
 toolbox.decorate("mutate", gp.staticLimit(key=operator.attrgetter("height"), max_value=17))
 
 def main():
