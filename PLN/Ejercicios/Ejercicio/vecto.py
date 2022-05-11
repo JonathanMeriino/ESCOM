@@ -8,14 +8,9 @@ from  sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import  ConfusionMatrixDisplay
-from pylab import rcParams
- 
-from imblearn.under_sampling import NearMiss
+from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 from imblearn.over_sampling import RandomOverSampler
-from imblearn.combine import SMOTETomek
-from imblearn.ensemble import BalancedBaggingClassifier
 from imblearn.under_sampling import RandomUnderSampler 
-from collections import Counter
 from imblearn.over_sampling import SMOTE
 class data_set_polarity:
 	def __init__(self, X_train, y_train, X_test, y_test):
@@ -48,7 +43,7 @@ else:
 #~ print (corpus_attraction.X_train[0])
 
 # Representación vectorial binarizada
-vectorizador_binario = CountVectorizer(binary=True)
+vectorizador_binario = TfidfVectorizer(binary=True)
 vectorizador_binario_fit = vectorizador_binario.fit(corpus_attraction.X_train)
 X_train = vectorizador_binario_fit.transform(corpus_attraction.X_train)
 y_train = corpus_attraction.y_train
@@ -56,7 +51,6 @@ y_train = corpus_attraction.y_train
 
 """print (vectorizador_binario.get_feature_names_out())
 print (X_train.shape)#sparse matrix"""
-#~ clf = LogisticRegression()
 X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
 y_test = corpus_attraction.y_test
 """print (vectorizador_binario_fit.get_feature_names_out())
@@ -90,11 +84,11 @@ def mostrarAtrc(y_test, y_pred):
     print(classification_report(y_test, y_pred, target_names=target_names))
     
     
-"""model =  modelo(X_train, X_test, y_train, y_test)
+model =  modelo(X_train, X_test, y_train, y_test)
 modelW =  modeloBal(X_train, X_test, y_train, y_test)
 
 
-""""""Modelo Original""""""
+"""Modelo Original"""
 print("Modelo Original")
 #Atraccion
 y_pred = model.predict(X_test)
@@ -108,12 +102,7 @@ y_pred = model.predict(X_test)
 mostrar(y_test, y_pred)
 
 
-""""""Estrategia: Class Weight""""""
-#Atraccion
-X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
-y_test = corpus_attraction.y_test
-y_pred = modelW.predict(X_test)
-mostrarAtrc(y_test, y_pred)
+"""Estrategia: Class Weight"""
 
 #Polaridad
 modelW.fit(X_train, y_train_polarity)
@@ -122,17 +111,8 @@ y_pred = modelW.predict(X_test)
 print("Estrategia: Class Weight")
 mostrar(y_test, y_pred)
 
-""""""Estrategia: Subsambling""""""
+"""Estrategia: Subsambling"""
 print("Estrategia: Subsambling")
-#Atraccion
-X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
-y_test = corpus_attraction.y_test
-us = RandomUnderSampler()
-X_train_res, y_train_res = us.fit_resample(X_train,y_train)
-model = modelo(X_train_res, X_test, y_train_res, y_test)
-y_pred = model.predict(X_test)
-mostrarAtrc(y_test, y_pred)
-
 
 #Polaridad
 vectorizador_binario_fit = vectorizador_binario.fit(corpus_polarity.X_train)
@@ -143,50 +123,28 @@ us = RandomUnderSampler()
 X_train_res, y_train_res = us.fit_resample(X_train,y_train)
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 y_pred = model.predict(X_test)
-mostrar(y_test, y_pred)"""
+mostrar(y_test, y_pred)
 
 """Estrategia: Oversampling"""
-"""print("Estrategia: Oversampling")
-#Atraccion
-X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
-y_test = corpus_attraction.y_test
-os =  RandomOverSampler()
-X_train_res, y_train_res = os.fit_resample(X_train, y_train)
-model = modelo(X_train_res, X_test, y_train_res, y_test)
-y_pred = model.predict(X_test)
-mostrarAtrc(y_test, y_pred)
-
+print("Estrategia: Oversampling")
 
 #Polaridad
-vectorizador_binario_fit = vectorizador_binario.fit(corpus_polarity.X_train)
-X_train = vectorizador_binario_fit.transform(corpus_polarity.X_train)
-y_train = corpus_polarity.y_train
 os =  RandomOverSampler()
 X_train_res, y_train_res = os.fit_resample(X_train, y_train)
 
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 
 pred_y = model.predict(X_test)
-mostrar(y_test, pred_y)"""
+mostrar(y_test, pred_y)
 
 """Estrategia: sub-over"""
-#Atraccion
-X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
-y_test = corpus_attraction.y_test
-os_us = SMOTE()
-X_train_res, y_train_res = os_us.fit_resample(X_train, y_train)
-model = modelo(X_train_res, X_test, y_train_res, y_test)
-y_pred = model.predict(X_test)
-mostrarAtrc(y_test, y_pred)
-
 
 #Polaridad
-vectorizador_binario_fit = vectorizador_binario.fit(corpus_polarity.X_train)
-X_train = vectorizador_binario_fit.transform(corpus_polarity.X_train)
-y_train = corpus_polarity.y_train
-os_us = SMOTE()
+"""os_us = SMOTE()
 X_train_res, y_train_res = os_us.fit_resample(X_train, y_train)
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 pred_y = model.predict(X_test)
 print("Estrategia: sub-over")
 mostrar(y_test, pred_y)
+"""
+
