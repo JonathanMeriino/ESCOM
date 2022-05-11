@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import os, pickle
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from  sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
@@ -15,9 +14,9 @@ from imblearn.under_sampling import NearMiss
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.combine import SMOTETomek
 from imblearn.ensemble import BalancedBaggingClassifier
- 
+from imblearn.under_sampling import RandomUnderSampler 
 from collections import Counter
-
+from imblearn.over_sampling import SMOTE
 class data_set_polarity:
 	def __init__(self, X_train, y_train, X_test, y_test):
 		self.X_train = X_train
@@ -66,20 +65,6 @@ print (X_test.shape)#sparse matrix"""
 #print ('Representación vectorial binarizada')
 #print (X_train.toarray())#dense ndarray
 
-#~ #Representación vectorial por frecuencia
-"""def repFrec():
-    vectorizador_frecuencia = CountVectorizer()
-    X = vectorizador_frecuencia.fit_transform(corpus_lematizado)
-    print('Representación vectorial por frecuencia')
-    print (X.toarray())"""
-
-#Representación vectorial tf-idf
-"""def repFrec():
-    vectorizador_tfidf = TfidfVectorizer()
-    X = vectorizador_tfidf.fit_transform(corpus_lematizado)
-    print ('Representación vectorial tf-idf')
-    print (X.toarray())"""
-
 
 def modeloBal(X_train, X_test, y_train, y_test):
     clf = LogisticRegression(max_iter=10000,C=1.0,penalty='l2',random_state=1,solver="newton-cg",class_weight="balanced")
@@ -99,60 +84,102 @@ def mostrar (y_test, y_pred):
     ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
     plt.show()
     
-model =  modelo(X_train, X_test, y_train, y_test)
+def mostrarAtrc(y_test, y_pred):
+    #print(confusion_matrix(y_test, y_pred,labels=['Restaurant','Hotel','Attractive']))
+    target_names = ['Restaurant','Hotel','Attractive']
+    print(classification_report(y_test, y_pred, target_names=target_names))
+    
+    
+"""model =  modelo(X_train, X_test, y_train, y_test)
 modelW =  modeloBal(X_train, X_test, y_train, y_test)
 
 
-"""Modelo Original"""
-#y_pred = model.predict(X_test)
-#print (y_pred)
-#print(accuracy_score(y_test, y_pred))
-#print(confusion_matrix(y_test, y_pred,labels=['Restaurant','Hotel','Attractive']))
-#target_names = ['Restaurant','Hotel','Attractive']
-#print(classification_report(y_test, y_pred, target_names=target_names))
+""""""Modelo Original""""""
+print("Modelo Original")
+#Atraccion
+y_pred = model.predict(X_test)
+mostrarAtrc(y_test, y_pred)
 
+#Polaridad
 y_train_polarity = corpus_polarity.y_train
 model.fit(X_train, y_train_polarity)
 y_test = corpus_polarity.y_test
 y_pred = model.predict(X_test)
-print("Modelo Original")
 mostrar(y_test, y_pred)
 
 
-"""Estrategia: Class Weight"""
+""""""Estrategia: Class Weight""""""
+#Atraccion
+X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
+y_test = corpus_attraction.y_test
+y_pred = modelW.predict(X_test)
+mostrarAtrc(y_test, y_pred)
+
+#Polaridad
 modelW.fit(X_train, y_train_polarity)
 y_test = corpus_polarity.y_test
 y_pred = modelW.predict(X_test)
 print("Estrategia: Class Weight")
 mostrar(y_test, y_pred)
 
-"""Estrategia: Subsambling"""
+""""""Estrategia: Subsambling""""""
+print("Estrategia: Subsambling")
+#Atraccion
+X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
+y_test = corpus_attraction.y_test
+us = RandomUnderSampler()
+X_train_res, y_train_res = us.fit_resample(X_train,y_train)
+model = modelo(X_train_res, X_test, y_train_res, y_test)
+y_pred = model.predict(X_test)
+mostrarAtrc(y_test, y_pred)
+
+
+#Polaridad
 vectorizador_binario_fit = vectorizador_binario.fit(corpus_polarity.X_train)
 X_train = vectorizador_binario_fit.transform(corpus_polarity.X_train)
 y_train = corpus_polarity.y_train
 
-us = NearMiss(n_neighbors=3, version=2)
-X_train_res, y_train_res = us.fit_sample(X_train,y_train)
+us = RandomUnderSampler()
+X_train_res, y_train_res = us.fit_resample(X_train,y_train)
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 y_pred = model.predict(X_test)
-print("Estrategia: Subsambling")
-mostrar(y_test, y_pred)
+mostrar(y_test, y_pred)"""
 
 """Estrategia: Oversampling"""
-
+"""print("Estrategia: Oversampling")
+#Atraccion
+X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
+y_test = corpus_attraction.y_test
 os =  RandomOverSampler()
-X_train_res, y_train_res = os.fit_sample(X_train, y_train)
+X_train_res, y_train_res = os.fit_resample(X_train, y_train)
+model = modelo(X_train_res, X_test, y_train_res, y_test)
+y_pred = model.predict(X_test)
+mostrarAtrc(y_test, y_pred)
+
+
+#Polaridad
+os =  RandomOverSampler()
+X_train_res, y_train_res = os.fit_resample(X_train, y_train)
 
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 
 pred_y = model.predict(X_test)
-print("Estrategia: Oversampling")
-mostrar(y_test, pred_y)
+mostrar(y_test, pred_y)"""
 
 """Estrategia: sub-over"""
+#Atraccion
+X_test = vectorizador_binario_fit.transform(corpus_attraction.X_test)
+y_test = corpus_attraction.y_test
+os_us = SMOTE()
+X_train_res, y_train_res = os_us.fit_resample(X_train, y_train)
+model = modelo(X_train_res, X_test, y_train_res, y_test)
+y_pred = model.predict(X_test)
+mostrarAtrc(y_test, y_pred)
 
-os_us = SMOTETomek()
-X_train_res, y_train_res = os_us.fit_sample(X_train, y_train)
+
+#Polaridad
+os_us = SMOTE()
+X_train_res, y_train_res = os_us.fit_resample(X_train, y_train)
 model = modelo(X_train_res, X_test, y_train_res, y_test)
 pred_y = model.predict(X_test)
 print("Estrategia: sub-over")
