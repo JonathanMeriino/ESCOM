@@ -16,7 +16,7 @@ def main():
 
   #Se agregan reglas de producccion segun la respuesta del usuario
   while(op == "0"):
-    producciones[0].append(input("Ingrese el lado izquierdo de la regla de producción:"))
+    producciones[0].cajaTexto.get()
     producciones[1].append(input("Ingrese el lado derecho de la regla de producción:"))
     op = input("Desea ingresar otra regla de procucción? (0-Si, 1-No): ")
 
@@ -158,4 +158,4 @@ def evaluarTipo3(izq, der):
   return 1
 
 #llamada a funcion principal
-main()
+#main()
