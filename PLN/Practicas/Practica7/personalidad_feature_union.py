@@ -13,9 +13,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 
 def main(argv):
-	trainingdir = argv[1]
-	testdir = argv[2]
-	languages = ['dutch', 'english', 'italian', 'spanish']
+	trainingdir = argv[0]
+	#testdir = argv[2]
+	languages = ['spanish']
         
 	for language in languages:
 		if language == 'spanish':
