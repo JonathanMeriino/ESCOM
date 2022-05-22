@@ -1,4 +1,9 @@
+"""
+un click izquierdo para que una celda 0, pase a 1
+un click derecho para que una celda 1, pase a 0
+Barra espaciadora se pone pausa
 
+"""
 # Bibliotecas
 import pygame
 import numpy as np
@@ -36,7 +41,7 @@ gameState[12, 13] = 1
 gameState[11, 13] = 1
 gameState[10, 13] = 1
 
-#Forma 2
+#Forma 2 - Desbloquear a concluir la forma 1
 """gameState[23,5]=1
 gameState[23,6]=1
 gameState[23,7]=1
