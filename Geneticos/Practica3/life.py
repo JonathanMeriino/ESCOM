@@ -14,21 +14,19 @@ from pygame.constants import K_ESCAPE
 pygame.init()
 
 # Ancho y alto de la pantalla.
-width, height = 1000, 1000
+ancho=1000
+alto = 1000
 
 # Creación de la pantalla.
-screen = pygame.display.set_mode((height, width))
+screen = pygame.display.set_mode((alto, ancho))
 
-# Color del fondo = Casi negro, casi oscuro.
-bg = 200, 0, 0
-
-# Pintamos el fondo con el color elegido.
-screen.fill(bg)
-
+# color del fondo
+screen.fill((200,0,0))
+#tamaño del arreglo
 nxC, nyC = 25, 25
 
-dimCW = width / nxC
-dimCH = height / nyC
+dimCW = ancho / nxC
+dimCH = alto / nyC
 
 # Estado de las celdas. Viva = 1 Muere = 0.
 gameState = np.zeros((nxC, nyC))
@@ -49,38 +47,38 @@ gameState[5, 5] = 1
 gameState[5, 6] = 1
 gameState[5, 7] = 1
 gameState[6, 7] = 1"""
-pauseExect = False
+pausa = False
 
 # Bucle de ejecución.
 while True:
 
-    newGameState = np.copy(gameState)
+    nuevoEstado = np.copy(gameState)
     #limpiar la pantalla
-    screen.fill(bg)
+    screen.fill((200,0,0))
 
     time.sleep(0.5) #delay entre cada fotograma
 
     # Registramos enventos de teclado y ratón.
-    evento = pygame.event.get()
+    evento = pygame.ev.get()
 
-    for event in evento:
+    for ev in evento:
         #Detecta si se presiona una tecla
-        if event.type == pygame.KEYDOWN:
-            pauseExect = not pauseExect
+        if ev.type == pygame.KEYDOWN:
+            pausa = not pausa
         #Detecta si se presiona el raton
         mouseClick = pygame.mouse.get_pressed()
 
         if sum(mouseClick) > 0:
             posX, posY = pygame.mouse.get_pos()
             celX, celY = int(np.floor(posX / dimCW)), int(np.floor(posY / dimCH))
-            newGameState[celX, celY] = not mouseClick[2]
+            nuevoEstado[celX, celY] = not mouseClick[2]
 
-        if event.type == pygame.QUIT:
+        if ev.type == pygame.QUIT:
             pygame.quit()
     for y in range (0, nxC):
         for x in range (0, nyC):
 
-            if not pauseExect:
+            if not pausa:
 
                 # Calculamos el número de vecinos cercanos.
                 vecinos =   gameState[(x-1)%nxC,(y-1)% nyC] + \
@@ -94,25 +92,23 @@ while True:
 
                 # Regla #1: Una célula muerta con exactamente 3 vecinas vivas, "revive".
                 if gameState[x, y] == 0 and vecinos == 3:
-                   newGameState[x, y] = 1
+                   nuevoEstado[x, y] = 1
 
                 # Regla #2: Una célula viva con menos de 2 o más de 3 vecinas vivas, "muere".
                 elif gameState[x, y] == 1 and (vecinos < 2 or vecinos > 3):
-                    newGameState[x, y] = 0
+                    nuevoEstado[x, y] = 0
 
                 # Creamos el polígono de cada celda a dibujar.
-                poly = [((x)    * dimCW, y      * dimCH),
-                        ((x+1)  * dimCW, y      * dimCH),
-                        ((x+1)  * dimCW, (y+1)  * dimCH),
-                        ((x)    * dimCW, (y+1)  * dimCH)]
+                poligono = [((x)* dimCW, y*dimCH),((x+1)*dimCW, y*dimCH),
+                            ((x+1)*dimCW,(y+1)*dimCH),((x)*dimCW,(y+1) * dimCH)]
                 # Dibujamos la celda para cada x,y
-                if newGameState[x, y] == 0:
-                    pygame.draw.polygon(screen, (128, 128, 128), poly, 1)
+                if nuevoEstado[x, y] == 0:
+                    pygame.draw.polygon(screen, (128, 128, 128), poligono, 1)
                 else:
-                    pygame.draw.polygon(screen, (128, 128, 128), poly, 0)
+                    pygame.draw.polygon(screen, (128, 128, 128), poligono, 0)
 
     # Actualizacion del estado
-    gameState = np.copy(newGameState)
+    gameState = np.copy(nuevoEstado)
 
     #Actualizacion de pantalla
     pygame.display.flip()
