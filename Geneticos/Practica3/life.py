@@ -1,7 +1,5 @@
-# https://github.com/Jonatandb/DotCSV-Juego-de-la-vida
-# -*- coding: utf-8 -*-
-#
-# Librerías
+
+# Bibliotecas
 import pygame
 import numpy as np
 import time
@@ -17,7 +15,7 @@ width, height = 1000, 1000
 screen = pygame.display.set_mode((height, width))
 
 # Color del fondo = Casi negro, casi oscuro.
-bg = 25, 25, 25
+bg = 200, 0, 0
 
 # Pintamos el fondo con el color elegido.
 screen.fill(bg)
@@ -31,17 +29,21 @@ dimCH = height / nyC
 gameState = np.zeros((nxC, nyC))
 
 #Estados
+#Forma 1
 gameState[11, 11] = 1
 gameState[12, 12] = 1
 gameState[12, 13] = 1
 gameState[11, 13] = 1
 gameState[10, 13] = 1
 
-gameState[3, 3] = 1
-gameState[3, 4] = 1
-gameState[3, 5] = 1
-gameState[4, 5] = 1
-gameState[20, 23] = 1
+#Forma 2
+"""gameState[23,5]=1
+gameState[23,6]=1
+gameState[23,7]=1
+gameState[5, 5] = 1
+gameState[5, 6] = 1
+gameState[5, 7] = 1
+gameState[6, 7] = 1"""
 pauseExect = False
 
 # Bucle de ejecución.
@@ -51,7 +53,7 @@ while True:
     #limpiar la pantalla
     screen.fill(bg)
 
-    time.sleep(0.1) #delay entre cada fotograma
+    time.sleep(0.5) #delay entre cada fotograma
 
     # Registramos enventos de teclado y ratón.
     evento = pygame.event.get()
@@ -104,8 +106,8 @@ while True:
                 else:
                     pygame.draw.polygon(screen, (128, 128, 128), poly, 0)
 
-    # Actualizamos el estado del juego
+    # Actualizacion del estado
     gameState = np.copy(newGameState)
 
-    #Actualizamos la pantalla.
+    #Actualizacion de pantalla
     pygame.display.flip()
