@@ -18,10 +18,10 @@ ancho=1000
 alto = 1000
 
 # Creación de la pantalla.
-screen = pygame.display.set_mode((alto, ancho))
+pantalla = pygame.display.set_mode((alto, ancho))
 
 # color del fondo
-screen.fill((200,0,0))
+pantalla.fill((200,0,0))
 #tamaño del arreglo
 nxC, nyC = 25, 25
 
@@ -48,13 +48,13 @@ gameState[5, 6] = 1
 gameState[5, 7] = 1
 gameState[6, 7] = 1"""
 pausa = False
-
+jugando = True
 # Bucle de ejecución.
-while True:
+while jugando:
 
     nuevoEstado = np.copy(gameState)
     #limpiar la pantalla
-    screen.fill((200,0,0))
+    pantalla.fill((200,0,0))
 
     time.sleep(0.5) #delay entre cada fotograma
 
@@ -103,9 +103,9 @@ while True:
                             ((x+1)*dimCW,(y+1)*dimCH),((x)*dimCW,(y+1) * dimCH)]
                 # Dibujamos la celda para cada x,y
                 if nuevoEstado[x, y] == 0:
-                    pygame.draw.polygon(screen, (128, 128, 128), poligono, 1)
+                    pygame.draw.polygon(pantalla, (128, 128, 128), poligono, 1)
                 else:
-                    pygame.draw.polygon(screen, (128, 128, 128), poligono, 0)
+                    pygame.draw.polygon(pantalla, (128, 128, 128), poligono, 0)
 
     # Actualizacion del estado
     gameState = np.copy(nuevoEstado)
