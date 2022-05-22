@@ -14,11 +14,11 @@ boston = datasets.load_boston()
 dataframe = pd.DataFrame(index= None, columns=['Dataset Name','Observations','Dimensions','Features','Targets'])
 
 
-dataframe['Dataset Name']=[datasets.load_boston().filename]
-dataframe['Observations'] ="506"
-dataframe['Dimensions'] ="13"
-dataframe['Features'] = [datasets.load_boston().feature_names]
-dataframe['Targets'] =[datasets.load_boston().target]
+dataframe['Dataset Name']=["Boston"]
+dataframe['Observations'] =["506"]
+dataframe['Dimensions'] =["13"]
+dataframe['Features'] = [boston.feature_names]
+dataframe['Targets'] =[boston.target]
 
 print(dataframe)
 
