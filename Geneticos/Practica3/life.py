@@ -14,8 +14,8 @@ from pygame.constants import K_ESCAPE
 pygame.init()
 
 # Ancho y alto de la pantalla.
-ancho=1000
-alto = 1000
+ancho=600
+alto = 600
 
 # Creación de la pantalla.
 pantalla = pygame.display.set_mode((alto, ancho))
@@ -32,21 +32,21 @@ dimCH = alto / nyC
 gameState = np.zeros((nxC, nyC))
 
 #Estados
-#Forma 1
+
 gameState[11, 11] = 1
 gameState[12, 12] = 1
 gameState[12, 13] = 1
 gameState[11, 13] = 1
 gameState[10, 13] = 1
 
-#Forma 2 - Desbloquear a concluir la forma 1
-"""gameState[23,5]=1
+
+gameState[23,5]=1
 gameState[23,6]=1
 gameState[23,7]=1
 gameState[5, 5] = 1
 gameState[5, 6] = 1
 gameState[5, 7] = 1
-gameState[6, 7] = 1"""
+gameState[6, 7] = 1
 pausa = False
 jugando = True
 # Bucle de ejecución.
@@ -59,7 +59,7 @@ while jugando:
     time.sleep(0.5) #delay entre cada fotograma
 
     # Registramos enventos de teclado y ratón.
-    evento = pygame.ev.get()
+    evento = pygame.event.get()
 
     for ev in evento:
         #Detecta si se presiona una tecla
