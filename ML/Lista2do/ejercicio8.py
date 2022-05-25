@@ -18,7 +18,7 @@ pred = model_svr.predict(x_test)
 
 print(f"Data Train 35%: {sqrt(mean_squared_error(y_test,pred))}")
 
-model_svr = SVR()
+#model_svr = SVR()
 model_svr.fit(x_test, y_test)
 pred = model_svr.predict(x_train)
 
