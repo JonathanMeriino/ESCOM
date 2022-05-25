@@ -1,18 +1,20 @@
 import pandas as pd
 import xml.etree.ElementTree as ET
+import os
+from lxml import etree
 
 
+def loadData(directory, language):
+	# returns a dictionary of tweets per author
+	tweets = {}
+	languagedir = os.path.join(directory, language)
+	for filename in os.listdir(languagedir):
+		if filename.endswith('xml'):
+			handle = open(os.path.join(languagedir, filename), 'rb')
+			tree = etree.fromstring(handle.read())
+			documents = tree.xpath('//document')
+			tweets[filename[:-4]] = [doc.text.rstrip() for doc in documents]
+		
+	return tweets
 
-tree = ET.parse('one.xml')
- 
-# getting the parent tag of
-# the xml document
-root = tree.getroot()
- 
-# printing the root (parent) tag
-# of the xml document, along with
-# its memory location
-print(root.text)
- 
-# printing the attributes of the
-# first tag from the parent
+loadData('\\/home/jonathan/Documents/Github/ESCOM/PLN/Practicas/Practica7','spanish')
