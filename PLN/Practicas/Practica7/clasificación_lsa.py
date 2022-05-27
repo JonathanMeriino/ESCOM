@@ -6,11 +6,13 @@ from sklearn.metrics import classification_report
 from sklearn.decomposition import TruncatedSVD
 
 
+
+
 newsgroups_train = fetch_20newsgroups(subset='train')
 newsgroups_test = fetch_20newsgroups(subset='test')
 #~ print(newsgroups_train.target_names)
-#~ print(newsgroups_train.data[0])
-#~ print(newsgroups_train.target[0])
+#~ print(newsgroups_train.d"ata[0])
+#print(newsgr"oups_train.target[0])
 
 X_train = newsgroups_train.data
 y_train = newsgroups_train.target
@@ -37,18 +39,18 @@ print ('vectors_test.shape {}'.format(vectors_test.shape))
 print (classification_report(y_test, y_pred))
 
 
-#~ svd = TruncatedSVD(500)
-#~ vectors_train_lsa = svd.fit_transform(vectors_train)
-#~ ##~ print (vectors_train_lsa)
-#~ print ('vectors_train_lsa.shape {}'.format(vectors_train_lsa.shape))
+svd = TruncatedSVD(500)
+vectors_train_lsa = svd.fit_transform(vectors_train)
+print (vectors_train_lsa)
+print ('vectors_train_lsa.shape {}'.format(vectors_train_lsa.shape))
 
-#~ clf.fit(vectors_train_lsa, y_train)
+clf.fit(vectors_train_lsa, y_train)
 
-#~ vectors_test_lsa = svd.transform(vectors_test)
-#~ print ('vectors_test_lsa.shape {}'.format(vectors_test_lsa.shape))
+vectors_test_lsa = svd.transform(vectors_test)
+print ('vectors_test_lsa.shape {}'.format(vectors_test_lsa.shape))
 
 
-#~ y_pred = clf.predict(vectors_test_lsa)
-#~ print (y_pred)
+y_pred = clf.predict(vectors_test_lsa)
+print (y_pred)
 
-#~ print (classification_report(y_test, y_pred))
+print (classification_report(y_test, y_pred))

@@ -1,6 +1,6 @@
 import os
 import sys
-import nltk
+
 from lxml import etree
 from features import *
 from sklearn import svm
@@ -11,18 +11,18 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
-
+directory = 'train'
 def main(argv):
-	trainingdir = argv[1]
-	testdir = argv[2]
+	trainingdir = argv[0]
+	#testdir = argv[2]
 	languages = ['spanish']
         
 	for language in languages:
 		if language == 'spanish':
 			# train the system
 			Xtrain, Ytraingender, Ytrainage = [], [], []
-			traintweets = loadData(trainingdir, language)
-			traintruths = loadTruth(trainingdir, language)
+			traintweets = loadData(trainingdir)
+			traintruths = loadTruth(trainingdir)
 			for author, tweet in traintweets.items():
 				Xtrain.extend(tweet)
 				##015f2a45-47f5-48bf-904c-264acc3475df:::F:::18-24:::0.1:::0.1:::0.4:::0.2:::0.1
@@ -52,24 +52,24 @@ def main(argv):
 			print(classification_report(y_test, y_predicted, target_names=target_names))
 			
 
-def loadData(directory, language):
+def loadData(data):
 	# returns a dictionary of tweets per author
 	tweets = {}
-	languagedir = os.path.join(directory, language)
-	for filename in os.listdir(languagedir):
+	
+	for filename in os.listdir('train'):
 		if filename.endswith('xml'):
-			handle = open(os.path.join(languagedir, filename), 'rb')
+			handle = open(os.path.join('train', filename), 'rb')
 			tree = etree.fromstring(handle.read())
 			documents = tree.xpath('//document')
 			tweets[filename[:-4]] = [doc.text.rstrip() for doc in documents]
 		
 	return tweets
 
-def loadTruth(directory, language):
+def loadTruth(truths):
 	#015f2a45-47f5-48bf-904c-264acc3475df:::F:::18-24:::0.1:::0.1:::0.4:::0.2:::0.1
 	# returns a dictionary of truth values per author
 	truths = {}
-	filepath = os.path.join(directory, language, 'truth.txt')
+	filepath = os.path.join('train', 'truth.txt')
 	handle = open(filepath, 'r')
 	for line in handle:
 		split = line.split(':::')
