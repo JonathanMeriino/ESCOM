@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
-
+from sklearn.decomposition import TruncatedSVD
 def main(argv):
 	trainingdir = argv[1]
 	testdir = argv[2]
@@ -42,11 +42,16 @@ def main(argv):
 									 #~ transformer_weights={'tfidf': 3})
 			
 			#Train model
+			svd = TruncatedSVD(500)
 			clf = LogisticRegression(max_iter = 10000)
+			
 			pipeline = Pipeline([('features', features), ('classifier', clf)])
-			pipeline.fit(X_train, y_train)
+			vec_svd= svd.fit_transform(X_train)
+			pipeline.fit(vec_svd, y_train)
+
 			
 			#Test model
+
 			y_predicted = pipeline.predict(X_test)
 			target_names = ['18-24','25-34','35-49','50-XX']
 			print(classification_report(y_test, y_predicted, target_names=target_names))
