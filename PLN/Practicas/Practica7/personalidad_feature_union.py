@@ -15,7 +15,7 @@ from sklearn.metrics import classification_report
 def main(argv):
 	trainingdir = argv[1]
 	testdir = argv[2]
-	languages = ['spanish']
+	languages = ['dutch', 'english', 'italian', 'spanish']
         
 	for language in languages:
 		if language == 'spanish':
