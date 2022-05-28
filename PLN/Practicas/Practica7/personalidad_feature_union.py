@@ -1,6 +1,7 @@
 import os
 import sys
 import nltk
+import matplotlib.pyplot as plt
 from lxml import etree
 from features import *
 from sklearn import svm
@@ -12,6 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics import ConfusionMatrixDisplay
 def main(argv):
 	trainingdir = argv[1]
 	testdir = argv[2]
@@ -30,10 +32,12 @@ def main(argv):
 				Ytraingender.extend([traintruths[author][0]] * len(tweet))
 				Ytrainage.extend([traintruths[author][1]] * len(tweet))
 			
-			X_train, X_test, y_train, y_test = train_test_split(Xtrain, Ytrainage, test_size=0.1, random_state=0)
-			
+			X_train, X_test, y_train, y_test = train_test_split(Xtrain, Ytrainage, test_size=0.20, random_state=0)
+			vectorizer = TfidfVectorizer()
+			vectors_train = vectorizer.fit_transform(X_train)
 			features = FeatureUnion([('tfidf', TfidfVectorizer(analyzer='char', ngram_range=(3,4))),
-									 ('patterns', Patterns(['.','!','?','rt','#','@', 'http']))
+									 ('patterns', Patterns(['.','!','?','rt','#','@', 'http'])),
+									 ('SVM', LSA([X_train]))
 									 ])
 			
 			#~ features = FeatureUnion([('tfidf', TfidfVectorizer(analyzer='char', ngram_range=(3,4))),
@@ -41,20 +45,20 @@ def main(argv):
 									 #~ ],
 									 #~ transformer_weights={'tfidf': 3})
 			
-			#Train model
-			svd = TruncatedSVD(500)
-			clf = LogisticRegression(max_iter = 10000)
 			
+					
+			clf = LogisticRegression(max_iter = 10000,class_weight="balanced",solver="liblinear")
+			#clf = TruncatedSVD()
 			pipeline = Pipeline([('features', features), ('classifier', clf)])
-			vec_svd= svd.fit_transform(X_train)
-			pipeline.fit(vec_svd, y_train)
-
+			pipeline.fit(X_train, y_train)
 			
 			#Test model
-
 			y_predicted = pipeline.predict(X_test)
 			target_names = ['18-24','25-34','35-49','50-XX']
 			print(classification_report(y_test, y_predicted, target_names=target_names))
+			
+			ConfusionMatrixDisplay.from_predictions(y_test, y_predicted)
+			plt.show()
 			
 
 def loadData(directory, language):
