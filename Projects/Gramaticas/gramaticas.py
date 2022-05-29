@@ -10,20 +10,8 @@ Original file is located at
 import re
 
 #Funcion principal usada para identificar el tipo de gramatica
-def main():
-  producciones = [[],[]]
-  op = "0"
-
-  #Se agregan reglas de producccion segun la respuesta del usuario
-  while(op == "0"):
-    producciones[0].append(input("Ingrese el lado izquierdo de la regla de producción:"))
-    producciones[1].append(input("Ingrese el lado derecho de la regla de producción:"))
-    op = input("Desea ingresar otra regla de procucción? (0-Si, 1-No): ")
-
-  #Se imprimen las reglas ingresadas
-  print("Reglas de producción")
-  for i in range(len(producciones[0])):
-    print(f"{producciones[0][i]} --> {producciones[1][i]}")
+def evaluacion(izquierda,derecha):
+  producciones = [izquierda,derecha]
 
   #Se llama a las funciones de evaluacion
   if(evaluarTipo0(producciones[0])):
