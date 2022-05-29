@@ -1,7 +1,11 @@
 import re
 res = re.search("c", "abcdef")
 print(res)
-
-patron = re.compile("[a-z]*[A-Z]+[a-z]*")
+cadena= "aa||cc|"
+patron = re.compile("|")
 resultado = patron.search("aa")
 print(resultado)
+
+aux=cadena.split("|")
+
+print(aux)
