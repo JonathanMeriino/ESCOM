@@ -118,7 +118,9 @@ def main(argv):
 			#Train model
 			clf = LogisticRegression(max_iter = 10000,class_weight="balanced",solver="liblinear")
 			#clf = TruncatedSVD()
-			pipeline = Pipeline([('features', features), ('classifier', clf)])
+			pipeline = Pipeline([('features', features),
+                        ('tranforme', TruncatedSVD(X_train)),
+                        ('classifier', clf)])
 			pipeline.fit(X_train, y_train)
 			
 			#Test model
