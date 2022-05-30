@@ -34,10 +34,15 @@ def main(argv):
 			
 			X_train, X_test, y_train, y_test = train_test_split(Xtrain, Ytrainage, test_size=0.20, random_state=0)
 			vectorizer = TfidfVectorizer()
-			vectors_train = vectorizer.fit_transform(X_train)
+			X_train = vectorizer.fit_transform(X_train)
+		
+			X_test = vectorizer.transform(X_test)
+			
+			svd = TruncatedSVD(500)
+			X_train = svd.fit_transform(X_train)
 			features = FeatureUnion([('tfidf', TfidfVectorizer(analyzer='char', ngram_range=(3,4))),
-									 ('patterns', Patterns(['.','!','?','rt','#','@', 'http'])),
-									 ('SVM', LSA([X_train]))
+									 ('patterns', Patterns(['.','!','?','rt','#','@', 'http']))
+								
 									 ])
 			
 			#~ features = FeatureUnion([('tfidf', TfidfVectorizer(analyzer='char', ngram_range=(3,4))),
@@ -48,8 +53,8 @@ def main(argv):
 			
 					
 			clf = LogisticRegression(max_iter = 10000,class_weight="balanced",solver="liblinear")
-			#clf = TruncatedSVD()
-			pipeline = Pipeline([('features', features), ('classifier', clf)])
+			model = TruncatedSVD()
+			pipeline = Pipeline([("Model", model.fit_transform(X_train)),('features', features), ('classifier', clf)])
 			pipeline.fit(X_train, y_train)
 			
 			#Test model

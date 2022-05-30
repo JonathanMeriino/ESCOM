@@ -1,7 +1,7 @@
 from collections import defaultdict
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.decomposition import TruncatedSVD
-
+from sklearn.feature_extraction.text import TfidfVectorizer
 class Capitals(BaseEstimator, TransformerMixin):
         # feature that counts capitalized characters in a tweet
         def fit(self, X, Y=None):
@@ -18,10 +18,12 @@ class Patterns(BaseEstimator, TransformerMixin):
         def transform(self, X):
                 return [[doc.lower().count(pattern)/len(doc) for pattern in self.patterns] for doc in X]
 
-class LSA(BaseEstimator, TransformerMixin):
-        def __init__ (self, vectors_train):
-                self.vectors_train = vectors_train
-        def fit(self):
-                return self
-        def transform(self):
-                return TruncatedSVD(self.vectors_train) 
+class LSA:
+        def __init__ (self, X_train):
+                self.X_train = X_train
+        def convert(self, X_train):
+            vectorizer = TfidfVectorizer()
+            vectors_train = vectorizer.fit_transform(X_train)
+            
+            return vectors_train
+                            

@@ -1,5 +1,5 @@
 import re
-res = re.search("c", "abcdef")
+"""res = re.search("c", "abcdef")
 print(res)
 cadena= "aa||cc|"
 patron = re.compile("|")
@@ -8,4 +8,9 @@ print(resultado)
 
 aux=cadena.split("|")
 
-print(aux)
+print(aux)"""
+lista = ['AA', 'E', 'BB']
+
+
+derecha = "|".join(lista)
+print(derecha)

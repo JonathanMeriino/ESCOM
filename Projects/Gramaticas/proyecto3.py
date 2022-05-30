@@ -1,6 +1,4 @@
-from numpy import size
 import re
-
 
 def eval(producciones):
   #Se llama a las funciones de evaluacion
@@ -20,36 +18,15 @@ def eval(producciones):
   return mensaje
 
 
-#Funcion principal usada para identificar el tipo de gramatica
-def main():
-  producciones = [[],[]]
-  op = "0"
+"""#Tipo 0
+### Reglas de Produccion:
+*   ***Lado izquierdo -> Debe tener por lo menos un simbolo no terminal***
+*   ***Lado derecho -> No tiene restricciones*** 
 
-  #Se agregan reglas de producccion segun la respuesta del usuario
-  while(op == "0"):
-    producciones[0].append(input("Ingrese el lado izquierdo de la regla de producción:"))
-    producciones[1].append(input("Ingrese el lado derecho de la regla de producción:"))
-    op = input("Desea ingresar otra regla de procucción? (0-Si, 1-No): ")
-
-  #Se imprimen las reglas ingresadas
-  print("Reglas de producción")
-  for i in range(len(producciones[0])):
-    print(f"{producciones[0][i]} --> {producciones[1][i]}")
-
-  #Se llama a las funciones de evaluacion
-  if(evaluarTipo0(producciones[0])):
-    if(evaluarTipo1(producciones[0],producciones[1])):
-      if(evaluarTipo2(producciones[0],producciones[1])):
-        if(evaluarTipo3(producciones[0],producciones[1])):
-          return print("Es una gramatica tipo 3 Regular")
-        return print("Es una gramatica tipo 2 Independiente de contexto")
-      return print("Es una gramatica tipo 1 Sensible al contexto")
-    return print("Es una gramatica tipo 0 sin restricciones")
-  return print("Es una gramatica no identificable")
-        
-#Solo se necesita la parte izquierda de la regla, debe contener almenos un SNT
+"""
 def evaluarTipo0(izq):
-  for i in range(size(izq)):
+  
+  for i in range(len(izq)):
     tipo0 = re.compile(r"[A-Z]+")
     x = tipo0.search(izq[i])
 
@@ -62,6 +39,7 @@ def evaluarTipo0(izq):
 #Funcion para comparar las partes a la izquierda y derecha de un SNT con la parte derecha de 
 #la regla de produccion
 def comparar(anterior, posterior, der):
+  
   ant = re.compile(anterior)
 
   #Si la parte posterior no es final de cadena realiza la busqueda
@@ -77,12 +55,17 @@ def comparar(anterior, posterior, der):
   else:
     return 0
 
-#Funcion para evaluar las reglas de una gramatica tipo 1
-#Parte anterior y posterior de un simbolo terminal de la parte izquierda
-#se conservan en la parte derecha,(Dichas partes pueden ser cualquier combinacion
-# de terminales o no terminales)
+
+"""#Tipo 1
+### Reglas de Produccion:
+*   ***Lado izquierdo -> Solo tiene un simbolo No Terminal, se reemplaza por otro simbolo, mientras el resto sigue igual***
+*   ***Lado derecho -> No tiene restriccion***
+*   Longitud del lado izquierdo siempre debe ser menor o igual que la longitud del lado derecho
+"""
 def evaluarTipo1(izq, der):
-  for i in range(size(izq)):
+  aux = "".join(der)
+  der = aux.split('|')
+  for i in range(len(izq)):
     resultado = 0
     cadena = izq[i]
     tipo1 = re.compile(r"[A-Z]")
@@ -103,10 +86,18 @@ def evaluarTipo1(izq, der):
       return resultado
   return resultado
 
-#Debe cumplir que la izquierda solo un SNT y en la derecha cualquier secuencia de
-#terminales o no terminales
+"""#Tipo 2
+### Reglas de Produccion:
+
+
+*   ***Lado izquierdo -> Un simbolo No terminal***
+*   ***Lado derecho -> Cualquier secuencia de terminales o No terminales***
+"""
 def evaluarTipo2(izq, der):
-  for i in range(size(izq)):
+  aux = "".join(der)
+  der = aux.split('|')
+  
+  for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"\D*")
 
@@ -120,11 +111,19 @@ def evaluarTipo2(izq, der):
 
   return 1
 
-#Debe cumplir que la izquierda solo un SNT y en la derecha una de las sig combinaciones
-#(SNT SNT), (ST ST), (ST SNT), (ST), (SNT), (cadena vacia)
-#terminales o no terminales
+"""#Tipo 3
+### Reglas de Produccion:
+
+
+*   ***Lado izquierdo -> Un simbolo no terminal***
+*  *** Lado derecho -> maximo dos simbolos terminales o no terminales, 1 terminal seguido de un SNT, 1 terminal, cadena vacia***
+
+"""
 def evaluarTipo3(izq, der):
-  for i in range(size(izq)):
+  aux = "".join(der)
+
+  der = aux.split('|')
+  for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"([a-z][A-Z]|[a-z]*$|[A-Z]*$)")
 
@@ -137,7 +136,3 @@ def evaluarTipo3(izq, der):
       return 0
 
   return 1
-
-
-#llamada a funcion principal
-#main()
