@@ -18,12 +18,3 @@ class Patterns(BaseEstimator, TransformerMixin):
         def transform(self, X):
                 return [[doc.lower().count(pattern)/len(doc) for pattern in self.patterns] for doc in X]
 
-class LSA:
-        def __init__ (self, X_train):
-                self.X_train = X_train
-        def convert(self, X_train):
-            vectorizer = TfidfVectorizer()
-            vectors_train = vectorizer.fit_transform(X_train)
-            
-            return vectors_train
-                            

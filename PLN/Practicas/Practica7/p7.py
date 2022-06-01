@@ -67,22 +67,6 @@ def main(argv):
 			
 			X_train, X_test, y_train, y_test = train_test_split(Xtrain, Ytrainage, test_size=0.2, random_state=0)
 			
-# 			vectorizer = TfidfVectorizer()
-# 			vectors_train = vectorizer.fit_transform(X_train)
-
-# 			clf = LogisticRegression()
-# 			clf.fit(vectors_train, y_train)
-
-# 			vectors_test = vectorizer.transform(X_test)
-# 			y_pred = clf.predict(vectors_test)
-# 			#~ print (y_pred)
-# 			print ('vectors_train.shape {}'.format(vectors_train.shape))
-# 			print ('vectors_test.shape {}'.format(vectors_test.shape))
-
-
-
-# 			print (classification_report(y_test, y_pred))            
-
 
 			#Modelo con Hashing
 #			features = FeatureUnion([('Hashing', HashingVectorizer(binary=True, analyzer='word', stop_words=stopwords.words("spanish") , ngram_range=(3,4))),
@@ -109,15 +93,16 @@ def main(argv):
 #			features = FeatureUnion([('Binario', CountVectorizer(binary=True,analyzer='char', ngram_range=(3,4))),
 #									 ('patterns', Patterns(['.','!','?','rt','#','@', 'http']))
 #									 ])            
-			
-			features = FeatureUnion([('tfidf', TfidfVectorizer( analyzer='char_wb', ngram_range=(1,6),strip_accents='unicode')),
+			svd = TruncatedSVD(500)
+			lsa = Pipeline([('tfidf', TfidfVectorizer(binary=True, analyzer='char_wb', ngram_range=(1,6),strip_accents='unicode')),
+                        ('classifier', svd)])
+			features = FeatureUnion([('lsa', lsa),
 									 ('patterns', Patterns([':)',':S',':P',':D',':O',':(', 'u.u'])),
 									 ],
 									 transformer_weights={'tfidf': 4})
 			
 			#Train model
 			clf = LogisticRegression(max_iter = 10000,class_weight="balanced",solver="liblinear")
-			#clf = TruncatedSVD()
 			pipeline = Pipeline([('features', features),
                         ('classifier', clf)])
 			pipeline.fit(X_train, y_train)
@@ -129,20 +114,6 @@ def main(argv):
 			
 			ConfusionMatrixDisplay.from_predictions(y_test, y_predicted)
 			plt.show()
-			"""#Model LSA
-			vectorizer = TfidfVectorizer()
-			vectors_train = vectorizer.fit_transform(X_train)
-		
-			vectors_test = vectorizer.transform(X_test)
-			
-			svd = TruncatedSVD(500)
-			vectors_train_lsa = svd.fit_transform(vectors_train)
-			clf.fit(vectors_train_lsa, y_train)
-
-			vectors_test_lsa = svd.transform(vectors_test)
-
-			y_pred = clf.predict(vectors_test_lsa)
-			print (classification_report(y_test, y_pred))"""
 
 def loadData(directory, language):
 	# returns a dictionary of tweets per author
