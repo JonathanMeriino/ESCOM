@@ -1,3 +1,4 @@
+import enum
 import re
 """res = re.search("c", "abcdef")
 print(res)
@@ -9,8 +10,11 @@ print(resultado)
 aux=cadena.split("|")
 
 print(aux)"""
-lista = ['AA', 'E', 'BB']
+lista = [['AA|EB|B'], ['aa|bb|cc']]
 
-
-derecha = "|".join(lista)
-print(derecha)
+for i in lista:
+    aux="".join(i)
+    aux=aux.split('|')
+    for j, elem in enumerate (aux):
+        y = aux[j]
+        print(y)

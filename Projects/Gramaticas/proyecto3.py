@@ -60,11 +60,9 @@ def comparar(anterior, posterior, der):
 ### Reglas de Produccion:
 *   ***Lado izquierdo -> Solo tiene un simbolo No Terminal, se reemplaza por otro simbolo, mientras el resto sigue igual***
 *   ***Lado derecho -> No tiene restriccion***
-*   Longitud del lado izquierdo siempre debe ser menor o igual que la longitud del lado derecho
 """
 def evaluarTipo1(izq, der):
-  aux = "".join(der)
-  der = aux.split('|')
+  
   for i in range(len(izq)):
     resultado = 0
     cadena = izq[i]
@@ -77,9 +75,14 @@ def evaluarTipo1(izq, der):
         continue
       #Si hay mas que solo el SNT se compara con la parte derecha de la regla de producccion
       else:
-        if(comparar(cadena[:m.start()],cadena[m.end():],der[i])):
-          resultado = 1
-          break
+        for j in der:
+          aux="".join(j)
+          aux=aux.split('|')
+          for z, elem in enumerate (aux):
+            if(comparar(cadena[:m.start()],cadena[m.end():],aux[z])):
+          
+              resultado = 1
+              break
         else:
           continue
     if(resultado == 0):
@@ -94,20 +97,26 @@ def evaluarTipo1(izq, der):
 *   ***Lado derecho -> Cualquier secuencia de terminales o No terminales***
 """
 def evaluarTipo2(izq, der):
-  aux = "".join(der)
-  der = aux.split('|')
+  
   
   for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"\D*")
 
     x = tipo2i.search(izq[i])
-    y = tipo2d.search(der[i])
+    
+    for j in der:
+      aux="".join(j)
+      aux=aux.split('|')
+      for ind, elem in enumerate (aux):
+        #print(ind)
+        y = tipo2d.search(aux[ind])
+        
 
-    if(x and y and len(izq[i]) == 1):
-      continue
-    else:
-      return 0
+        if(x and y and len(izq[i]) == 1):
+          continue
+        else:
+          return 0
 
   return 1
 
@@ -120,19 +129,21 @@ def evaluarTipo2(izq, der):
 
 """
 def evaluarTipo3(izq, der):
-  aux = "".join(der)
 
-  der = aux.split('|')
   for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"([a-z][A-Z]|[a-z]*$|[A-Z]*$)")
 
     x = tipo2i.search(izq[i])
-    y = tipo2d.match(der[i])
+    for j in der:
+      aux="".join(j)
+      aux=aux.split('|')
+      for ind,elem in  enumerate(aux):
+        y = tipo2d.match(aux[ind])
 
-    if(x and y and len(izq[i]) == 1 and len(der[i]) <= 2):
-      continue
-    else:
-      return 0
+        if(x and y and len(izq[i]) == 1 and len(der[i]) <= 2):
+          continue
+        else:
+          return 0
 
   return 1

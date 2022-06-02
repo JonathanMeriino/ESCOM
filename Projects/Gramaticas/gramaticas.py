@@ -69,7 +69,7 @@ def evaluarTipo0(izq):
 
 #Funcion para evaluar las reglas de una gramatica tipo 1
 def evaluarTipo1(izq, der):
-  der = der.split('|')
+  
   for i in range(len(izq)):
     resultado = 0
     cadena = izq[i]
@@ -102,7 +102,7 @@ def evaluarTipo1(izq, der):
 """
 
 def evaluarTipo2(izq, der):
-  der = der.split('|')
+  
   
   for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]?")
@@ -128,7 +128,7 @@ def evaluarTipo2(izq, der):
 """
 
 def evaluarTipo3(izq, der):
-  der = der.split('|')
+ 
   for i in range(len(izq)):
     tipo2i = re.compile(r"[A-Z]")
     tipo2d = re.compile(r"([a-z][A-Z]|[a-z]*$|[A-Z]*$)")
@@ -142,6 +142,3 @@ def evaluarTipo3(izq, der):
       return 0
 
   return 1
-
-#llamada a funcion principal
-#main()
