@@ -66,7 +66,7 @@ def evaluarTipo1(izq, der):
   for i in range(len(izq)):
     resultado = 0
     cadena = izq[i]
-    tipo1 = re.compile(r"[A-Z]")
+    tipo1 = re.compile(r"[A-Z]?")
     for m in tipo1.finditer(cadena):
       #print(m.start(), m.end(), m.group())
       #Si la parte izquierda es solo el SNT se cumple la regla
@@ -79,12 +79,12 @@ def evaluarTipo1(izq, der):
           aux="".join(j)
           aux=aux.split('|')
           for z, elem in enumerate (aux):
-            if(comparar(cadena[:m.start()],cadena[m.end():],aux[z])):
+            if(comparar(cadena[:m.start()],cadena[m.end():],elem[z])):
           
               resultado = 1
               break
-        else:
-          continue
+            else:
+              continue
     if(resultado == 0):
       return resultado
   return resultado
