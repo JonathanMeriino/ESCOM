@@ -11,21 +11,14 @@ c2=1
 """
 import numpy as np
 import pandas as pd
+
+
 datos = pd.DataFrame()
 
-
 particulas = 20
-dimension = 5
-arr = 0
-"""¿¿def crearParticulas(particulas, dimension, arr):
-    arr = np.random.rand(particulas, dimension)
-    print(arr)
-
-    return""" 
-
+dimension = 2
 arr = np.random.uniform(low=-5,high=5,size=(particulas,dimension))
-#print(arr)
-#print(arr[0])
+
 P=[]
 
 for i,j in enumerate(arr):
@@ -51,11 +44,7 @@ for i in P:
 print("Valor maximo: ", max(eval_P))
 print("Valor minimo: ", min(eval_P))
 
-"""def eval_OF(P):
-    eval_P = []
-    for i in P:
-        break    
-    return 0"""
+
 
 
 datos['Particulas']=P
