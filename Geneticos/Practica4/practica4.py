@@ -9,7 +9,6 @@ w = 0.8 -> inercia
 c1 = 0.7
 c2=1 
 """
-from turtle import clear
 import numpy as np
 import pandas as pd
 datos = pd.DataFrame()
