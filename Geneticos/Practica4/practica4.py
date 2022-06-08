@@ -17,36 +17,33 @@ datos = pd.DataFrame()
 
 particulas = 20
 dimension = 2
+iteraciones = 50
+#creacion de las particulas
 arr = np.random.uniform(low=-5,high=5,size=(particulas,dimension))
 
-P=[]
+parti=[]
 
 for i,j in enumerate(arr):
     aux=j
-    P.append(aux)
+    parti.append(aux)
 
-#print(P)
 gbest = [0,0,0,0,0]
 
+#funcion de evaluacion
+def eval_P(parti):
+    eval_P=[]
+    for i in parti:
+        aux = sum(i*i)
+        eval_P.append(aux)
+    return eval_P
 
-#res = sum(map(lambda i : i * i, P))
 
-#print(res)
-eval_P=[]
 
-for i in P:
-    aux = sum(i*i)
-    eval_P.append(aux)
-
-#print(eval_P)
-
-# seleccionar el gbest 
-print("Valor maximo: ", max(eval_P))
-print("Valor minimo: ", min(eval_P))
+def valorMinimo():
 
 
 
 
-datos['Particulas']=P
+datos['Particulas']=parti
 datos ['Eval_P']= eval_P
 print(datos)
