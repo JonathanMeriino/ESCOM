@@ -1,0 +1,79 @@
+{"contenido":[
+	{
+		"tag":"saludo",
+		"patrones":["hola","un saludo","Que tal?"],
+		"respuesta":["Hola que tal","Mucho gusto","Bienvenido"]
+	},
+
+	{
+		"tag":"despedida",
+		"patrones":["adios", "hasta la proxima","nos vemos"],
+		"respuesta":["cuidate","nos vemos pronto"]
+	},
+
+	{
+		"tag":"presentacion",
+		"patrones":["quien eres?","que haces?"],
+		"respuesta":["Hola soy un bot que te ayudara a conocer lugares turirsticos y dar recomendaciones sobre viajes :D"]
+	},
+
+	{
+		"tag":"playas",
+		"patrones":["mar","alguna playa que me recomiendes?","mejores playas en mexico ","recomendacion para nadar?","dime lugares para  nadar","payas mas visitadas", "playas","algun lugar para nadar"],
+		"respuesta":["Playa El Palmar En Ixtapa Zihuatanejo ",
+		"Kaan Luum, cuyo significado en maya es tierra amarilla Se trata de una laguna de tonalidades azul turquesa en tulum ",
+		"A 30 kilometros de Isla Mujeres, se encuentra Isla Contoy, considerada como el santuario de aves mas importante del Caribe mexicano y parque nacional, desde 1998 ",
+		"Playa del amor en Zipolite Esta rodeada de grandes montañas de rocas y vegetacion selvatica, su principal caracteristica es que tiene un ambiente intimo ideal para parejas"]
+	},
+
+	{
+		"tag":"zonas arqueologicas",
+		"patrones":["lugares con historia","dime sobre cultura en mexico ","algun lugar arqueologico que recomiendes?","zonas antiguas de mexico","las mejores zonas arqueologicas ","cultura","tradiciones","historicos","zonas arqueologicas"],
+		"respuesta":["Zona arqueologica El Tajín se suele denominar a este centro religioso y político mesoamericano como casa del trueno",
+		"Zona Arqueologica y Museo Las Yacatas Tzintzuntzan",
+        "El Castillo de Tulum Este basamento se ubica en la orilla del mar y es una de las principales edificaciones que conforman la Zona Arqueologica de Tulum.",
+		"El tempo de los dioses en el Pueblo Magico de San Juan Teotihuacan, con  su bella Piramide de la Luna y la colosal Piramide del Sol."]
+	},
+
+	{
+		"tag":"ecoturismo",
+		"patrones":["lugares con riqueza natural", "naturaleza","diversidad"," mejores lugares de ecoturismo","recomiendame lugares con diversidad","algun lugar para visitar con naturaleza?","un viaje que me conecte con la naturaleza"],
+		"respuesta":["Valle de Zaragoza una localidad cuyos inicios se remontan a la epoca virreinal y que obtiene su nombre al estar establecido sobre un valle a las orillas del Rio Conchos a 160 kilometros de la ciudad de Chihuahua",
+		"El Salto Entre los altos pinos duranguenses se localiza El Salto una ciudad de tradicion maderera y cabecera municipal de Pueblo Nuevo",
+		"Boca Paila es uno de los tesoros que mejor esconde la Reserva de la Biosfera de Sian Ka’an, en el estado de Quintana Roo",
+		"El avistaje de ballenas es una actividad extremadamente emocionante que se puede realizar en Puerto Vallarta cuando poco más de mil ballenas jorobadas realizan su migracion anual"]
+	},
+
+	{
+		"tag":"Pueblos Magicos",
+		"patrones":["cales son los mejores Pueblos magicos?","una experiencia unica en mexico?","pueblos magicos en mexico?","viajes con cultura en mexico?"],
+		"respuesta":[
+			"Dolores Hidalgo aqui te vuelves parte de la historia Testigo de la gesta de la Independencia de Mexico, tierra fertil que engendro la vid y la convirtio en viñedos",
+			"Lagos de Moreno Pueblos Magicos como salidos de algun cuento es uno de esos pueblos pintorescos que enamoran a primera vista por su arquitectura y el encanto de sus habitantes",
+			"El Pueblo Magico de Valladolid en Yucatan, es uno de esos destinos donde el tiempo pasa serenamente, respirando los aires de un antiguo pueblo maya rico en tradiciones",
+			"Jalpan de Serra Originalmente, la zona estuvo habitada por un pueblo recio de alma libre que es famoso por haber sido el que más férreamente se opuso a la evangelizacion",
+			"Un destino mistico Tepoztlan Morelos, un destino perfecto para escaparse un fin de semana entre amigos o en pareja."]
+	},
+	
+	{
+		"tag":"cuidades patrimonio",
+		"patrones":[" alguna cuidad importante? ", "recomiendame cuidades patrimonio de la humanidad","dime cuidades reconocidas","reconocimiento"," importancia","recomiendame lugares con patrimonio recococido mundialmente?"],
+		"respuesta":[
+			"La perla mas grande de Veracruz entre el cauce del Río Papaloapan (a 90 kilometros del Puerto de Veracruz), yace brillante su perla mas grande, hablamos de Tlacotalpan, cuyas casas de grandes portales, techos de tejas rojas curveadas, amplios porticos y calidos colores iluminando sus paredes son una reminiscencia de la tradición vernacula del Caribe.",
+			"Oaxaca Su legado cultural, artístico y gastronomico, posicionan a la ciudad como uno de los destinos mas importantes de Mexico",
+			"Zacatecas, una ciudad poseedora de grandes joyas arquitectonicas y naturales",
+			"Morelia, conoce los tesoros de este lugar la capital del estado de Michoacan ostenta una belleza espectacular, por lo que no fue sorpresa que la nombraran Patrimonio de la Humanidad por la UNESCO en 1991."]
+	},
+
+	{
+		"tag":"Hoteles",
+        	"patrones":["Cuales son los hoteles mas famosos?", "Quiero rentar un cuarto","Recomiendas algún hotel"],
+			"respuesta":["Mar Celeste Hotel Boutique Localizado en la mejor playa de Manzanillo",
+			"Te recomiendo City Express La Paz en playas del mar cortez ", 
+			"Barceló Maya Beach un hotel  con vista a las playas del caribe ",
+			"Aloft Tulum un hotel  con la experiencias locales de tulum"]
+	}
+
+
+]
+}
