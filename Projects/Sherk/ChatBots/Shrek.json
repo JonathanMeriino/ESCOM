@@ -270,6 +270,11 @@
 			"tag": "muyLejano",
 			"patrones":["donde esta muy muy lejano"],
 			"respuesta": ["que clase de pregunta es esa?"]
+	},
+		{
+			"tag": "materiaPasada",
+			"patrones":["ya pase mis materias", "aprobe mis materias"],
+			"respuesta": ["Mi querido muchacho, me siento orgulloso de llamarte hijo."]
 	}
 	]
 }
