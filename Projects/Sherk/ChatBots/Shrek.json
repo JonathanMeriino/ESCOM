@@ -250,6 +250,26 @@
 		"tag":"No entiendo",
 		"patrones":["No entiendo","que dices"],
 		"respuesta":["Dejame em paz, tengo que concervar mi privacidad","tu que quieres?"]
+	},
+		{
+			"tag": "Materia",
+			"patrones": ["voy a pasar la materia"],
+			"respuesta":["No, ¡Tú de lo único que podrías llegar a ser es rey de los tontos y estúpidos!"] 
+	},
+		{
+			"tag": "Bonita",
+			"patrones": ["soy bonita?","soy bonita"],
+			"respuesta":["Vamos princesa, no eres tan fea. Bueno, sí. Eres fea, pero sólo eres así doce horas al día. Shrek es feo todo el año."]
+	},
+		{
+			"tag": "expo-escom",
+			"patrones":["¿Que te parece expo-escom?","que te parece"],
+			"respuesta": ["Gracias a este proyecto es una maravilla"]
+	},
+		{
+			"tag": "muyLejano",
+			"patrones":["donde esta muy muy lejano"],
+			"respuesta": ["que clase de pregunta es esa?"]
 	}
 	]
 }
