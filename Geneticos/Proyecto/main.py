@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from hormigas import *
 
 
@@ -33,8 +34,15 @@ for i in range(24):
 distancias=np.array(distancias)
 
 #print(distancias)
-ant_colony = AntColony(distancias, 100, 20, 50, 0.2, alpha=1, beta=2)
-shortest_path,log = ant_colony.run()
-print (f"Camino mas corto:{shortest_path}")
+colonia = colonia_hormigas(distancias, 100, 20, 50, 0.2, alpha=1, beta=2)
+camino_corto,log = colonia.main()
+print (f"Camino mas corto:{camino_corto}")
 plt.plot(log)
 plt.show()
+
+"""
+    TourSize" : 24,
+    "OptTour" : [16, 11, 3, 7, 6, 24, 8, 21, 5, 10, 17, 22, 18, 19, 15, 2, 20, 14, 13, 9, 23, 4, 12, 1],
+    "OptDistance" : 1272
+
+"""

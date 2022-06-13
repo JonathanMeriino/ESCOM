@@ -1,26 +1,22 @@
-import random as rn
 import numpy as np
 from numpy.random import choice as np_choice
-from math import sqrt
-import matplotlib.pyplot as plt
-import json
 
-
-class AntColony(object):
-
-    def __init__(self, distancias, n_hormigas, n_best, iteraciones, decay, alpha=1, beta=1):
-        """
-        Args:
-            distancias (2D numpy.array): Square matrix of distancias. Diagonal is assumed to be np.inf.
+"""
+        Argumentos:
+            distancias (2D numpy.array): Matriz cuadrada de distancias. Diagonal es infinito: np.inf.
             n_hormigas (int): numero de hormigas por iteracion
             n_best (int): numero de las mejores hormigas para depositar la feromona
             n_iteration (int): numero de itercaciones 
-            decay (float): Rate it which feromona decays. The pheromone value is multiplied by decay, so 0.95 will lead to decay, 0.5 to much faster decay.
-            alpha (int or float): exponenet on pheromone, higher alpha gives pheromone more weight. Default=1
-            beta (int or float): exponent on distance, higher beta give distance more weight. Default=1
+            decay (float): Valor por el que se descompone la feromona. El valor de la feromona se multiplica por la descomposición, por lo que 0,95 conducirá a la descomposición, 0,5 a una descomposición mucho más rápida.
+            alpha (int or float): exponente de la feromona, un alfa más alto le da más peso a la feromona. Predeterminado=1
+            beta (int or float): exponente de la distancia, una beta más alta da más peso a la distancia. Predeterminado=1
         Example:
             ant_colony = AntColony(distancias, 100, 20, 2000, 0.95, alpha=1, beta=2)          
         """
+class colonia_hormigas(object):
+
+    def __init__(self, distancias, n_hormigas, n_best, iteraciones, decay, alpha=1, beta=1):
+        
         self.distancias  = distancias
         self.feromona = np.ones(self.distancias.shape) / len(distancias)
         self.all_inds = range(len(distancias))
@@ -31,74 +27,57 @@ class AntColony(object):
         self.alpha = alpha
         self.beta = beta
 
-    def run(self):
+    def main(self):
         distance_logs=[]
-        shortest_path = None
-        all_time_shortest_path = ("placeholder", np.inf)
-        for i in range(self.iteraciones):
-            all_paths = self.gen_all_paths()
-            self.spread_pheronome(all_paths, self.n_best, shortest_path=shortest_path)
-            shortest_path = min(all_paths, key=lambda x: x[1])
-            if shortest_path[1] < all_time_shortest_path[1]:
-                all_time_shortest_path = shortest_path
-            distance_logs.append(all_time_shortest_path[1])                      
-        return all_time_shortest_path,distance_logs
+        camino_corto = None
+        camino_mas_corto = ("placeholder", np.inf)
+        for _ in range(self.iteraciones):
+            caminos = self.generar_caminos()
+            self.propagacion_feromona(caminos, self.n_best, camino_corto=camino_corto)
+            camino_corto = min(caminos, key=lambda x: x[1])
+            if camino_corto[1] < camino_mas_corto[1]:
+                camino_mas_corto = camino_corto
+            distance_logs.append(camino_mas_corto[1])                      
+        return camino_mas_corto,distance_logs
 
-    def spread_pheronome(self, all_paths, n_best, shortest_path):
-        sorted_paths = sorted(all_paths, key=lambda x: x[1])
-        for path, dist in sorted_paths[:n_best]:
-            for move in path:
-                self.feromona[move] += 1.0 / self.distancias[move]
+    def propagacion_feromona(self, caminos, n_best, camino_corto):
+        caminos_sort = sorted(caminos, key=lambda x: x[1])
+        for sendero, dist in caminos_sort[:n_best]:
+            for movimiento in sendero:
+                self.feromona[movimiento] += 1.0 / self.distancias[movimiento]
 
-    def gen_path_dist(self, path):
+    def distancias_camino(self, sendero):
         total_dist = 0
-        for ele in path:
+        for ele in sendero:
             total_dist += self.distancias[ele]
         return total_dist
 
-    def gen_all_paths(self):
-        all_paths = []
-        for i in range(self.n_hormigas):
-            path = self.gen_path(0)
-            all_paths.append((path, self.gen_path_dist(path)))
-        return all_paths
+    def generar_caminos(self):
+        caminos = []
+        for _ in range(self.n_hormigas):
+            sendero = self.generar_sendero(0)
+            caminos.append((sendero, self.distancias_camino(sendero)))
+        return caminos
 
-    def gen_path(self, start):
-        path = []
-        visited = set()
-        visited.add(start)
+    def generar_sendero(self, start):
+        sendero = []
+        visitado = set()
+        visitado.add(start)
         prev = start
-        for i in range(len(self.distancias) - 1):
-            move = self.pick_move(self.feromona[prev], self.distancias[prev], visited)
-            path.append((prev, move))
-            prev = move
-            visited.add(move)
-        path.append((prev, start)) # going back to where we started    
-        return path
+        for _ in range(len(self.distancias) - 1):
+            movimiento = self.elegir_movimiento(self.feromona[prev], self.distancias[prev], visitado)
+            sendero.append((prev, movimiento))
+            prev = movimiento
+            visitado.add(movimiento)
+        sendero.append((prev, start)) # vuelve a donde empezo    
+        return sendero
 
-    def pick_move(self, feromona, dist, visited):
+    def elegir_movimiento(self, feromona, dist, visitado):
         feromona = np.copy(feromona)
-        feromona[list(visited)] = 0
+        feromona[list(visitado)] = 0
 
         row = (feromona ** self.alpha) * (( 1.0 / dist) ** self.beta)
 
         norm_row = row / row.sum()
-        move = np_choice(self.all_inds, 1, p=norm_row)[0]
-        return move
-
-
-
-
-"""#Presolved TSP Instance
-with open("TSP_Data/gr120.json", "r") as tsp_data:
-    tsp = json.load(tsp_data)
-
-distancias = tsp["DistanceMatrix"]
-tour_size=tsp["TourSize"]
-for i in range(tour_size):
-  distancias[i][i]=np.inf
-distancias=np.array(distancias)
-"""
-
-
-
+        movimiento = np_choice(self.all_inds, 1, p=norm_row)[0]
+        return movimiento
