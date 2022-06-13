@@ -8,25 +8,25 @@ import json
 
 class AntColony(object):
 
-    def __init__(self, distances, n_ants, n_best, n_iterations, decay, alpha=1, beta=1):
+    def __init__(self, distancias, n_hormigas, n_best, iteraciones, decay, alpha=1, beta=1):
         """
         Args:
-            distances (2D numpy.array): Square matrix of distances. Diagonal is assumed to be np.inf.
-            n_ants (int): Number of ants running per iteration
-            n_best (int): Number of best ants who deposit pheromone
-            n_iteration (int): Number of iterations
-            decay (float): Rate it which pheromone decays. The pheromone value is multiplied by decay, so 0.95 will lead to decay, 0.5 to much faster decay.
+            distancias (2D numpy.array): Square matrix of distancias. Diagonal is assumed to be np.inf.
+            n_hormigas (int): numero de hormigas por iteracion
+            n_best (int): numero de las mejores hormigas para depositar la feromona
+            n_iteration (int): numero de itercaciones 
+            decay (float): Rate it which feromona decays. The pheromone value is multiplied by decay, so 0.95 will lead to decay, 0.5 to much faster decay.
             alpha (int or float): exponenet on pheromone, higher alpha gives pheromone more weight. Default=1
             beta (int or float): exponent on distance, higher beta give distance more weight. Default=1
         Example:
-            ant_colony = AntColony(distances, 100, 20, 2000, 0.95, alpha=1, beta=2)          
+            ant_colony = AntColony(distancias, 100, 20, 2000, 0.95, alpha=1, beta=2)          
         """
-        self.distances  = distances
-        self.pheromone = np.ones(self.distances.shape) / len(distances)
-        self.all_inds = range(len(distances))
-        self.n_ants = n_ants
+        self.distancias  = distancias
+        self.feromona = np.ones(self.distancias.shape) / len(distancias)
+        self.all_inds = range(len(distancias))
+        self.n_hormigas = n_hormigas
         self.n_best = n_best
-        self.n_iterations = n_iterations
+        self.iteraciones = iteraciones
         self.decay = decay
         self.alpha = alpha
         self.beta = beta
@@ -35,7 +35,7 @@ class AntColony(object):
         distance_logs=[]
         shortest_path = None
         all_time_shortest_path = ("placeholder", np.inf)
-        for i in range(self.n_iterations):
+        for i in range(self.iteraciones):
             all_paths = self.gen_all_paths()
             self.spread_pheronome(all_paths, self.n_best, shortest_path=shortest_path)
             shortest_path = min(all_paths, key=lambda x: x[1])
@@ -48,17 +48,17 @@ class AntColony(object):
         sorted_paths = sorted(all_paths, key=lambda x: x[1])
         for path, dist in sorted_paths[:n_best]:
             for move in path:
-                self.pheromone[move] += 1.0 / self.distances[move]
+                self.feromona[move] += 1.0 / self.distancias[move]
 
     def gen_path_dist(self, path):
         total_dist = 0
         for ele in path:
-            total_dist += self.distances[ele]
+            total_dist += self.distancias[ele]
         return total_dist
 
     def gen_all_paths(self):
         all_paths = []
-        for i in range(self.n_ants):
+        for i in range(self.n_hormigas):
             path = self.gen_path(0)
             all_paths.append((path, self.gen_path_dist(path)))
         return all_paths
@@ -68,56 +68,37 @@ class AntColony(object):
         visited = set()
         visited.add(start)
         prev = start
-        for i in range(len(self.distances) - 1):
-            move = self.pick_move(self.pheromone[prev], self.distances[prev], visited)
+        for i in range(len(self.distancias) - 1):
+            move = self.pick_move(self.feromona[prev], self.distancias[prev], visited)
             path.append((prev, move))
             prev = move
             visited.add(move)
         path.append((prev, start)) # going back to where we started    
         return path
 
-    def pick_move(self, pheromone, dist, visited):
-        pheromone = np.copy(pheromone)
-        pheromone[list(visited)] = 0
+    def pick_move(self, feromona, dist, visited):
+        feromona = np.copy(feromona)
+        feromona[list(visited)] = 0
 
-        row = (pheromone ** self.alpha) * (( 1.0 / dist) ** self.beta)
+        row = (feromona ** self.alpha) * (( 1.0 / dist) ** self.beta)
 
         norm_row = row / row.sum()
         move = np_choice(self.all_inds, 1, p=norm_row)[0]
         return move
 
 
-#Static TSP Instance
-# distances = np.array([[np.inf, 2, 2, 5, 7],
-#                       [2, np.inf, 4, 8, 2],
-#                       [2, 4, np.inf, 1, 3],
-#                       [5, 8, 1, np.inf, 2],
-#                       [7, 2, 3, 2, np.inf]])
 
 
-#Dinamic TSP Instance, changing the value of n_nodes will change the
-#Instance size
-# n_nodes=100
-# dist=lambda x,y: sqrt(((x[0]-y[0])**2)+((x[1]-y[1])**2))
-# l=[(rn.random()*1000,rn.random()*1000) for i in range(n_nodes)]
-# distances=np.array([[np.inf if i==j else dist(l[i],l[j]) for i in range(len(l))] for j in range(len(l))])
-
-
-#Presolved TSP Instance
+"""#Presolved TSP Instance
 with open("TSP_Data/gr120.json", "r") as tsp_data:
     tsp = json.load(tsp_data)
 
-distances = tsp["DistanceMatrix"]
+distancias = tsp["DistanceMatrix"]
 tour_size=tsp["TourSize"]
 for i in range(tour_size):
-  distances[i][i]=np.inf
-distances=np.array(distances)
+  distancias[i][i]=np.inf
+distancias=np.array(distancias)
+"""
 
 
 
-
-ant_colony = AntColony(distances, 50, 50, 150, 0.7, alpha=1, beta=1)
-shortest_path,log = ant_colony.run()
-print ("shortest_path: {}".format(shortest_path))
-plt.plot(log)
-plt.show()
