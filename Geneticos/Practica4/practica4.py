@@ -1,5 +1,4 @@
 """
-Benitez Merino Leonardo Jonathan
 Realizar la minimizacion de la funcion x**2 + y**2 en el intervalo de valores 
 (-5,5) para x y y
 version de PSO: Global
