@@ -34,11 +34,10 @@ for i in range(24):
 distancias=np.array(distancias)
 
 #print(distancias)
-colonia = colonia_hormigas(distancias, 100, 20, 50, 0.2, alpha=1, beta=2)
+colonia = colonia_hormigas(distancias, 24, 24, 50, 0.2, alpha=1, beta=2)
 camino_corto,log = colonia.main()
 print (f"Camino mas corto:{camino_corto}")
-plt.plot(log)
-plt.show()
+
 
 """
     TourSize" : 24,
