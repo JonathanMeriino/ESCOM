@@ -61,8 +61,8 @@ class colonia_hormigas(object):
         return movimiento
 
     def main(self):
-        desempeno_distancias=[]
         camino_corto = None
+        desempeno_distancias=[]
         camino_mas_corto = ("placeholder", np.inf) # placeholder para indicar que esta vacio -> iran las rutas
         for _ in range(self.iteraciones):
             caminos = self.generar_caminos()
