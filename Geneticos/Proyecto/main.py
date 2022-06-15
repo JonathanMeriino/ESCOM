@@ -34,9 +34,11 @@ for i in range(24):
 distancias=np.array(distancias)
 
 #print(distancias)
-colonia = colonia_hormigas(distancias, 24, 24, 50, 0.2, alpha=1, beta=2)
-camino_corto,log = colonia.main()
-print (f"Camino mas corto:{camino_corto}")
+colonia = colonia_hormigas(distancias, 24, 24, 20, 0.2, alpha=1, beta=2)
+camino_corto,logs = colonia.main()
+print (f"Ruta:{camino_corto[0]}")
+print(f"Fitness: {camino_corto[1]}")
+
 
 
 """
