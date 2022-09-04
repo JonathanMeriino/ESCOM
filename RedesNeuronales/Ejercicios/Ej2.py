@@ -1,6 +1,6 @@
 #Implementar un vector en R3 en numpy
 import numpy as np
-
+import math 
 #declaracion del array
 A = np.array([0.3, 0.6, 0.9])
 
@@ -11,11 +11,12 @@ res=A*alpha
 
 print(f"Resultado de alpha*A: {res}") #Imprimir en pantalla el resultado
 
-B = A*res
+B = sum(A*res)
 
 print(f"Resultado de B: {B}")
 
-# Pendiente C
+C = B / math.sqrt(B**2)
+print(f"Valor de C: {C}")
 
 #Parte 2
 
