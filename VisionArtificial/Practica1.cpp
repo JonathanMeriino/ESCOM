@@ -92,19 +92,23 @@ int main()
 	// Mat:: AUTO_STEP
 	
 	imshow("Gris Promedio", i_prom); // Se muestra la imagen en escala de grises metodo promediada
+	
 	/*Convertir la imagen de RGB a escala de grises (NTSC)*/
 
+	uint8_t array2[fila_original][columna_original]; // creacion del array 
+	
 	for (int i = 0; i < fila_original; i++) {
 		for (int j = 0; j < columna_original; j++) {
-			array[i][j] = 0;
+			array2[i][j] = 0;
 		}
 	}
-	// Apuntador a la direccion de memoria de los datos contenidos en la imagen
-	uint8_t* pixelApt = (uint8_t*)imagen.data;
 	
-	int canal = imagen.channels(); //Almacenamos el numero de canales en la variable cn
+	// Apuntador a la direccion de memoria de los datos contenidos en la imagen
+	uint8_t* pixelApt2 = (uint8_t*)imagen.data;
+	
+	int canal2 = imagen.channels(); //Almacenamos el numero de canales en la variable cn
 
-	Scalar_<uint8_t> bgrPixel; //Creamos un vector escalar de tipo uint8_t
+	Scalar_<uint8_t> bgrPixel2; //Creamos un vector escalar de tipo uint8_t
 
 	for (int i = 0; i < fila_original; i++)
 
@@ -112,15 +116,15 @@ int main()
 		for (int j = 0; j < columna_original; j++)
 
 		{
-			bgrPixel.val[0] = pixelApt[i * imagen.cols * canal + j * canal + 0]; // Azul
+			bgrPixel2.val[0] = pixelApt2[i * imagen.cols * canal2 + j * canal2 + 0]; // Azul
 
-			bgrPixel.val[1] = pixelApt[i * imagen.cols * canal + j * canal + 1]; // Verde
+			bgrPixel2.val[1] = pixelApt2[i * imagen.cols * canal2 + j * canal2 + 1]; // Verde
 
-			bgrPixel.val[2] = pixelApt[i * imagen.cols * canal + j * canal + 2]; // Rojo
+			bgrPixel2.val[2] = pixelApt2[i * imagen.cols * canal + j * canal + 2]; // Rojo
 
-			int ponderado = (bgrPixel.val[0]*0.114 + bgrPixel.val[1]*0.587 + bgrPixel.val[2]*0.299);
+			int ponderado2 = (bgrPixel.val[0]*0.114 + bgrPixel.val[1]*0.587 + bgrPixel.val[2]*0.299);
 
-			array[i][j] = ponderado;
+			array2[i][j] = ponderado;
 		}
 	}
 	Mat i_ntsc(Size(fila_original, columna_original), CV_8UC1, array, Mat::AUTO_STEP); // implementacion metodo promedidada
